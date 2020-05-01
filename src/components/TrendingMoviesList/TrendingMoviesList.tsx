@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 
 interface MovieItem { id: string; title: string; overview: string };
@@ -6,7 +5,7 @@ interface Props {
     list:  Array<MovieItem>;
 }
 
-export const TrendingMoviesList: React.FC<Props> = ({list}) => {
+export const TrendingMoviesList: React.FC<Props> = ({list}: Props) => {
     return (
         <>
             <div>TRENDING MOVIES</div>

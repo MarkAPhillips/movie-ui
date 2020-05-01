@@ -23,7 +23,6 @@ describe('TrendingMoviesList',()=>{
         // test
         expect(getByText(title)).toBeInTheDocument;
 
-
     })
 
     it('should render list',()=>{
@@ -34,7 +33,7 @@ describe('TrendingMoviesList',()=>{
         ];
 
         // build
-        const {getByText, debug} = render(<TrendingMoviesList list={testList} />);
+        const {getByText} = render(<TrendingMoviesList list={testList} />);
 
         // test
         expect(getByText('1: title1 - overview1').textContent).toBe('1: title1 - overview1')
@@ -51,7 +50,7 @@ describe('TrendingMoviesList',()=>{
         ];
 
         // build
-        const {getByText, debug} = render(<TrendingMoviesList list={testList} />);
+        const {getByText} = render(<TrendingMoviesList list={testList} />);
 
         // test
         expect(getByText('1: title1 - overview1')).toBeInTheDocument();
