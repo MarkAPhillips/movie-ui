@@ -1,11 +1,30 @@
 import React from 'react';
-import { render, fireEvent, waitFor, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 // Component in test
 import { TrendingMoviesList } from './TrendingMoviesList';
 
 
 describe('TrendingMoviesList',()=>{
+
+    it('should render title',()=>{
+        //setup
+        const testList = [
+            {id:'1',title:'title1',overview:'overview1'},
+            {id:'2',title:'title2',overview:'overview2'}
+        ];
+
+        // build
+        const {getByText} = render(<TrendingMoviesList list={testList} />);
+
+        // result
+        const title = 'TRENDING MOVIES';
+
+        // test
+        expect(getByText(title)).toBeInTheDocument;
+
+
+    })
 
     it('should render list',()=>{
         //setup
