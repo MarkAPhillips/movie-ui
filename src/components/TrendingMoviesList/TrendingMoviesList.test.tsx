@@ -7,15 +7,9 @@ import { TrendingMoviesList } from './TrendingMoviesList';
 
 describe('TrendingMoviesList',()=>{
 
-    it('should render title',()=>{
-        //setup
-        const testList = [
-            {id:'1',title:'title1',overview:'overview1'},
-            {id:'2',title:'title2',overview:'overview2'}
-        ];
-
+    it.only('should render title',()=>{
         // build
-        const {getByText} = render(<TrendingMoviesList list={testList} />);
+        const {getByText} = render(<TrendingMoviesList />);
 
         // result
         const title = 'TRENDING MOVIES';
@@ -26,14 +20,8 @@ describe('TrendingMoviesList',()=>{
     })
 
     it('should render list',()=>{
-        //setup
-        const testList = [
-            {id:'1',title:'title1',overview:'overview1'},
-            {id:'2',title:'title2',overview:'overview2'}
-        ];
-
         // build
-        const {getByText} = render(<TrendingMoviesList list={testList} />);
+        const {getByText} = render(<TrendingMoviesList />);
 
         // test
         expect(getByText('1: title1 - overview1').textContent).toBe('1: title1 - overview1')
@@ -43,14 +31,8 @@ describe('TrendingMoviesList',()=>{
     })
 
     it('should be in the document',()=>{
-        // setup
-        const testList = [
-            {id:'1',title:'title1',overview:'overview1'},
-            {id:'2',title:'title2',overview:'overview2'}
-        ];
-
         // build
-        const {getByText} = render(<TrendingMoviesList list={testList} />);
+        const {getByText} = render(<TrendingMoviesList />);
 
         // test
         expect(getByText('1: title1 - overview1')).toBeInTheDocument();
@@ -58,14 +40,8 @@ describe('TrendingMoviesList',()=>{
     })
 
     it('should return 2 items',()=>{
-        // setup
-        const testList = [
-            {id:'1',title:'title1',overview:'overview1'},
-            {id:'2',title:'title2',overview:'overview2'}
-        ];
-
         // build
-        const {queryAllByTestId} = render(<TrendingMoviesList list={testList} />);
+        const {queryAllByTestId} = render(<TrendingMoviesList />);
         const numberOfMatchingQueries = queryAllByTestId(/trending/i);
 
         // test
@@ -73,14 +49,8 @@ describe('TrendingMoviesList',()=>{
     })
 
     it('should return items in order',()=>{
-        // setup
-        const testList = [
-            {id:'1',title:'title1',overview:'overview1'},
-            {id:'2',title:'title2',overview:'overview2'}
-        ];
-
         // build
-        const {queryAllByTestId} = render(<TrendingMoviesList list={testList} />);
+        const {queryAllByTestId} = render(<TrendingMoviesList />);
         const numberOfMatchingQueries = queryAllByTestId(/trending/i);
 
         // test

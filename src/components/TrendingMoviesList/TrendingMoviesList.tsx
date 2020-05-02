@@ -1,17 +1,25 @@
 import React from 'react';
+import { useQuery } from '@apollo/react-hooks';
 
-interface MovieItem { id: string; title: string; overview: string };
-interface Props {
-    list:  Array<MovieItem>;
-}
+// queries
+import { GET_TRENDING } from '../../queries';
 
-export const TrendingMoviesList: React.FC<Props> = ({list}: Props) => {
+// types
+import { TrendingMovieItem } from '../../types';
+
+export const TrendingMoviesList = () => {
+
+    const { loading, error, data } = useQuery(GET_TRENDING);
+
+    if (loading) return <>Loading...</>;
+    if (error) return <>`Error! ${error.message}`</>;
+
     return (
         <>
             <div>TRENDING MOVIES</div>
             <ul>
             {
-                list && list.map((movie)=>{
+                data.trending.map((movie: TrendingMovieItem)=>{
                     return <li key={movie.id} data-testid={`trending-${movie.id}`}>{movie.id}: {movie.title} - {movie.overview}</li>;
                 })
             }
@@ -19,27 +27,3 @@ export const TrendingMoviesList: React.FC<Props> = ({list}: Props) => {
         </>
     )
 };
-
-
-
-// import React from 'react';
-
-// interface MovieItem { id: string; title: string; overview: string };
-// interface Props {
-//     list:  Array<MovieItem>;
-// }
-
-// export const TrendingMoviesList: React.FC<Props> = ({list}: Props) => {
-//     return (
-//         <>
-//             <div>TRENDING MOVIES</div>
-//             <ul>
-//             {
-//                 list && list.map((movie)=>{
-//                     return <li key={movie.id} data-testid={`trending-${movie.id}`}>{movie.id}: {movie.title} - {movie.overview}</li>;
-//                 })
-//             }
-//             </ul>
-//         </>
-//     )
-// };

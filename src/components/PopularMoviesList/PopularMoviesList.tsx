@@ -1,37 +1,27 @@
 import React from 'react';
-import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 
-interface MovieItem { id: string; title: string; overview: string; vote_average: number };
-interface Props {
-    list:  Array<MovieItem>;
-}
+// queries
+import { GET_POPULAR } from '../../queries';
 
-const GET_POPULAR = gql`
-  {
-    popular {
-        id,
-        title,
-        overview,
-        vote_average
-      }
-  }
-`;
+// types
+import { PopularMovieItem } from '../../types';
 
-export const PopularMoviesList = () => {
+
+export const PopularMoviesList= () => {
 
     const { loading, error, data } = useQuery(GET_POPULAR);
 
-    if (loading) return 'Loading...';
-    if (error) return `Error! ${error.message}`;
+    if (loading) return <>Loading...</>;
+    if (error) return <>`Error! ${error.message}`</>;
 
     return (
         <>
             <div>POPULAR MOVIES</div>
             <ul>
             {
-                data.popular.map((movie)=>{
-                    return <li key={movie.id} data-testid={`popular-${movie.id}`}>{movie.id}: {movie.title} - {movie.overview} - {movie.vote_average}</li>;
+                data.popular.map((movie: PopularMovieItem)=>{
+                    return <li key={movie.id} data-testid={`popular-${movie.id}`}>{movie.id} ({movie.vote_average}): {movie.title} - {movie.overview}</li>;
                 })
             }
             </ul>
