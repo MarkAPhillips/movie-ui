@@ -5,9 +5,11 @@ import { client } from './client';
 
 // components
 import { TrendingMoviesList, PopularMoviesList } from './components';
+import { GlobalStyle } from './styles';
 
 const App = () => (
     <ApolloProvider client={client}>
+      <GlobalStyle />
       <TrendingMoviesList />
       <PopularMoviesList />
     </ApolloProvider>
