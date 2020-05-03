@@ -29,9 +29,9 @@ export const TrendingMoviesList = () => {
             <div>TRENDING MOVIES</div>
             <Container>
                 {
-                    data.trending && data.trending.map((movie: TrendingMovieItem)=>{
-                        return <MoviePanel movieData={movie}/>;
-                    })
+                    data.trending && data.trending.map((movie: TrendingMovieItem) => ( 
+                        <MoviePanel movieData={movie} key={movie.id}/>
+                    ))
                 }
             </Container>
         </>

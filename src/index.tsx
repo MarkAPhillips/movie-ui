@@ -4,10 +4,7 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import { client } from './client';
 
 // components
-import { TrendingMoviesList } from './components/TrendingMoviesList/TrendingMoviesList';
-import { PopularMoviesList } from './components/PopularMoviesList/PopularMoviesList'
-
-
+import { TrendingMoviesList, PopularMoviesList } from './components';
 
 const App = () => (
     <ApolloProvider client={client}>
