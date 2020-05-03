@@ -6,6 +6,7 @@ export const GET_POPULAR = gql`
       id,
       title,
       overview,
+      imageUrl,
       voteAverage
     }
 }

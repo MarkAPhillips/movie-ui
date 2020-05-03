@@ -2,10 +2,10 @@ type Movie = {
     id: string;
     title: string;
     overview: string;
+    imageUrl: string; 
 }
 
 export type TrendingMovieItem = Movie & {
-     imageUrl: string; 
 };
 
 export type PopularMovieItem = Movie & { 
