@@ -1,0 +1,14 @@
+version: 2.1
+jobs:
+  build:
+    machine:
+      image: ubuntu-1604:202004-01
+    working_directory: ~/movie-ui
+    steps:
+      - checkout
+      - run: 
+          name: Install Node dependencies
+          command: npm i
+      - run:
+          name: Run linting and tests
+          command: npm test

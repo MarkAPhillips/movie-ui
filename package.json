@@ -4,10 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "pretest": "npm run lint",
     "test": "jest",
     "test:watch": "jest --watch",
     "build": "webpack --mode production",
-    "start": "webpack-dev-server --open"
+    "start": "webpack-dev-server --open",
+    "lint": "eslint --quiet \"src/**\""
   },
   "repository": {
     "type": "git",
