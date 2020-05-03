@@ -21,7 +21,7 @@ export const PopularMoviesList= () => {
             <ul>
             {
                 data.popular.map((movie: PopularMovieItem)=>{
-                    return <li key={movie.id} data-testid={`popular-${movie.id}`}>{movie.id} ({movie.vote_average}): {movie.title} - {movie.overview}</li>;
+                    return <li key={movie.id} data-testid={`popular-${movie.id}`}>{movie.id} ({movie.voteAverage}): {movie.title} - {movie.overview}</li>;
                 })
             }
             </ul>

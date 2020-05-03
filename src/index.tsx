@@ -1,11 +1,11 @@
 import { render } from 'react-dom';
 import React from 'react';
 import { ApolloProvider } from '@apollo/react-hooks';
-import {client} from './client';
+import { client } from './client';
 
 // components
-import { TrendingMoviesList } from '../src/components/TrendingMoviesList/TrendingMoviesList';
-import { PopularMoviesList } from '../src/components/PopularMoviesList/PopularMoviesList'
+import { TrendingMoviesList } from './components/TrendingMoviesList/TrendingMoviesList';
+import { PopularMoviesList } from './components/PopularMoviesList/PopularMoviesList'
 
 
 

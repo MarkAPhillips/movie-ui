@@ -6,7 +6,7 @@ export const GET_POPULAR = gql`
       id,
       title,
       overview,
-      vote_average
+      voteAverage
     }
 }
 `;
@@ -16,7 +16,8 @@ export const GET_TRENDING = gql`
   trending {
       id,
       title,
-      overview
+      overview,
+      imageUrl
     }
 }
 `;
