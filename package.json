@@ -7,7 +7,7 @@
     "pretest": "npm run lint",
     "test": "jest",
     "test:watch": "jest --watch",
-    "build:env": "chmod a+x ./env.sh && ./env.sh && mkdir -p dist && mv env.js dist/env.js",
+    "build:env": "chmod a+x ./env.sh && ./env.sh",
     "build": "webpack -p --env=prod",
     "start": "npm run build:env && webpack-dev-server --open",
     "lint": "eslint --quiet \"src/**\""

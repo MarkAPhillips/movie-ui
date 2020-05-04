@@ -1,8 +1,8 @@
 #!/bin/bash
-rm -rf ./env.js
-touch ./env.js
+rm -rf ./dist/env.js
+touch ./dist/env.js
 
-echo "window._env_ = {" >> ./env.js
+echo "window._env_ = {" >> ./dist/env.js
 
 while read -r line || [[ -n "$line" ]];
 do
@@ -16,7 +16,7 @@ do
   [[ -z $value ]] && value=${varvalue}
   
   # Append configuration property to JS file
-  echo -e "\t$varname: \"$value\"," >> ./env.js
+  echo -e "\t$varname: \"$value\"," >> ./dist/env.js
 done < ./.env
 
-echo -e "};\n" >> ./env.js
+echo -e "};\n" >> ./dist/env.js
