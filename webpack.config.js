@@ -1,8 +1,5 @@
 const path = require('path');
-const webpack = require('webpack');
-const HtmlWebPackPlugin = require("html-webpack-plugin");
-const dotenv = require('dotenv')
-  .config({ path: __dirname + '/.env'});
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const config = {
   entry: [
@@ -10,14 +7,15 @@ const config = {
   ],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    globalObject: "this",
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         use: 'babel-loader',
-        exclude: /node_modules/
+        exclude: [/node_modules/]
       },
       {
         test: /\.ts(x)?$/,
@@ -33,14 +31,6 @@ const config = {
           name: '[hash].[ext]',
         },
       },
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: "html-loader"
-          }
-        ]
-      }
     ]
   },
   optimization: {
@@ -55,12 +45,9 @@ const config = {
     }
   },
   plugins: [
-    new HtmlWebPackPlugin({
+    new HtmlWebpackPlugin({
       template: "./src/index.html",
-      filename: "./index.html"
-    }),
-    new webpack.DefinePlugin({
-      "process.env":JSON.stringify(dotenv.parsed),
+      filename: "./index.html",
     }),
   ],
   resolve: {

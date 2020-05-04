@@ -11,8 +11,9 @@ RUN npm i
 COPY . .
 
 RUN npm run build && \
+    chmod a+x ./env.sh && \
     useradd dockerUser
 
 USER dockerUser
 
-CMD serve -p $PORT -s dist
+CMD ./env.sh && serve -p $PORT -s dist
