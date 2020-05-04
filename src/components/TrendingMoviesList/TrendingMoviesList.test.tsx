@@ -40,7 +40,7 @@ describe('TrendingMoviesList',() => {
         const title = 'TRENDING MOVIES';
 
 
-        await wait();
+        await wait(0);
 
         // test
         expect(getByText(title)).toBeInTheDocument;
@@ -49,7 +49,7 @@ describe('TrendingMoviesList',() => {
 
     it('should render list', async()=>{
         // build
-        const {getByText, debug} = render(
+        const {getByText} = render(
             <MockedProvider mocks={mocks} addTypename={false} >
                 <TrendingMoviesList />
             </MockedProvider>
@@ -58,15 +58,14 @@ describe('TrendingMoviesList',() => {
         await wait(0);
 
         // test
-        expect(getByText('1: title1 - overview1').textContent).toBe('1: title1 - overview1')
-        expect(getByText('2: title2 - overview2').textContent).toBe('2: title2 - overview2')
-
+        expect(getByText('title1').textContent).toBe('title1')
+        expect(getByText('overview2').textContent).toBe('overview2')
 
     })
 
     it('should be in the document',async ()=>{
         // build
-        const {getByText, debug} = render(
+        const {getByText} = render(
             <MockedProvider mocks={mocks} addTypename={false} >
                 <TrendingMoviesList />
             </MockedProvider>
@@ -75,7 +74,8 @@ describe('TrendingMoviesList',() => {
         await wait(0);
 
         // test
-        expect(getByText('1: title1 - overview1')).toBeInTheDocument();
+        expect(getByText('title1')).toBeInTheDocument();
+        expect(getByText('overview1')).toBeInTheDocument();
 
     })
 
