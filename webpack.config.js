@@ -1,5 +1,8 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const dotenv = require('dotenv')
+  .config({ path: __dirname + '/.env'});
 
 const config = {
   entry: [
@@ -55,7 +58,10 @@ const config = {
     new HtmlWebPackPlugin({
       template: "./src/index.html",
       filename: "./index.html"
-    })
+    }),
+    new webpack.DefinePlugin({
+      "process.env":JSON.stringify(dotenv.parsed),
+    }),
   ],
   resolve: {
     extensions: [
