@@ -2,12 +2,19 @@ import { createGlobalStyle } from 'styled-components'
 
 const fonts = { size: '14px', family: 'Open Sans' };
 
-import externalFont from './OpenSans-Regular-webfont.woff';
+import OpenSansRegular from './OpenSans-Regular-webfont.woff';
+import OpenSansBold from './open-sans-v17-latin-700.woff';
 
 export const GlobalStyle = createGlobalStyle`
     @font-face {
+        font-weight: 400;
         font-family: ${fonts.family};
-        src: url(${externalFont})
+        src: url(${OpenSansRegular})
+    }
+    @font-face {
+        font-weight: 700;
+        font-family: ${fonts.family};
+        src: url(${OpenSansBold})
     }
     html, body  {
         width: 100%;
