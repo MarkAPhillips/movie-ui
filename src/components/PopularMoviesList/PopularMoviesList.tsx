@@ -21,7 +21,7 @@ export const PopularMoviesList= () => {
             <ul>
             {
                 data.popular.map((movie: PopularMovieItem)=> (
-                    <li key={movie.id}data-testid={`popular-${movie.id}`}>
+                    <li key={movie.id} data-testid={`popular-${movie.id}`}>
                         {movie.id} ({movie.voteAverage}): {movie.title} - {movie.overview} <br/>
                     <div>
                         <img src={movie.imageUrl} width='154px' height='231px' />
