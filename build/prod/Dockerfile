@@ -6,7 +6,7 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm i && \
+RUN npm i -f && \
     touch .env && \
     echo "API_URL=$API_URL" >> .env
 
