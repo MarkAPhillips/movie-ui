@@ -6,7 +6,7 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm i -f && \
+RUN npm i --quiet && \
     touch .env && \
     echo "API_URL=$API_URL" >> .env
 
@@ -18,4 +18,4 @@ RUN npm run build && \
 
 USER dockerUser
 
-CMD ./build/env.sh && serve -p $PORT -s dist
+CMD ./build/env.sh && serve -n -p $PORT -s dist
