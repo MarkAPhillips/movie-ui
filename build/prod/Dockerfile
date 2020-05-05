@@ -13,9 +13,9 @@ RUN npm i && \
 COPY . .
 
 RUN npm run build && \
-    chmod a+x ./env.sh && \
+    chmod a+x ./build/env.sh && \
     useradd dockerUser
 
 USER dockerUser
 
-CMD ./env.sh && serve -p $PORT -s dist
+CMD ./build/env.sh && serve -p $PORT -s dist

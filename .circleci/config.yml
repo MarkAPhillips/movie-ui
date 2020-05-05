@@ -14,7 +14,7 @@ jobs:
           command: npm test
       - run:
           name : Build Docker Image
-          command: docker build -t movie-ui:$CIRCLE_SHA1 .
+          command: docker build -f ./build/prod/Dockerfile -t movie-ui:$CIRCLE_SHA1 .
       - run:
           name: Deploy to Heroku
           command: |
