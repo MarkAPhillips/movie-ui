@@ -1,23 +1,47 @@
 version: 2.1
-jobs:
-  build:
+
+executors:
+  movie-ui-executor:
     machine:
       image: ubuntu-1604:202004-01
     working_directory: ~/movie-ui
+
+jobs:
+  test:
+    executor: movie-ui-executor
     steps:
       - checkout
-      - run: 
-          name: Install Node dependencies
+      - run:
+          name: Install Node Dependencies
           command: npm i
       - run:
-          name: Run linting and tests
+          name: Run Linting and Tests
           command: npm test
+
+  build:
+    executor: movie-ui-executor
+    steps:
+      - checkout
       - run:
           name : Build Docker Image
-          command: docker build -f ./build/prod/Dockerfile -t movie-ui:$CIRCLE_SHA1 .
-      - run:
-          name: Deploy to Heroku
           command: |
+            docker build -f ./build/prod/Dockerfile -t movie-ui:$CIRCLE_SHA1 .
+            mkdir -p workspace
+            docker save -o workspace/movie-ui.tar movie-ui:$CIRCLE_SHA1
+      - persist_to_workspace:
+          root: workspace
+          paths:
+            - movie-ui.tar
+
+  deploy:
+    executor: movie-ui-executor
+    steps:
+      - attach_workspace:
+          at: /tmp/workspace
+      - run:
+          name: Deploy to Docker Image to Heroku
+          command: |
+            docker load -i /tmp/workspace/movie-ui.tar
             docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
             docker tag movie-ui:$CIRCLE_SHA1 registry.heroku.com/$HEROKU_APP_NAME/web
             docker push registry.heroku.com/$HEROKU_APP_NAME/web
@@ -28,3 +52,18 @@ jobs:
             -H "Content-Type: application/json" \
             -H "Accept: application/vnd.heroku+json; version=3.docker-releases" \
             -H "Authorization: Bearer $HEROKU_API_KEY"
+
+workflows:
+  version: 2
+  cd_pipeline:
+    jobs:
+      - test
+      - build:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
+      - deploy:
+          requires:
+            - build
