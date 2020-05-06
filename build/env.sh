@@ -1,4 +1,5 @@
 #!/bin/bash
+mkdir -p ./dist
 rm -rf ./dist/env.js
 touch ./dist/env.js
 
@@ -14,7 +15,7 @@ do
   value=$(printf '%s\n' "${!varname}")
   # Otherwise use value from .env file
   [[ -z $value ]] && value=${varvalue}
-  
+
   # Append configuration property to JS file
   echo -e "\t$varname: \"$value\"," >> ./dist/env.js
 done < ./.env
