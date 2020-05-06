@@ -13,7 +13,7 @@
     "start:docker": "npm run docker:build && npm run docker:run",
     "lint": "eslint --quiet \"src/**\"",
     "docker:build": "docker build -f ./build/local/Dockerfile -t movie-ui .",
-    "docker:run": "docker rm -f movie-ui >/dev/null 2>&1 && docker run --name movie-ui -e PORT=8080 -p 8080:8080 -it movie-ui"
+    "docker:run": "docker rm -f movie-ui &> /dev/null || true && docker run --name movie-ui -e PORT=8080 -p 8080:8080 -it movie-ui"
   },
   "repository": {
     "type": "git",
