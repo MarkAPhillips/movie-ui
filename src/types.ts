@@ -1,16 +1,10 @@
-type Movie = {
+export type MovieType = {
     id: string;
     title: string;
     overview: string;
-    imageUrl: string; 
+    imageUrl: string;
+    voteAverage: number;
 }
-
-export type TrendingMovieItem = Movie & {
-};
-
-export type PopularMovieItem = Movie & { 
-    voteAverage: number; 
-};
 
 export type TruncateTextType = {
     text: string;

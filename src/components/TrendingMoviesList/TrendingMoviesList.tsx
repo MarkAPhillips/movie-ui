@@ -1,17 +1,18 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+import styled from "styled-components";
 
 // queries
 import { GET_TRENDING } from '../../queries';
 
 // types
-import { TrendingMovieItem } from '../../types';
+import { MovieType } from '../../types';
 
 // components
 import { MoviePanel } from "../MoviePanel/MoviePanel";
 
+// styles
 const Container = styled.div`
   display: flex;
   flex-direction: row;
@@ -34,7 +35,7 @@ export const TrendingMoviesList = () => {
             <div>TRENDING MOVIES</div>
             <Container>
                 {
-                    data.trending && data.trending.map((movie: TrendingMovieItem) => (
+                    data.trending && data.trending.map((movie: MovieType) => (
                         <MoviePanel movieData={movie} key={movie.id}/>
                     ))
                 }

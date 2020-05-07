@@ -1,13 +1,23 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { useHistory } from "react-router-dom";
+import styled from "styled-components";
 
 // queries
 import { GET_POPULAR } from '../../queries';
 
 // types
-import { PopularMovieItem } from '../../types';
+import { MovieType } from '../../types';
 
+// components
+import { MoviePanel } from "../MoviePanel/MoviePanel";
+
+// styles
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+`;
 
 export const PopularMoviesList= () => {
     let history = useHistory();
@@ -20,22 +30,17 @@ export const PopularMoviesList= () => {
     history.push('/trending');
   }
 
-    return (
-        <>
-            <div>POPULAR MOVIES</div>
-            <button onClick={()=>handleClick()}>go to trending</button>
-            <ul>
-            {
-                data.popular.map((movie: PopularMovieItem)=> (
-                    <li key={movie.id} data-testid={`popular-${movie.id}`}>
-                        {movie.id} ({movie.voteAverage}): {movie.title} - {movie.overview} <br/>
-                    <div>
-                        <img src={movie.imageUrl} width='154px' height='231px' />
-                    </div>
-                    </li>
-            ))
-            }
-            </ul>
-        </>
-    )
+  return (
+    <>
+      <div>POPULAR MOVIES</div>
+      <Container>
+        {
+          data.popular && data.popular.map((movie: MovieType) => (
+            <MoviePanel movieData={movie} key={movie.id}/>
+          ))
+        }
+      </Container>
+      <button onClick={()=>handleClick()}>go to trending</button>
+    </>
+  )
 };
