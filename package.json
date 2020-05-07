@@ -9,7 +9,7 @@
     "test:watch": "jest --watch",
     "build:env": "chmod a+x ./build/env.sh && ./build/env.sh",
     "build": "webpack -p --env=prod",
-    "start": "npm run build:env && webpack-dev-server --open",
+    "start": "npm run build:env && webpack-dashboard -- webpack-dev-server --open",
     "start:docker": "npm run docker:build && npm run docker:run",
     "lint": "eslint --quiet \"src/**\"",
     "docker:build": "docker build -f ./build/local/Dockerfile -t movie-ui .",
@@ -66,6 +66,7 @@
     "waait": "^1.0.5",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
+    "webpack-dashboard": "^3.2.0",
     "webpack-dev-server": "^3.10.3"
   }
 }

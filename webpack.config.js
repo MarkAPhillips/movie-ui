@@ -1,4 +1,5 @@
 const path = require('path');
+const DashboardPlugin = require("webpack-dashboard/plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const config = {
@@ -50,6 +51,7 @@ const config = {
       template: "./src/index.html",
       filename: "./index.html",
     }),
+    new DashboardPlugin(),
   ],
   resolve: {
     extensions: [
