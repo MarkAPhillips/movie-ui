@@ -20,7 +20,7 @@ const Container = styled.div`
 `;
 
 export const TrendingMoviesList = () => {
-    let history = useHistory();
+    const history = useHistory();
     const { loading, error, data } = useQuery(GET_TRENDING);
 
     if (loading) return <>Loading...</>;

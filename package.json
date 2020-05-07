@@ -60,6 +60,7 @@
     "html-webpack-skip-assets-plugin": "0.0.2",
     "jest": "^25.5.3",
     "ts-jest": "^25.4.0",
+    "ts-lint": "^4.5.1",
     "ts-loader": "^7.0.1",
     "typescript": "^3.8.3",
     "waait": "^1.0.5",

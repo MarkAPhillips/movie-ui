@@ -5,8 +5,8 @@ import { truncateText } from "../../utilities/truncate-text";
 // types
 import { MovieType } from '../../types';
 type PanelTypes = {
-  panelHeight: number,
-  isOver: boolean
+  panelHeight: number;
+  isOver: boolean;
 };
 
 export type MovieData = {movieData: MovieType};
