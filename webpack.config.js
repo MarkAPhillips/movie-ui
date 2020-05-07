@@ -9,6 +9,7 @@ const config = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
     globalObject: "this",
+    publicPath: "/"
   },
   module: {
     rules: [
@@ -59,7 +60,8 @@ const config = {
     ]
   },
   devServer: {
-    contentBase: './dist'
+    contentBase: './dist',
+    historyApiFallback: true,
   }
 };
 

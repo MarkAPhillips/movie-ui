@@ -1,5 +1,6 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
+import { useHistory } from "react-router-dom";
 
 // queries
 import { GET_POPULAR } from '../../queries';
@@ -9,15 +10,20 @@ import { PopularMovieItem } from '../../types';
 
 
 export const PopularMoviesList= () => {
-
+    let history = useHistory();
     const { loading, error, data } = useQuery(GET_POPULAR);
 
     if (loading) return <>Loading...</>;
     if (error) return <>`Error! ${error.message}`</>;
 
+  const handleClick = () => {
+    history.push('/trending');
+  }
+
     return (
         <>
             <div>POPULAR MOVIES</div>
+            <button onClick={()=>handleClick()}>go to trending</button>
             <ul>
             {
                 data.popular.map((movie: PopularMovieItem)=> (
