@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import { MockedProvider } from '@apollo/react-testing';
 import wait from "waait";
 
@@ -9,6 +10,15 @@ import { TrendingMoviesList } from './TrendingMoviesList';
 
 import { GET_TRENDING} from "../../queries";
 import {act} from "react-dom/test-utils";
+
+const mockHistoryPush = jest.fn();
+
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useHistory: () => ({
+    push: mockHistoryPush,
+  }),
+}));
 
 const mocks = [
     {
@@ -31,9 +41,11 @@ describe('TrendingMoviesList',() => {
     it('should render title',async ()=>{
         // build
         const {getByText} = render(
+          <MemoryRouter>
             <MockedProvider mocks={mocks} addTypename={false} >
                 <TrendingMoviesList />
             </MockedProvider>
+          </MemoryRouter>
             );
 
         // result
@@ -50,9 +62,11 @@ describe('TrendingMoviesList',() => {
     it('should render list', async()=>{
         // build
         const {getByText} = render(
+          <MemoryRouter>
             <MockedProvider mocks={mocks} addTypename={false} >
                 <TrendingMoviesList />
             </MockedProvider>
+          </MemoryRouter>
         );
 
         await wait(0);
@@ -66,9 +80,11 @@ describe('TrendingMoviesList',() => {
     it('should be in the document',async ()=>{
         // build
         const {getByText} = render(
+          <MemoryRouter>
             <MockedProvider mocks={mocks} addTypename={false} >
                 <TrendingMoviesList />
             </MockedProvider>
+          </MemoryRouter>
         );
 
         await wait(0);
@@ -82,9 +98,11 @@ describe('TrendingMoviesList',() => {
     it('should return 2 items',async ()=>{
         // build
         const {queryAllByTestId} = render(
+          <MemoryRouter>
             <MockedProvider mocks={mocks} addTypename={false} >
                 <TrendingMoviesList />
             </MockedProvider>
+          </MemoryRouter>
         );
 
         await wait(0);
@@ -99,9 +117,11 @@ describe('TrendingMoviesList',() => {
     it('should return items in order',async ()=>{
         // build
         const {queryAllByTestId} = render(
+          <MemoryRouter>
             <MockedProvider mocks={mocks} addTypename={false} >
                 <TrendingMoviesList />
             </MockedProvider>
+          </MemoryRouter>
         );
 
         await wait(0);
