@@ -1,7 +1,6 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { useHistory } from "react-router-dom";
-import styled from "styled-components";
 
 // queries
 import { GET_TRENDING } from '../../queries';
@@ -11,13 +10,7 @@ import { MovieType } from '../../types';
 
 // components
 import { MoviePanel } from "../MoviePanel/MoviePanel";
-
-// styles
-const Container = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-`;
+import { Carousel } from "../Carousel/Carousel";
 
 export const TrendingMoviesList = () => {
     const history = useHistory();
@@ -33,13 +26,13 @@ export const TrendingMoviesList = () => {
     return (
         <>
             <div>TRENDING MOVIES</div>
-            <Container>
+            <Carousel>
                 {
                     data.trending && data.trending.map((movie: MovieType) => (
                         <MoviePanel movieData={movie} key={movie.id}/>
                     ))
                 }
-            </Container>
+            </Carousel>
           <button onClick={()=>handleClick()}>go to popular</button>
         </>
     )

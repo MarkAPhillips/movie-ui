@@ -1,6 +1,8 @@
 export const theme = {
     color1: '#000000',
     color2: '#ffffff',
+    color3: '#cccccc',
+    color4: '#666666',
     size8: '8px',
     size9: '9px',
     size10: '10px',
@@ -14,5 +16,6 @@ export const theme = {
     size18: '18px',
     movieWidth: '154',
     movieHeight: '231',
-    movieOverlay: 'rgba(255,255,255,.6)'
+    movieOverlay: 'rgba(255,255,255,.6)',
+    contentWidth: '1280'
 };

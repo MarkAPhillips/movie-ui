@@ -10,3 +10,7 @@ export type TruncateTextType = {
     text: string;
     length: number;
 };
+
+export type CarouselType = {
+  children: object;
+}
