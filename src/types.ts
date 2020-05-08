@@ -13,4 +13,5 @@ export type TruncateTextType = {
 
 export type CarouselType = {
   children: object;
+  title?: string;
 }

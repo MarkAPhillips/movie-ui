@@ -6,7 +6,7 @@ import { CarouselType } from "../../types";
 
 // styles
 const Container = styled.div`
-  width: ${props => props.theme.contentWidth}px;
+  width: 100%;
   padding-bottom: 3px;
   overflow-x: auto;
 
@@ -26,13 +26,29 @@ const Content = styled.div`
   width: 100%;
 `;
 
-export const Carousel = ({children}: CarouselType) => {
+const Title = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 25px;
+  margin-bottom: 1px;
+  padding-left: 10px;
+  background-color: ${props => props.theme.color4};
+  color: ${props => props.theme.color2};
+`;
+
+export const Carousel = ({children, title}: CarouselType) => {
 
   return (
-    <Container>
-      <Content>
-        {children}
-      </Content>
-    </Container>
+    <>
+      {title &&
+        <Title>{title}</Title>
+      }
+      <Container>
+        <Content>
+          {children}
+        </Content>
+      </Container>
+    </>
   )
 };
