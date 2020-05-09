@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "pretest": "npm run lint",
+    "version": "echo $npm_package_version",
     "test": "jest",
     "test:watch": "jest --watch",
     "build:env": "chmod a+x ./build/env.sh && ./build/env.sh",

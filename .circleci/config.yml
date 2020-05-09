@@ -11,39 +11,44 @@ jobs:
     executor: movie-ui-executor
     steps:
       - checkout
+      - restore_cache:
+          keys:
+          - npm-deps-{{ checksum "package.json" }}
+          - npm-deps-
       - run:
           name: Install Node Dependencies
           command: npm i
       - run:
           name: Run Linting and Tests
           command: npm test
+      - save_cache:
+          paths:
+            - node_modules
+          key: npm-deps-{{ checksum "package.json" }}
 
-  build:
+  build_deploy:
     executor: movie-ui-executor
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "9e:9a:81:67:fb:7b:bc:d4:80:80:cf:e3:d6:eb:92:5d"
       - checkout
       - run:
-          name : Build Docker Image
+          name: Bump package version
           command: |
-            docker build -f ./build/prod/Dockerfile -t movie-ui:$CIRCLE_SHA1 .
-            mkdir -p workspace
-            docker save -o workspace/movie-ui.tar movie-ui:$CIRCLE_SHA1
-      - persist_to_workspace:
-          root: workspace
-          paths:
-            - movie-ui.tar
-
-  deploy:
-    executor: movie-ui-executor
-    steps:
-      - attach_workspace:
-          at: /tmp/workspace
+            set -e
+            git config user.name $CIRCLE_USERNAME
+            git config user.email "work-mpconsultants@outlook.com"
+            npm version patch -m  "Release version %s [ci skip]"
+            git push origin master --tags
+            echo 'export VERSION=$(npm run version --silent)' >> $BASH_ENV
+            source $BASH_ENV
       - run:
-          name: Deploy to Docker Image to Heroku
+          name : Build & Deploy Docker Image
           command: |
-            docker load -i /tmp/workspace/movie-ui.tar
+            docker build -f ./build/prod/Dockerfile -t movie-ui:$VERSION .
             docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
-            docker tag movie-ui:$CIRCLE_SHA1 registry.heroku.com/$HEROKU_APP_NAME/web
+            docker tag movie-ui:$VERSION registry.heroku.com/$HEROKU_APP_NAME/web
             docker push registry.heroku.com/$HEROKU_APP_NAME/web
             docker inspect registry.heroku.com/$HEROKU_APP_NAME/web --format={{.Id}} > WEB_DOCKER_IMAGE_ID_FILE
             export WEB_DOCKER_IMAGE_ID=$(cat WEB_DOCKER_IMAGE_ID_FILE)
@@ -58,12 +63,9 @@ workflows:
   cd_pipeline:
     jobs:
       - test
-      - build:
+      - build_deploy:
           requires:
             - test
           filters:
             branches:
               only: master
-      - deploy:
-          requires:
-            - build
