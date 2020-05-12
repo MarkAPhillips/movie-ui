@@ -77,4 +77,44 @@ describe('TrendingMoviesList tests', () => {
     expect(numberOfMatchingQueries[1].getAttribute('data-testId')).toBe('trending-2');
   })
 
+  it('should be in the document',async ()=>{
+    // build
+    const {getByText} = render(
+      <MemoryRouter>
+        <MockedProvider mocks={mocks} addTypename={false} >
+          <TrendingMoviesList />
+        </MockedProvider>
+      </MemoryRouter>
+    );
+
+    await waitFor(() => getByText('title1'));
+
+    // test
+    expect(getByText('title1')).toBeInTheDocument();
+    expect(getByText('overview1')).toBeInTheDocument();
+
+  })
+
+  it('should return 2 items',async ()=>{
+    // build
+    const {queryAllByTestId} = render(
+      <MemoryRouter>
+        <MockedProvider mocks={mocks} addTypename={false} >
+          <TrendingMoviesList />
+        </MockedProvider>
+      </MemoryRouter>
+    );
+
+    await waitFor(() => queryAllByTestId(/trending/i));
+
+    // build
+    const numberOfMatchingQueries = queryAllByTestId(/trending/i);
+
+    // test
+    expect(numberOfMatchingQueries.length).toBe(2);
+  })
+
 })
+
+
+
