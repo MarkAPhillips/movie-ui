@@ -20,7 +20,13 @@ jobs:
           command: npm i
       - run:
           name: Run Linting and Tests
-          command: npm test
+          command: npm run test:ci
+          environment:
+            JEST_JUNIT_OUTPUT_DIR: ./reports/junit/
+      - store_test_results:
+          path: ./reports/junit/
+      - store_artifacts:
+          path: ./reports/junit
       - save_cache:
           paths:
             - node_modules
@@ -34,7 +40,7 @@ jobs:
             - "9e:9a:81:67:fb:7b:bc:d4:80:80:cf:e3:d6:eb:92:5d"
       - checkout
       - run:
-          name: Bump package version
+          name: Bump Package Version
           command: |
             set -e
             git config user.name $CIRCLE_USERNAME

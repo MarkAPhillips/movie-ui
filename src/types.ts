@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 export type MovieType = {
     id: string;
     title: string;
@@ -12,6 +14,6 @@ export type TruncateTextType = {
 };
 
 export type CarouselType = {
-  children: object;
+  children: ReactNode;
   title?: string;
 }
