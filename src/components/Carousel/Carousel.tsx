@@ -42,7 +42,7 @@ export const Carousel = ({children, title}: CarouselType) => {
   return (
     <>
       {title &&
-        <Title>{title}</Title>
+        <Title data-testid="carousel-title">{title}</Title>
       }
       <Container>
         <Content>
