@@ -1,7 +1,12 @@
 import React, { useRef, useState, useEffect } from 'react';
 import styled from "styled-components";
-import { truncateText } from "../../utilities/truncate-text";
-import { useHistory } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useParams
+} from "react-router-dom";
 
 // types
 import { MovieType } from '../../types';
@@ -51,43 +56,18 @@ const Blurb = styled.div`
 `;
 //</editor-fold>
 
-export const MoviePanel = ({movieData}: MovieData) => {
-  const history = useHistory();
+export const Movie = ({movieData}: MovieData) => {
   const panelRef = useRef<HTMLInputElement>(null);
   const [panelHeight, setPanelHeight] = useState<number>(0);
   const [isOver, setIsOver] = useState<boolean>(false);
 
-  useEffect(()=>{
-    if(panelRef && panelRef.current){
-      setPanelHeight(panelRef.current.offsetHeight);
-    }
-  }, [panelRef])
+  let { id } = useParams();
 
-  const handleMouseEnter = () => {
-    setIsOver(true);
-  }
+  useEffect(()=>{}, [])
 
-  const handleMouseLeave = () => {
-    setIsOver(false);
-  }
 
-  const handleClick = () => {
-    history.push(`/movie/${movieData.id}`);
-  }
 
   return (
-      <Tile data-testid={`trending-${movieData.id}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={()=>handleClick()}>
-          <Image>
-              <img src={movieData.imageUrl} width='154px' height='231px' />
-          </Image>
-          <Panel ref={panelRef} panelHeight={panelHeight} isOver={isOver}>
-            <Title>
-              {movieData.title}
-            </Title>
-            <Blurb>
-              {truncateText({text: movieData.overview, length: 50})}
-            </Blurb>
-          </Panel>
-      </Tile>
+    <div>Movie {id}</div>
   )
 };
