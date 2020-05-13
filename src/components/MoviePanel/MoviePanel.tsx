@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import styled from "styled-components";
 import { truncateText } from "../../utilities/truncate-text";
+import { useHistory } from "react-router-dom";
 
 // types
 import { MovieType } from '../../types';
@@ -19,6 +20,7 @@ const Tile = styled.div`
   height: ${props => props.theme.movieHeight}px;
   overflow: hidden;
   margin-right: 5px;
+  cursor: pointer;
 `;
 
 const Image = styled.div`
@@ -51,6 +53,7 @@ const Blurb = styled.div`
 //</editor-fold>
 
 export const MoviePanel = ({movieData}: MovieData) => {
+  const history = useHistory();
   const panelRef = useRef<HTMLInputElement>(null);
   const [panelHeight, setPanelHeight] = useState<number>(0);
   const [isOver, setIsOver] = useState<boolean>(false);
@@ -62,9 +65,6 @@ export const MoviePanel = ({movieData}: MovieData) => {
   }, [panelRef])
 
   const handleMouseEnter = () => {
-    if(panelRef && panelRef.current){
-      console.log(panelRef.current.offsetHeight);
-    }
     setIsOver(true);
   }
 
@@ -72,8 +72,12 @@ export const MoviePanel = ({movieData}: MovieData) => {
     setIsOver(false);
   }
 
+  const handleClick = () => {
+    history.push(`/movie/${movieData.id}`);
+  }
+
   return (
-      <Tile data-testid={`trending-${movieData.id}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+      <Tile data-testid={`trending-${movieData.id}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={()=>handleClick()}>
           <Image>
               <img src={movieData.imageUrl} width='154px' height='231px' />
           </Image>

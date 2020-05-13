@@ -63,6 +63,7 @@ const config = {
   },
   devServer: {
     contentBase: './dist',
+    publicPath:'/',
     historyApiFallback: true,
   }
 };
