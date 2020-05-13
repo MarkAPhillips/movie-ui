@@ -97,7 +97,7 @@ describe('TrendingMoviesList tests', () => {
 
   it('should return 2 items',async ()=>{
     // build
-    const {queryAllByTestId} = render(
+    const {queryAllByTestId, getByText} = render(
       <MemoryRouter>
         <MockedProvider mocks={mocks} addTypename={false} >
           <TrendingMoviesList />
@@ -105,7 +105,7 @@ describe('TrendingMoviesList tests', () => {
       </MemoryRouter>
     );
 
-    await waitFor(() => queryAllByTestId(/trending/i));
+    await waitFor(() => getByText('title1'));
 
     // build
     const numberOfMatchingQueries = queryAllByTestId(/trending/i);
