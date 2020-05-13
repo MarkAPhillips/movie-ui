@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 // components
 import { PopularMoviesList, TrendingMoviesList } from "../components";
@@ -12,6 +12,7 @@ export const Routes = () => {
       <Route exact path="/popular" component={PopularMoviesList} />
       <Route exact path="/trending" component={TrendingMoviesList} />
       <Route exact path="/movie/:id" component={Movie} />
+      <Redirect to='/' />
     </Switch>
   );
 }
