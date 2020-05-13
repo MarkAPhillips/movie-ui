@@ -23,9 +23,7 @@ const Circle = styled.div`
 `;
 
 export const Movie = () => {
-  let { id } = useParams();
-
-  useEffect(()=>{},[id])
+  const { id } = useParams();
 
   const { loading, error, data } = useQuery(GET_MOVIE, {
     variables: { movieId: Number(id) },
