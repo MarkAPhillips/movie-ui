@@ -24,8 +24,8 @@ export const GET_TRENDING = gql`
 `;
 
 export const GET_MOVIE = gql`
-  query Movie($movieId: Int!) {
-    movie(movieId: $movieId) {
+  query Movie($id: Int!) {
+    movie(id: $id) {
       id,
       title,
       overview,

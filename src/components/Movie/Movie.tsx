@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { useParams } from 'react-router-dom';
 import styled from "styled-components";
@@ -26,7 +26,7 @@ export const Movie = () => {
   const { id } = useParams();
 
   const { loading, error, data } = useQuery(GET_MOVIE, {
-    variables: { movieId: Number(id) },
+    variables: { id: Number(id) },
   });
 
   if (loading) return <>Loading...</>;
