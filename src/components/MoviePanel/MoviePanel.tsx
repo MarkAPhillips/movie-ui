@@ -20,6 +20,7 @@ const Tile = styled.div`
   height: ${props => props.theme.movieHeight}px;
   overflow: hidden;
   margin-right: 5px;
+  cursor: pointer;
 `;
 
 const Image = styled.div`

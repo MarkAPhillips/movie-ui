@@ -8,10 +8,21 @@ import { Movie } from "../components/Movie/Movie";
 export const Routes = () => {
   return (
     <Switch>
-      <Route exact path="/" component={TrendingMoviesList} />
-      <Route exact path="/popular" component={PopularMoviesList} />
-      <Route exact path="/trending" component={TrendingMoviesList} />
-      <Route exact path="/movie/:id" component={Movie} />
+      <Route exact path="/">
+        <TrendingMoviesList />
+      </Route>
+      <Route exact path="/popular" >
+        <PopularMoviesList />
+      </Route>
+      <Route exact path="/trending" >
+        <TrendingMoviesList />
+      </Route>
+      <Route exact strict path="/movie" >
+        <Redirect to='/' />
+      </Route>
+      <Route exact strict path="/movie/:id" >
+        <Movie />
+      </Route>
       <Redirect to='/' />
     </Switch>
   );

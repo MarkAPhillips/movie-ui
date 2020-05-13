@@ -26,10 +26,15 @@ export const GET_TRENDING = gql`
 export const GET_MOVIE = gql`
   query Movie($movieId: Int!) {
     movie(movieId: $movieId) {
-      id ,
+      id,
       title,
       overview,
-      imageUrl
+      imageUrl,
+      voteAverage,
+      voteCount,
+      releaseDate,
+      originalLanguage,
+      popularity
     }
   }
 `;
