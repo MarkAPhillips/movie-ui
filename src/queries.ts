@@ -38,3 +38,24 @@ export const GET_MOVIE = gql`
     }
   }
 `;
+
+export const SEARCH_MOVIES = gql`
+  query SearchMovies($searchText: String) {
+    search(filter:{ searchText:$searchText}) {
+      totalCount
+      page
+      noOfPages
+      edges {
+        node {
+          id,
+          title,
+          imageUrl,
+        }
+      }
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+      }
+    }
+  }
+`;

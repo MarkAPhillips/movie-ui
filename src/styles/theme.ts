@@ -1,8 +1,8 @@
 export const theme = {
-    color1: '#000000',
-    color2: '#ffffff',
-    color3: '#cccccc',
-    color4: '#666666',
+    color1: '#000',
+    color2: '#fff',
+    color3: '#ccc',
+    color4: '#666',
     size8: '8px',
     size9: '9px',
     size10: '10px',
