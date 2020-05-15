@@ -6,6 +6,11 @@ import OpenSansRegular from './OpenSans-Regular-webfont.woff';
 import OpenSansBold from './open-sans-v17-latin-700.woff';
 
 export const GlobalStyle = createGlobalStyle`
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
     @font-face {
         font-weight: 400;
         font-family: ${fonts.family};
@@ -16,12 +21,30 @@ export const GlobalStyle = createGlobalStyle`
         font-family: ${fonts.family};
         src: url(${OpenSansBold})
     }
-    html, body  {
-        width: 100%;
-        height: 100%;
-        margin: 0;
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    p,
+    ul[class],
+    ol[class],
+    li,
+    figure,
+    figcaption,
+    blockquote,
+    dl,
+    dd {
+      margin: 0;
+    }
+    input,
+    button,
+    textarea,
+    select {
+      font: inherit;
     }
     body {
+        min-height: 100vh;
         font-family: ${fonts.family};
         padding: 0;
         font-weight: normal;

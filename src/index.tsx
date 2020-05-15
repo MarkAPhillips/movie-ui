@@ -11,7 +11,7 @@ import { NavBar } from "./components/NavBar/NavBar";
 import { Footer } from "./components/Footer/Footer";
 
 // routes
-import { Routes } from "./Routes/Routes";
+import { Routes } from "./routes/Routes";
 
 // styles
 import { GlobalStyle } from './styles';
