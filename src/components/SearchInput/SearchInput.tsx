@@ -67,8 +67,15 @@ export const SearchInput = () => {
   const [results, setResults] = useState<MovieType[]>([]);
   const history = useHistory();
   const debouncedSearchText = useDebounce<string>(searchText);
-  const [searchMovies, { loading, error, data }] = useLazyQuery<SearchMoviesType>(SEARCH_MOVIES, {
+  const [searchMovies, { loading, data }] = useLazyQuery<SearchMoviesType>(SEARCH_MOVIES, {
     variables: { searchText: debouncedSearchText },
+    onError(err) {
+      // TODO: Temp fix to prevent errors on the UI
+      // TODO: Need to handle case when - empty text and when no matches occur
+      console.warn('Error', err);
+      setResults([]);
+      setSearchText('');
+    },
   });
 
   useEffect(() => {
@@ -108,7 +115,7 @@ export const SearchInput = () => {
         <Button><FontAwesomeIcon icon={faSearch} /></Button>
       </InputPanel>
       { results.length > 0 && <SearchResultsPanel>
-        <SearchInputResults loading={loading} results={results} error={error} handleClick={handleClick} />
+        <SearchInputResults loading={loading} results={results} handleClick={handleClick} />
       </SearchResultsPanel> }
     </SearchInputPanel>
   );

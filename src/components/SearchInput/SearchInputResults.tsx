@@ -1,12 +1,10 @@
 import React from 'react';
 import styled from "styled-components";
-import { ApolloError } from 'apollo-boost';
 import { MovieType } from '../../types';
 
 type SearchInputResultsProps = {
   loading: boolean;
   results: MovieType [];
-  error: ApolloError | undefined;
   handleClick: (id: string, title: string) => void;
 }
 
@@ -24,9 +22,8 @@ const SearchResultsList = styled.ul`
 
 SearchResultsList.displayName = 'SearchResultsList';
 
-export const SearchInputResults = ( { loading, error, results, handleClick }: SearchInputResultsProps ) => {
+export const SearchInputResults = ( { loading, results, handleClick }: SearchInputResultsProps ) => {
   if (loading) return <>Loading...</>;
-  if (error) return <>`Error! ${error.message}`</>;
 
   return (
       <SearchResultsList>
