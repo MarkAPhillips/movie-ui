@@ -1,4 +1,4 @@
-import React, { ChangeEvent, MouseEvent, useState, useEffect } from 'react';
+import React, { ChangeEvent, useRef, useState, useEffect, MutableRefObject } from 'react';
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { useLazyQuery } from '@apollo/react-hooks';
@@ -8,6 +8,7 @@ import { SearchInputResults } from './SearchInputResults';
 import { SEARCH_MOVIES } from '../../queries';
 import { useDebounce } from '../../hooks/useDebounce';
 import { MovieType, SearchMoviesType } from '../../types';
+import { useClickOutside } from '../../hooks/useClickOutside';
 
 const SearchInputPanel = styled.div`
   display: flex;
@@ -63,8 +64,10 @@ const Button = styled.button`
 type InputChangeEvent = ChangeEvent<HTMLInputElement>;
 
 export const SearchInput = () => {
+  const searchRef = useRef() as MutableRefObject<HTMLDivElement>;
   const [searchText, setSearchText] = useState<string>('');
   const [results, setResults] = useState<MovieType[]>([]);
+  const [selected, setSelected] = useState<boolean>(false);
   const history = useHistory();
   const debouncedSearchText = useDebounce<string>(searchText);
   const [searchMovies, { loading, data }] = useLazyQuery<SearchMoviesType>(SEARCH_MOVIES, {
@@ -85,7 +88,7 @@ export const SearchInput = () => {
   }, [debouncedSearchText])
 
   useEffect(() => {
-    if (data) {
+    if (data && !selected) {
       const { search } = data;
       const { edges = [] } = search;
       const mappedResults = edges.map((item) => (item.node));
@@ -93,18 +96,24 @@ export const SearchInput = () => {
     }
   }, [data])
 
+  useClickOutside(searchRef, () => {
+    setResults([]);
+  });
+
   const handleChange = ({ target }: InputChangeEvent) => {
+    setSelected(false);
     setSearchText(target.value);
   };
 
   const handleClick = (id: string, title: string) => {
-      setSearchText(title);
-      setResults([]);
-      history.push(`/movie/${id}`);
-  }
+    history.push(`/movie/${id}`);
+    setSearchText(title);
+    setResults([]);
+    setSelected(true);
+  };
 
   return (
-    <SearchInputPanel>
+    <SearchInputPanel ref={searchRef}>
       <InputPanel>
         <Input
           type="text"
@@ -114,9 +123,9 @@ export const SearchInput = () => {
         />
         <Button><FontAwesomeIcon icon={faSearch} /></Button>
       </InputPanel>
-      { results.length > 0 && <SearchResultsPanel>
+      {results.length > 0 && <SearchResultsPanel>
         <SearchInputResults loading={loading} results={results} handleClick={handleClick} />
-      </SearchResultsPanel> }
+      </SearchResultsPanel>}
     </SearchInputPanel>
   );
 };
