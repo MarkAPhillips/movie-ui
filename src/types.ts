@@ -9,6 +9,7 @@ export type MovieType = {
     title: string;
     overview: string;
     imageUrl: string;
+    releaseDate: string;
     voteAverage: number;
 }
 

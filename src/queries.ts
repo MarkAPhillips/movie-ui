@@ -50,6 +50,7 @@ export const SEARCH_MOVIES = gql`
           id,
           title,
           imageUrl,
+          releaseDate,
         }
       }
       pageInfo {

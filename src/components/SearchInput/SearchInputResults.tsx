@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
 import { ApolloError } from 'apollo-boost';
 import { MovieType } from '../../types';
 
-type SearchInputResultsPropType = {
+type SearchInputResultsProps = {
   loading: boolean;
   results: MovieType [];
   error: ApolloError | undefined;
+  handleClick: (id: string, title: string) => void;
 }
 
 const SearchResultsList = styled.ul`
@@ -22,17 +22,16 @@ const SearchResultsList = styled.ul`
   }
 `;
 
-export const SearchInputResults = ( { loading, error, results }: SearchInputResultsPropType ) => {
-  const history = useHistory();
+SearchResultsList.displayName = 'SearchResultsList';
+
+export const SearchInputResults = ( { loading, error, results, handleClick }: SearchInputResultsProps ) => {
   if (loading) return <>Loading...</>;
   if (error) return <>`Error! ${error.message}`</>;
-  const handleClick = (id: string) => {
-    history.push(`/movie/${id}`);
-  }
+
   return (
       <SearchResultsList>
         {results.map((item) => {
-          return <li role="link" onClick={() => handleClick(item.id)} key={item.id}>{item.title}</li>
+          return <li role="link" onClick={() => handleClick(item.id, item.title)} key={item.id}>{item.title}</li>
         })}
       </SearchResultsList>
   );
