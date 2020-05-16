@@ -1,7 +1,8 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { useParams } from 'react-router-dom';
-import styled from "styled-components";
+import styled from 'styled-components';
+import { MovieImage } from '../MovieImage/MovieImage';
 
 // queries
 import { GET_MOVIE } from '../../queries';
@@ -31,17 +32,17 @@ export const Movie = () => {
 
   if (loading) return <>Loading...</>;
   if (error) return <>`Error! ${error.message}`</>;
-
+  const { movie } = data;
   return (
     <>
       <Title>
-        <b>{data.movie.title}</b>
-        <Circle>{data.movie.voteAverage * 10}%</Circle>
+        <strong>{movie.title}</strong>
+        <Circle>{movie.voteAverage * 10}%</Circle>
       </Title>
-      <i>{data.movie.overview}</i><br/><br/>
-      <b>Release Date:</b> {data.movie.releaseDate}
+      <i>{movie.overview}</i><br/><br/>
+      <b>Release Date:</b> {movie.releaseDate || 'Not specified'}
       <br/><br/>
-      <img src={data.movie.imageUrl} width='154px' height='231px' />
+      <MovieImage imageUrl={movie.imageUrl}/>
       <br/><br/>
 
     </>

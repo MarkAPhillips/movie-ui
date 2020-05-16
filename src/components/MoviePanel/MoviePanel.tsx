@@ -1,10 +1,12 @@
 import React, { useRef, useState, useEffect } from 'react';
-import styled from "styled-components";
-import { truncateText } from "../../utilities/truncate-text";
-import { useHistory } from "react-router-dom";
+import styled from 'styled-components';
+import { truncateText } from '../../utilities/truncate-text';
+import { MovieImage } from '../MovieImage/MovieImage';
+import { useHistory } from 'react-router-dom';
 
 // types
 import { MovieType } from '../../types';
+
 type PanelTypes = {
   panelHeight: number;
   isOver: boolean;
@@ -12,29 +14,30 @@ type PanelTypes = {
 
 export type MovieData = {movieData: MovieType};
 
-//<editor-fold desc="Styles">
+//<editor-fold desc='Styles'>
 const Tile = styled.div`
   flex: none;
   position: relative;
   width: ${props => props.theme.movieWidth}px;
   height: ${props => props.theme.movieHeight}px;
   overflow: hidden;
-  margin-right: 5px;
+  margin: 4px;
   cursor: pointer;
 `;
 
-const Image = styled.div`
+const ImagePanel = styled.div`
   position: absolute;
   top: 0;
   left: 0;
 `;
 
-
+  // TODO: adding 50 is incorrect on bottom attribute
+  // need to work out why panelHeight is coming up short initially.
 const Panel = styled.div<PanelTypes>`
   position: absolute;
   background-color: ${props => props.theme.movieOverlay};
   padding: 5px;
-  // todo: adding 50 is incorrect... need to work out why panelHeight is coming up short initially.
+
   bottom: ${props => props.isOver ? 0 : -(props.panelHeight + 50)}px;
   left: 0;
   transition: all .2s ease-in-out;
@@ -78,9 +81,9 @@ export const MoviePanel = ({movieData}: MovieData) => {
 
   return (
       <Tile data-testid={`trending-${movieData.id}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={()=>handleClick()}>
-          <Image>
-              <img src={movieData.imageUrl} width='154px' height='231px' />
-          </Image>
+          <ImagePanel>
+              <MovieImage imageUrl={movieData.imageUrl} />
+          </ImagePanel>
           <Panel ref={panelRef} panelHeight={panelHeight} isOver={isOver}>
             <Title>
               {movieData.title}
