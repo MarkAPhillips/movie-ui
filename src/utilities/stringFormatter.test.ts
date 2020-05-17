@@ -1,8 +1,8 @@
 // Function
-import { truncateText } from "./truncate-text";
+import { truncateText } from "./stringFormatter";
 const testFunc = truncateText;
 
-describe("truncateText", () => {
+describe("stringFormatter", () => {
 
     it("should return truncated text", () => {
         //input

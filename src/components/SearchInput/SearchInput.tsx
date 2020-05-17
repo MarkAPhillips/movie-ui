@@ -112,6 +112,10 @@ export const SearchInput = () => {
     setSelected(true);
   };
 
+  const handleClose= () => {
+    setResults([]);
+  };
+
   return (
     <SearchInputPanel ref={searchRef}>
       <InputPanel>
@@ -124,7 +128,12 @@ export const SearchInput = () => {
         <Button><FontAwesomeIcon icon={faSearch} /></Button>
       </InputPanel>
       {results.length > 0 && <SearchResultsPanel>
-        <SearchInputResults loading={loading} results={results} handleClick={handleClick} />
+        <SearchInputResults
+          loading={loading}
+          results={results}
+          handleClick={handleClick}
+          handleClose={handleClose}
+        />
       </SearchResultsPanel>}
     </SearchInputPanel>
   );

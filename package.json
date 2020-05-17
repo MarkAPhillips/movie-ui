@@ -36,6 +36,7 @@
     "@types/react-router-dom": "^5.1.5",
     "apollo-boost": "^0.4.7",
     "graphql": "^15.0.0",
+    "moment": "^2.25.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",

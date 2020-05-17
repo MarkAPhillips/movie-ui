@@ -7,6 +7,7 @@ type SearchInputResultsProps = {
   loading: boolean;
   results: MovieType [];
   handleClick: (id: string, title: string) => void;
+  handleClose: () => void;
 }
 
 type SearchListItemType = {
@@ -15,23 +16,25 @@ type SearchListItemType = {
 
 const SearchResultsList = styled.ul`
   list-style: none;
-  padding: 8px;
-  li {
-    padding: 4px;
-  }
+  padding: 6px;
 `;
 
 SearchResultsList.displayName = 'SearchResultsList';
 
 const SearchListItem = styled.li<SearchListItemType>`
   background: ${props => props.active ? props.theme.color3 : props.theme.color2 };
+  border-radius: 5px;
+  padding: 6px;
   cursor: ${props => props.active ? 'pointer' : 'default' };
 `;
 
-export const SearchInputResults = ( { loading, results, handleClick }: SearchInputResultsProps ) => {
+SearchListItem.displayName = 'SearchListItem';
+
+export const SearchInputResults = ( { loading, results, handleClick, handleClose }: SearchInputResultsProps ) => {
   const down = useKeyPress('ArrowDown');
   const up = useKeyPress('ArrowUp');
   const enter = useKeyPress('Enter');
+  const esc = useKeyPress('Escape');
   const [ cursor, setCursor] = useState(0);
   const [hovered, setHovered] = useState<number | undefined>();
 
@@ -50,17 +53,23 @@ export const SearchInputResults = ( { loading, results, handleClick }: SearchInp
   }, [up]);
 
   useEffect(() => {
-    if (results.length && enter) {
+    if (results && enter) {
       const { id, title } = results[cursor];
       handleClick(id, title);
     }
   }, [cursor, enter]);
 
   useEffect(() => {
-    if (results.length && hovered) {
+    if (results && hovered !== undefined) {
       setCursor(hovered);
     }
   }, [hovered]);
+
+  useEffect(() => {
+    if (results && esc) {
+      handleClose();
+    }
+  }, [esc]);
 
   if (loading) return <>Loading...</>;
 

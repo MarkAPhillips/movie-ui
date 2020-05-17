@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { truncateText } from '../../utilities/truncate-text';
+import { truncateText } from '../../utilities';
 import { MovieImage } from '../MovieImage/MovieImage';
 import { useHistory } from 'react-router-dom';
 
@@ -37,7 +37,6 @@ const Panel = styled.div<PanelTypes>`
   position: absolute;
   background-color: ${props => props.theme.movieOverlay};
   padding: 5px;
-
   bottom: ${props => props.isOver ? 0 : -(props.panelHeight + 50)}px;
   left: 0;
   transition: all .2s ease-in-out;

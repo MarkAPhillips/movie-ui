@@ -6,6 +6,7 @@ import { MovieImage } from '../MovieImage/MovieImage';
 
 // queries
 import { GET_MOVIE } from '../../queries';
+import { formatDate } from '../../utilities';
 
 // styles
 const Title = styled.div`
@@ -40,7 +41,7 @@ export const Movie = () => {
         <Circle>{movie.voteAverage * 10}%</Circle>
       </Title>
       <i>{movie.overview}</i><br/><br/>
-      <b>Release Date:</b> {movie.releaseDate || 'Not specified'}
+      <b>Release Date:</b> {formatDate(movie.releaseDate) || 'Not specified'}
       <br/><br/>
       <MovieImage imageUrl={movie.imageUrl}/>
       <br/><br/>
