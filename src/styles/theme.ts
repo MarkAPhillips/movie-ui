@@ -1,8 +1,7 @@
 export const theme = {
-    color1: '#000',
+    color1: '#1d3e53',
     color2: '#fff',
-    color3: '#ccc',
-    color4: '#666',
+    color3: '#77abb7',
     size8: '8px',
     size9: '9px',
     size10: '10px',
@@ -19,3 +18,8 @@ export const theme = {
     movieOverlay: 'rgba(255,255,255,.6)',
     contentWidth: '1280'
 };
+
+/* theme colors
+#77abb7 - logo
+#1d3e53 - bg
+*/

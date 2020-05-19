@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { BrowserRouter as Router } from "react-router-dom";
 import styled, { ThemeProvider } from "styled-components";
-import { client } from './client';
+import { client } from './apollo/client';
 import { theme} from "./styles/theme";
 
 // components

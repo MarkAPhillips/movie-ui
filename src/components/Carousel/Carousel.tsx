@@ -16,7 +16,7 @@ const Container = styled.div`
     }
 
     &::-webkit-scrollbar-thumb {
-      background: ${props => props.theme.color4};
+      background: ${props => props.theme.color1};
     }
 `;
 
@@ -24,16 +24,19 @@ const Content = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
+  height: 280px;
+  align-items: center;
 `;
 
 const Title = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  height: 25px;
+  height: 36px;
   margin-bottom: 1px;
   padding-left: 10px;
-  background-color: ${props => props.theme.color4};
+  border-radius: 5px;
+  background: ${props => props.theme.color3};
   color: ${props => props.theme.color2};
 `;
 

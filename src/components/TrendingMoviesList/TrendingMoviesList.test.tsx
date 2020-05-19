@@ -6,7 +6,7 @@ import { MockedProvider } from '@apollo/react-testing';
 // Component in test
 import { TrendingMoviesList } from './TrendingMoviesList';
 
-import { GET_TRENDING } from "../../queries";
+import { GET_TRENDING } from "../../apollo/queries";
 
 const mockHistoryPush = jest.fn();
 

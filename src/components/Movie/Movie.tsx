@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { MovieImage } from '../MovieImage/MovieImage';
 
 // queries
-import { GET_MOVIE } from '../../queries';
+import { GET_MOVIE } from '../../apollo/queries';
 import { formatDate } from '../../utilities';
 
 // styles

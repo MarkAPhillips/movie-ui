@@ -60,3 +60,9 @@ export const SEARCH_MOVIES = gql`
     }
   }
 `;
+
+export const GET_FEATURED_MOVIE = gql`
+  query GetFeaturedMovie {
+    movie @client
+  }
+`;

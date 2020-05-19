@@ -5,7 +5,7 @@ import { useLazyQuery } from '@apollo/react-hooks';
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SearchInputResults } from './SearchInputResults';
-import { SEARCH_MOVIES } from '../../queries';
+import { SEARCH_MOVIES } from '../../apollo/queries';
 import { useDebounce } from '../../hooks/useDebounce';
 import { MovieType, SearchMoviesType } from '../../types';
 import { useClickOutside } from '../../hooks/useClickOutside';

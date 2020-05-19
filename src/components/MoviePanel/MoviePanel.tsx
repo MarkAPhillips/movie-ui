@@ -21,7 +21,7 @@ const Tile = styled.div`
   width: ${props => props.theme.movieWidth}px;
   height: ${props => props.theme.movieHeight}px;
   overflow: hidden;
-  margin: 4px;
+  margin: 16px;
   cursor: pointer;
 `;
 

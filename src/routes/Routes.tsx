@@ -2,20 +2,13 @@ import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 // components
-import { PopularMoviesList, TrendingMoviesList } from "../components";
-import { Movie } from "../components/Movie/Movie";
+import { HomeContainer, Movie } from "../components";
 
 export const Routes = () => {
   return (
     <Switch>
       <Route exact path="/">
-        <TrendingMoviesList />
-      </Route>
-      <Route exact path="/popular" >
-        <PopularMoviesList />
-      </Route>
-      <Route exact path="/trending" >
-        <TrendingMoviesList />
+        <HomeContainer />
       </Route>
       <Route exact strict path="/movie" >
         <Redirect to='/' />

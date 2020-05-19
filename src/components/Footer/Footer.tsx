@@ -27,7 +27,7 @@ export const Footer = () => {
   return (
     <Container>
       <Content>
-        © 2020 - an A-Team production
+        &copy;2020 - A-Team Production
       </Content>
     </Container>
   )
