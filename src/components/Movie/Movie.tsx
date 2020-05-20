@@ -8,20 +8,42 @@ import { MovieImage } from '../MovieImage/MovieImage';
 import { GET_MOVIE } from '../../apollo/queries';
 import { formatDate } from '../../utilities';
 
-// styles
-const Title = styled.div`
-  display: flex;
-  align-items: center;
-`;
+
 const Circle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: 700;
   width: 40px;
+  color:${props => props.theme.color2};
   height: 40px;
   border-radius: 20px;
-  background-color: yellow;
+  background: ${props => props.theme.color1};
+`;
+
+const MoviePanel = styled.div`
+  position: relative;
+  padding: 16px;
+  display: flex;
+  &:before {
+    content: "";
+    background-image: url('https://placekitten.com/1200/800');
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.2;
+    border-radius: 5px;
+  }
+`;
+
+const ImagePanel = styled.div`
+`;
+
+const Content = styled.div`
+  margin-left: 16px;
 `;
 
 type MovieProps = {
@@ -44,17 +66,19 @@ export const Movie = ( { movieId }: MovieProps) => {
   const { movie } = data;
   return (
     <>
-      <Title>
-        <strong>{movie.title}</strong>
+
+    <MoviePanel>
+      <ImagePanel>
+        <MovieImage imageUrl={movie.imageUrl}/>
+      </ImagePanel>
+      <Content>
+      <strong>{movie.title}</strong>
         <Circle>{movie.voteAverage * 10}%</Circle>
-      </Title>
-      <i>{movie.overview}</i><br/><br/>
-      <b>Release Date:</b> {formatDate(movie.releaseDate) || 'Not specified'}
-      <br/><br/>
-      <MovieImage imageUrl={movie.imageUrl}/>
-      <br/><br/>
-
+      <br/>
+      {movie.overview}<br/><br/>
+      {formatDate(movie.releaseDate)}
+      </Content>
+    </MoviePanel>
     </>
-
   )
 };

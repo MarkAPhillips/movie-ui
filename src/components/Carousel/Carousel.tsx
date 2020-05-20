@@ -5,6 +5,8 @@ import styled from "styled-components";
 import { CarouselType } from "../../types";
 
 // styles
+import { Title } from '../../styles/layout';
+
 const Container = styled.div`
   width: 100%;
   padding-bottom: 3px;
@@ -28,17 +30,6 @@ const Content = styled.div`
   align-items: center;
 `;
 
-const Title = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 36px;
-  margin-bottom: 1px;
-  padding-left: 10px;
-  border-radius: 5px;
-  background: ${props => props.theme.color3};
-  color: ${props => props.theme.color2};
-`;
 
 export const Carousel = ({children, title}: CarouselType) => {
 

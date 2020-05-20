@@ -54,7 +54,7 @@ const Blurb = styled.div`
 `;
 //</editor-fold>
 
-export const MoviePanel = ({movieData}: MovieData) => {
+export const MovieTile = ({movieData}: MovieData) => {
   const history = useHistory();
   const panelRef = useRef<HTMLInputElement>(null);
   const [panelHeight, setPanelHeight] = useState<number>(0);

@@ -12,7 +12,7 @@ const NavContainer = styled.div`
   height: 60px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.63);
   align-items: center;
-  padding: 8px;
+  padding: 8px 16px;
   a {
     padding: 0 4px;
     color:  ${props => props.theme.color2};
