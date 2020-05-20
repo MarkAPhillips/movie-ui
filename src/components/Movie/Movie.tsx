@@ -8,6 +8,8 @@ import { MovieImage } from '../MovieImage/MovieImage';
 import { GET_MOVIE } from '../../apollo/queries';
 import { formatDate } from '../../utilities';
 
+// types
+import { MovieType } from '../../types';
 
 const Circle = styled.div`
   display: flex;
@@ -21,26 +23,26 @@ const Circle = styled.div`
   background: ${props => props.theme.color1};
 `;
 
-const MoviePanel = styled.div`
+const MoviePanel = styled.div<Pick<MovieType, 'imageUrl'>>`
   position: relative;
   padding: 16px;
   display: flex;
   &:before {
     content: "";
-    background-image: url('https://placekitten.com/1200/800');
+    background-image: url(${props => props.imageUrl});
     background-size: cover;
+    background-position: center;
     position: absolute;
     top: 0px;
     right: 0px;
     bottom: 0px;
     left: 0px;
-    opacity: 0.2;
+    opacity: 0.1;
     border-radius: 5px;
   }
 `;
 
-const ImagePanel = styled.div`
-`;
+const ImagePanel = styled.div``;
 
 const Content = styled.div`
   margin-left: 16px;
@@ -67,7 +69,7 @@ export const Movie = ( { movieId }: MovieProps) => {
   return (
     <>
 
-    <MoviePanel>
+    <MoviePanel imageUrl={movie.imageUrl}>
       <ImagePanel>
         <MovieImage imageUrl={movie.imageUrl}/>
       </ImagePanel>
