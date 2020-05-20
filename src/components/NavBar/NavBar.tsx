@@ -25,14 +25,23 @@ const NavContainer = styled.div`
 
 NavContainer.displayName = 'NavContainer';
 
-const Content = styled.div`
+const NavContentPanel = styled.div`
   width: ${props => props.theme.contentWidth}px;
+  margin: 10px auto 10px auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const Content = styled.div`
   color: ${props => props.theme.color2};
+  width: 50%;
 `;
 
 export const NavBar = () => {
   return (
     <NavContainer>
+      <NavContentPanel>
       <Content>
       <Link to="/">
         <Logo />
@@ -41,6 +50,7 @@ export const NavBar = () => {
       <Content>
         <SearchInput />
       </Content>
+      </NavContentPanel>
     </NavContainer>
   )
 };
