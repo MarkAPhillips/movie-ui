@@ -24,11 +24,19 @@ const Circle = styled.div`
   background-color: yellow;
 `;
 
-export const Movie = () => {
-  const { id } = useParams();
+type MovieProps = {
+  movieId?: number;
+};
+
+export const Movie = ( { movieId }: MovieProps) => {
+
+  if (!movieId ) {
+    const { id } = useParams();
+    movieId = +id;
+  }
 
   const { loading, error, data } = useQuery(GET_MOVIE, {
-    variables: { id: Number(id) },
+    variables: { id: movieId },
   });
 
   if (loading) return <>Loading...</>;

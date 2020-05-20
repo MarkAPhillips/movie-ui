@@ -10,7 +10,7 @@ import { Carousel } from "../Carousel/Carousel";
 
 type MovieListProps = {
   loading: boolean;
-  error: ApolloError;
+  error: ApolloError | undefined;
   movies: MovieType [];
   title: string;
 };
