@@ -17,9 +17,9 @@ export type CastMemberType = {
   id: number;
   character: string;
   person: {
-    id: string,
-    name: string,
-    imageUrl: string
+    id: string;
+    name: string;
+    imageUrl: string;
   };
 }
 
