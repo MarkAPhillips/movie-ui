@@ -52,4 +52,10 @@ export const GlobalStyle = createGlobalStyle`
         color:#000;
         font-size:${fonts.size};
   }
+
+  #root {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
 `

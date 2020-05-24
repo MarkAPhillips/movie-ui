@@ -16,9 +16,10 @@ import { Routes } from "./routes/Routes";
 // styles
 import { GlobalStyle } from './styles';
 
-const ContentContainer = styled.div`
+const ContentContainer = styled.main`
   width: ${props => props.theme.contentWidth}px;
   margin: 10px auto 10px auto;
+  flex: 1;
 `;
 
 const App = () => (

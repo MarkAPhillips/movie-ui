@@ -5,7 +5,7 @@ import { SearchInput } from "../SearchInput/SearchInput";
 import { Logo } from '../Logo/Logo';
 
 // styles
-const NavContainer = styled.div`
+const Header = styled.header`
   display: flex;
   background-color: ${props => props.theme.color1};
   width: 100%;
@@ -23,7 +23,7 @@ const NavContainer = styled.div`
   }
 `;
 
-NavContainer.displayName = 'NavContainer';
+Header.displayName = 'Header';
 
 const NavContentPanel = styled.div`
   width: ${props => props.theme.contentWidth}px;
@@ -40,7 +40,7 @@ const Content = styled.div`
 
 export const NavBar = () => {
   return (
-    <NavContainer>
+    <Header>
       <NavContentPanel>
       <Content>
       <Link to="/">
@@ -51,6 +51,6 @@ export const NavBar = () => {
         <SearchInput />
       </Content>
       </NavContentPanel>
-    </NavContainer>
+    </Header>
   )
 };

@@ -2,16 +2,12 @@ import React from 'react';
 import styled from "styled-components";
 
 // styles
-const Container = styled.div`
-  position: absolute;
-  bottom: 0;
+const Container = styled.footer`
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 25px;
-  overflow: hidden;
-  left: 0;
+  height: 50px;
   padding: 0 20px 0 36px;
   background: ${props => props.theme.color1};
 `;
@@ -27,7 +23,7 @@ export const Footer = () => {
   return (
     <Container>
       <Content>
-        &copy;2020 - A-Team Production
+        &copy;2020 A Team Production
       </Content>
     </Container>
   )
