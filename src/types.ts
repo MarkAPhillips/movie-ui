@@ -13,6 +13,16 @@ export type MovieType = {
     voteAverage: number;
 }
 
+export type CastMemberType = {
+  id: number;
+  character: string;
+  person: {
+    id: string,
+    name: string,
+    imageUrl: string
+  };
+}
+
 export type SearchMoviesType = {
   search: PagedType<MovieType>;
 }

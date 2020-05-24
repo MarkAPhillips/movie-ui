@@ -9,8 +9,13 @@ import { GET_MOVIE } from '../../apollo/queries';
 import { formatDate } from '../../utilities';
 
 // types
-import { MovieType } from '../../types';
+import { MovieType, CastMemberType } from '../../types';
 
+// components
+import {Carousel} from "../Carousel/Carousel";
+import {CastMemberTile} from "../CastMemberTile/CastMemberTile";
+
+// styles
 const Circle = styled.div`
   display: flex;
   justify-content: center;
@@ -65,7 +70,7 @@ export const Movie = ( { movieId }: MovieProps) => {
 
   if (loading) return <>Loading...</>;
   if (error) return <>`Error! ${error.message}`</>;
-  const { movie } = data;
+  const { movie, movie: { cast } } = data;
   return (
     <>
 
@@ -74,13 +79,20 @@ export const Movie = ( { movieId }: MovieProps) => {
         <MovieImage imageUrl={movie.imageUrl}/>
       </ImagePanel>
       <Content>
-      <strong>{movie.title}</strong>
-        <Circle>{movie.voteAverage * 10}%</Circle>
-      <br/>
-      {movie.overview}<br/><br/>
-      {formatDate(movie.releaseDate)}
+        <strong>{movie.title}</strong>
+          <Circle>{movie.voteAverage * 10}%</Circle>
+        <br/>
+        {movie.overview}<br/><br/>
+        {formatDate(movie.releaseDate)}
       </Content>
     </MoviePanel>
+    <Carousel title={'Cast'}>
+      {
+        cast && cast.map((castMember: CastMemberType) => (
+          <CastMemberTile castMemberData={castMember} key={castMember.id}/>
+        ))
+      }
+    </Carousel>
     </>
   )
 };

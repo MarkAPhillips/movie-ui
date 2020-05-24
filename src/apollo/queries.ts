@@ -34,7 +34,16 @@ export const GET_MOVIE = gql`
       voteCount,
       releaseDate,
       originalLanguage,
-      popularity
+      popularity,
+      cast {
+        id,
+        character,
+        person {
+          id,
+          name,
+          imageUrl
+        }
+      }
     }
   }
 `;
