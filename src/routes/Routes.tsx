@@ -14,7 +14,7 @@ export const Routes = () => {
         <Redirect to='/' />
       </Route>
       <Route exact strict path="/movie/:id" >
-        <Movie />
+        <Movie showCast/>
       </Route>
       <Route exact strict path="/bio/:id" >
         <Biography />

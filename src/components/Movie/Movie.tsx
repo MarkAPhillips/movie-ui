@@ -55,9 +55,10 @@ const Content = styled.div`
 
 type MovieProps = {
   movieId?: number;
+  showCast?: boolean;
 };
 
-export const Movie = ( { movieId }: MovieProps) => {
+export const Movie = ( { movieId, showCast = false }: MovieProps) => {
 
   if (!movieId ) {
     const { id } = useParams();
@@ -86,13 +87,13 @@ export const Movie = ( { movieId }: MovieProps) => {
         {formatDate(movie.releaseDate)}
       </Content>
     </MoviePanel>
-    <Carousel title={'Cast'}>
+    { showCast && <Carousel title={'Cast'}>
       {
         cast && cast.map((castMember: CastMemberType) => (
           <CastMemberTile castMemberData={castMember} key={castMember.id}/>
         ))
       }
-    </Carousel>
+    </Carousel>}
     </>
   )
 };
