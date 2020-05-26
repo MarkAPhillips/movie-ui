@@ -67,6 +67,7 @@ export const Movie = ( { movieId, showCast = false }: MovieProps) => {
 
   const { loading, error, data } = useQuery(GET_MOVIE, {
     variables: { id: movieId },
+    fetchPolicy: 'no-cache',
   });
 
   if (loading) return <>Loading...</>;
@@ -87,6 +88,7 @@ export const Movie = ( { movieId, showCast = false }: MovieProps) => {
         {formatDate(movie.releaseDate)}
       </Content>
     </MoviePanel>
+    <br/>
     { showCast && <Carousel title={'Cast'}>
       {
         cast && cast.map((castMember: CastMemberType) => (
