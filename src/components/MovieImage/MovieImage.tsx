@@ -7,6 +7,9 @@ type MovieImageProps = {
 
 const Image = styled.img`
   border-radius: 10px;
+  &:hover {
+    opacity: 0.7;
+  }
 `;
 
 Image.displayName = 'Image';

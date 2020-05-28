@@ -28,32 +28,32 @@ const ImagePanel = styled.div`
 const Panel = styled.div`
   position: absolute;
   background-color: ${props => props.theme.movieOverlay};
-  padding: 5px;
-  bottom: 15px;
+  padding: 4px;
+  bottom: 4px;
   left: 0;
+  width: 140px;
 `;
+
 const Title = styled.div`
   color: ${props => props.theme.color1};
-  font-weight: 700;
   font-size: ${props => props.theme.size12};
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 //</editor-fold>
 
 export const CastMemberTile = ({castMemberData}: CastType) => {
-  const history = useHistory();
-
-  const handleClick = () => {
-    history.push(`/bio/${castMemberData.id}`);
-  }
-
   return (
-    <Tile data-testid={`cast-${castMemberData.id}`} onClick={()=>handleClick()}>
+    <Tile data-testid={`cast-${castMemberData.id}`}>
       <ImagePanel>
         <MovieImage imageUrl={castMemberData.person.imageUrl} />
       </ImagePanel>
       <Panel>
         <Title>
-          {castMemberData.person.name}
+          <strong>{castMemberData.person.name}</strong>
+          <br/>
+          { castMemberData.character}
         </Title>
       </Panel>
     </Tile>
