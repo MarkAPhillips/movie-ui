@@ -24,8 +24,8 @@ export const GET_TRENDING = gql`
 `;
 
 export const GET_MOVIE = gql`
-  query Movie($id: Int!) {
-    movie(id: $id) {
+  query Movie($id: Int!, $showCast: Boolean!) {
+    movie(id: $id, showCast: $showCast) {
       id,
       title,
       overview,
@@ -35,7 +35,7 @@ export const GET_MOVIE = gql`
       releaseDate,
       originalLanguage,
       popularity,
-      cast {
+      cast @include(if: $showCast) {
         id,
         character,
         person {

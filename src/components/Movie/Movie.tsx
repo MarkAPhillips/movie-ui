@@ -67,7 +67,7 @@ export const Movie = ( { movieId, showCast = false }: MovieProps) => {
   }
 
   const { loading, error, data } = useQuery(GET_MOVIE, {
-    variables: { id: movieId },
+    variables: { id: movieId, showCast },
   });
 
   if (loading) return <>Loading...</>;
