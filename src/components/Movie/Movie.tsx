@@ -2,7 +2,6 @@ import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { MovieImage } from '../MovieImage/MovieImage';
 
 // queries
 import { GET_MOVIE } from '../../apollo/queries';
@@ -12,8 +11,10 @@ import { formatDate } from '../../utilities';
 import { MovieType, CastMemberType } from '../../types';
 
 // components
+import { MovieImage } from '../MovieImage/MovieImage';
 import {Carousel} from "../Carousel/Carousel";
 import {CastMemberTile} from "../CastMemberTile/CastMemberTile";
+import { FillerImage } from '../FillerImage/FillerImage';
 
 // styles
 const Circle = styled.div`
@@ -77,7 +78,7 @@ export const Movie = ( { movieId, showCast = false }: MovieProps) => {
 
     <MoviePanel imageUrl={movie.imageUrl}>
       <ImagePanel>
-        <MovieImage imageUrl={movie.imageUrl}/>
+  {movie.imageUrl ?  <MovieImage imageUrl={movie.imageUrl}/> : <FillerImage imageType="movie" fontSize={100} /> }
       </ImagePanel>
       <Content>
         <strong>{movie.title}</strong>

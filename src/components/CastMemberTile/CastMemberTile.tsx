@@ -1,7 +1,7 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { MovieImage } from '../MovieImage/MovieImage';
-import { useHistory } from 'react-router-dom';
+import { FillerImage } from '../FillerImage/FillerImage';
 
 // types
 import {CastMemberType} from '../../types';
@@ -47,7 +47,8 @@ export const CastMemberTile = ({castMemberData}: CastType) => {
   return (
     <Tile data-testid={`cast-${castMemberData.id}`}>
       <ImagePanel>
-        <MovieImage imageUrl={castMemberData.person.imageUrl} />
+        {castMemberData.person.imageUrl ?
+        <MovieImage imageUrl={castMemberData.person.imageUrl} /> : <FillerImage imageType='person' /> }
       </ImagePanel>
       <Panel>
         <Title>
