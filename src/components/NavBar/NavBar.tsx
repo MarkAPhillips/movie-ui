@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { SearchInput } from "../SearchInput/SearchInput";
 import { Logo } from '../Logo/Logo';
+import { getAppState, SET_STATE } from '../../apollo/localState';
+import { useMutation } from '@apollo/react-hooks';
 
 // styles
 const Header = styled.header`
@@ -39,6 +41,8 @@ const Content = styled.div`
 `;
 
 export const NavBar = () => {
+  const { searchText } = getAppState();
+  const [ handleSearchText ] = useMutation(SET_STATE);
   return (
     <Header>
       <NavContentPanel>
@@ -48,7 +52,10 @@ export const NavBar = () => {
       </Link>
       </Content>
       <Content>
-        <SearchInput />
+        <SearchInput
+          searchText={searchText}
+          handleSearchText={(searchText: string) => handleSearchText({ variables: { searchText }})}
+        />
       </Content>
       </NavContentPanel>
     </Header>
