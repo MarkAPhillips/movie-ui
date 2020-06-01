@@ -1,10 +1,16 @@
-import React from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Switch, Route, Redirect, useLocation } from "react-router-dom";
 
 // components
-import { HomeContainer, Movie, Biography  } from "../components";
+import { HomeContainer, Movie, Biography } from "../components";
+import { resetState } from "../apollo/client";
 
 export const Routes = () => {
+  const location = useLocation()
+  useEffect(() => {
+    resetState();
+  }, [location]
+  )
   return (
     <Switch>
       <Route exact path="/">
@@ -14,7 +20,7 @@ export const Routes = () => {
         <Redirect to='/' />
       </Route>
       <Route exact strict path="/movie/:id" >
-        <Movie showCast/>
+        <Movie showCast />
       </Route>
       <Route exact strict path="/bio/:id" >
         <Biography />

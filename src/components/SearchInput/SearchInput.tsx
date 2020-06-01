@@ -63,11 +63,14 @@ const Button = styled.button`
 
 type InputChangeEvent = ChangeEvent<HTMLInputElement>;
 
-export const SearchInput = () => {
+type SearchInputProps = {
+  searchText: string;
+  handleSearchText: any;
+}
+
+export const SearchInput = ( { searchText, handleSearchText }: SearchInputProps ) => {
   const searchRef = useRef() as MutableRefObject<HTMLDivElement>;
-  const [searchText, setSearchText] = useState<string>('');
   const [results, setResults] = useState<MovieType[]>([]);
-  const [selected, setSelected] = useState<boolean>(false);
   const history = useHistory();
   const debouncedSearchText = useDebounce<string>(searchText);
   const [searchMovies, { loading, data }] = useLazyQuery<SearchMoviesType>(SEARCH_MOVIES, {
@@ -77,7 +80,7 @@ export const SearchInput = () => {
       // TODO: Need to handle case when - empty text and when no matches occur
       console.warn('Error', err);
       setResults([]);
-      setSearchText('');
+      handleSearchText('');
     },
   });
 
@@ -88,7 +91,7 @@ export const SearchInput = () => {
   }, [debouncedSearchText])
 
   useEffect(() => {
-    if (data && !selected) {
+    if (data) {
       const { search } = data;
       const { edges = [] } = search;
       const mappedResults = edges.map((item) => (item.node));
@@ -101,15 +104,13 @@ export const SearchInput = () => {
   });
 
   const handleChange = ({ target }: InputChangeEvent) => {
-    setSelected(false);
-    setSearchText(target.value);
+    handleSearchText(target.value);
   };
 
   const handleClick = (id: string, title: string) => {
     history.push(`/movie/${id}`);
-    setSearchText(title);
+    handleSearchText(title);
     setResults([]);
-    setSelected(true);
   };
 
   const handleClose= () => {
