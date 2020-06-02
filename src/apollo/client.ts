@@ -1,6 +1,6 @@
 import ApolloClient from 'apollo-boost';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-import { initState, stateMutations } from './localState';
+import { initState, stateMutations } from './cache';
 
 const cache = new InMemoryCache()
 
@@ -12,6 +12,7 @@ export const client = new ApolloClient({
         ...stateMutations,
       },
     },
+    assumeImmutableResults: true,
 });
 
 export const resetState = () => cache.writeData({ data: initState });
