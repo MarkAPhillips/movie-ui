@@ -78,7 +78,7 @@ export const Movie = ( { movieId, showCast = false }: MovieProps) => {
 
     <MoviePanel imageUrl={movie.imageUrl}>
       <ImagePanel>
-        <MovieImage imageUrl={movie.imageUrl} type="movie" fontSize={100} />
+        <MovieImage imageUrl={movie.imageUrl} type="movie" fontSize={100} height={360} width={254}/>
       </ImagePanel>
       <Content>
         <strong>{movie.title}</strong>
