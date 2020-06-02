@@ -81,7 +81,7 @@ export const MovieTile = ({movieData}: MovieData) => {
   return (
       <Tile data-testid={`trending-${movieData.id}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={()=>handleClick()}>
           <ImagePanel>
-              <MovieImage imageUrl={movieData.imageUrl} />
+              <MovieImage imageUrl={movieData.imageUrl} type="movie" fontSize={100}/>
           </ImagePanel>
           <Panel ref={panelRef} panelHeight={panelHeight} isOver={isOver}>
             <Title>

@@ -14,7 +14,7 @@ import { MovieType, CastMemberType } from '../../types';
 import { MovieImage } from '../MovieImage/MovieImage';
 import {Carousel} from "../Carousel/Carousel";
 import {CastMemberTile} from "../CastMemberTile/CastMemberTile";
-import { FillerImage } from '../FillerImage/FillerImage';
+import { MovieTile } from '../MovieTile/MovieTile';
 
 // styles
 const Circle = styled.div`
@@ -72,13 +72,13 @@ export const Movie = ( { movieId, showCast = false }: MovieProps) => {
 
   if (loading) return <>Loading...</>;
   if (error) return <>`Error! ${error.message}`</>;
-  const { movie, movie: { cast } } = data;
+  const { movie, movie: { cast, similar } } = data;
   return (
     <>
 
     <MoviePanel imageUrl={movie.imageUrl}>
       <ImagePanel>
-  {movie.imageUrl ?  <MovieImage imageUrl={movie.imageUrl}/> : <FillerImage imageType="movie" fontSize={100} /> }
+        <MovieImage imageUrl={movie.imageUrl} type="movie" fontSize={100} />
       </ImagePanel>
       <Content>
         <strong>{movie.title}</strong>
@@ -93,6 +93,14 @@ export const Movie = ( { movieId, showCast = false }: MovieProps) => {
       {
         cast && cast.map((castMember: CastMemberType) => (
           <CastMemberTile castMemberData={castMember} key={castMember.id}/>
+        ))
+      }
+    </Carousel>}
+    <br/>
+    { showCast && similar.length > 0 && <Carousel title={'Similar Movies'}>
+      {
+        similar.map((movie: MovieType) => (
+          <MovieTile movieData={movie} key={movie.id}/>
         ))
       }
     </Carousel>}
