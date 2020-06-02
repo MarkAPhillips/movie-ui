@@ -43,6 +43,12 @@ export const GET_MOVIE = gql`
           name,
           imageUrl
         }
+      },
+      similar {
+        id
+        title
+        overview
+        imageUrl
       }
     }
   }
