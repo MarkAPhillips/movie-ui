@@ -5,16 +5,17 @@ import styled from 'styled-components';
 
 // queries
 import { GET_MOVIE } from '../../apollo/queries';
-import { formatDate } from '../../utilities';
+import { formatDate, formatMins } from '../../utilities';
 
 // types
 import { MovieType, CastMemberType } from '../../types';
 
 // components
 import { MovieImage } from '../MovieImage/MovieImage';
-import {Carousel} from "../Carousel/Carousel";
-import {CastMemberTile} from "../CastMemberTile/CastMemberTile";
+import { Carousel } from "../Carousel/Carousel";
+import { CastMemberTile } from "../CastMemberTile/CastMemberTile";
 import { MovieTile } from '../MovieTile/MovieTile';
+import { ApolloData } from '../../apollo/types';
 
 // styles
 const Circle = styled.div`
@@ -48,6 +49,8 @@ const MoviePanel = styled.div<Pick<MovieType, 'imageUrl'>>`
   }
 `;
 
+const MovieTitle = styled.h2``;
+
 const ImagePanel = styled.div``;
 
 const Content = styled.div`
@@ -59,6 +62,8 @@ type MovieProps = {
   showCast?: boolean;
 };
 
+
+
 export const Movie = ( { movieId, showCast = false }: MovieProps) => {
 
   if (!movieId ) {
@@ -68,11 +73,12 @@ export const Movie = ( { movieId, showCast = false }: MovieProps) => {
 
   const { loading, error, data } = useQuery(GET_MOVIE, {
     variables: { id: movieId, showCast },
-  });
+  }) as ApolloData<MovieType>;
 
   if (loading) return <>Loading...</>;
   if (error) return <>`Error! ${error.message}`</>;
   const { movie, movie: { cast, similar } } = data;
+  const genres = movie.genres.map((item) => item.name).join(', ');
   return (
     <>
 
@@ -81,11 +87,13 @@ export const Movie = ( { movieId, showCast = false }: MovieProps) => {
         <MovieImage imageUrl={movie.imageUrl} type="movie" fontSize={100} height={360} width={254}/>
       </ImagePanel>
       <Content>
-        <strong>{movie.title}</strong>
-          <Circle>{movie.voteAverage * 10}%</Circle>
+        <MovieTitle>{movie.title} ({formatDate(movie.releaseDate, 'YYYY')})</MovieTitle>
+        {formatDate(movie.releaseDate)} - {genres} {formatMins(movie.runTime)}
         <br/>
+        <Circle>{movie.voteAverage * 10}%</Circle>
+        <br/>
+        <strong>Overview</strong><br/>
         {movie.overview}<br/><br/>
-        {formatDate(movie.releaseDate)}
       </Content>
     </MoviePanel>
     <br/>

@@ -36,7 +36,6 @@ export const HomeContainer = () => {
         <Title>Featured</Title>
         <br />
         <Movie movieId={featuredMovieId} />
-        <br />
         </>
       )}
       {popularData && popularData.popular && (

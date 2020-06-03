@@ -35,6 +35,11 @@ export const GET_MOVIE = gql`
       releaseDate,
       originalLanguage,
       popularity,
+      runTime,
+      homePage,
+      genres {
+        name,
+      }
       cast @include(if: $showCast) {
         id,
         character,

@@ -4,6 +4,11 @@ type EdgesType<T> = {
   node: T;
 }
 
+type GenreType = {
+  id: number;
+  name: string;
+}
+
 export type MovieType = {
     id: string;
     title: string;
@@ -11,6 +16,11 @@ export type MovieType = {
     imageUrl: string;
     releaseDate: string;
     voteAverage: number;
+    runTime?: number;
+    homePage?: string;
+    genres: GenreType [];
+    cast: CastMemberType [];
+    similar: MovieType [];
 }
 
 export type CastMemberType = {

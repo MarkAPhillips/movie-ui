@@ -3,7 +3,9 @@ import { ApolloError } from 'apollo-boost';
 export const TYPE_NAME = 'AppState';
 
 export interface ApolloData<T> {
-  data: T | null;
+  data: {
+    [key: string]: T;
+  };
   loading? : boolean;
   error? : ApolloError;
 }
