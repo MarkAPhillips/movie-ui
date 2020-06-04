@@ -16,19 +16,9 @@ import { Carousel } from "../Carousel/Carousel";
 import { CastMemberTile } from "../CastMemberTile/CastMemberTile";
 import { MovieTile } from '../MovieTile/MovieTile';
 import { ApolloData } from '../../apollo/types';
+import { PercentageCircle } from '../PercentageCircle/PercentageCircle';
 
 // styles
-const Circle = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: 700;
-  width: 40px;
-  color:${props => props.theme.color2};
-  height: 40px;
-  border-radius: 20px;
-  background: ${props => props.theme.color1};
-`;
 
 const MoviePanel = styled.div<Pick<MovieType, 'imageUrl'>>`
   position: relative;
@@ -50,18 +40,25 @@ const MoviePanel = styled.div<Pick<MovieType, 'imageUrl'>>`
 `;
 
 const MovieTitle = styled.h2``;
-
 const ImagePanel = styled.div``;
+const MovieHeader = styled.div`
+  display: flex;
+  margin-bottom: 16px;
+  align-items: center;
+`;
 
 const Content = styled.div`
   margin-left: 16px;
+`;
+
+const HeaderContent = styled.div`
+  margin: 0 8px;
 `;
 
 type MovieProps = {
   movieId?: number;
   showCast?: boolean;
 };
-
 
 
 export const Movie = ( { movieId, showCast = false }: MovieProps) => {
@@ -79,19 +76,29 @@ export const Movie = ( { movieId, showCast = false }: MovieProps) => {
   if (error) return <>`Error! ${error.message}`</>;
   const { movie, movie: { cast, similar } } = data;
   const genres = movie.genres.map((item) => item.name).join(', ');
+  const percent = movie.voteAverage * 10;
   return (
     <>
-
     <MoviePanel imageUrl={movie.imageUrl}>
       <ImagePanel>
-        <MovieImage imageUrl={movie.imageUrl} type="movie" fontSize={100} height={360} width={254}/>
+        <MovieImage
+          imageUrl={movie.imageUrl}
+          type="movie"
+          fontSize={100}
+          height={360}
+          width={254}
+        />
       </ImagePanel>
       <Content>
-        <MovieTitle>{movie.title} ({formatDate(movie.releaseDate, 'YYYY')})</MovieTitle>
-        {formatDate(movie.releaseDate)} - {genres} {formatMins(movie.runTime)}
-        <br/>
-        <Circle>{movie.voteAverage * 10}%</Circle>
-        <br/>
+        <MovieHeader>
+          <HeaderContent>
+            <PercentageCircle percent={percent} />
+          </HeaderContent>
+          <HeaderContent>
+            <MovieTitle>{movie.title} ({formatDate(movie.releaseDate, 'YYYY')})</MovieTitle>
+            {formatDate(movie.releaseDate)} - {genres} {formatMins(movie.runTime)}
+        </HeaderContent>
+        </MovieHeader>
         <strong>Overview</strong><br/>
         {movie.overview}<br/><br/>
       </Content>
