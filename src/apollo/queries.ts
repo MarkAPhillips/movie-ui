@@ -40,6 +40,10 @@ export const GET_MOVIE = gql`
       genres {
         name,
       }
+      certifications {
+        countryCode
+        certification
+      }
       cast @include(if: $showCast) {
         id,
         character,

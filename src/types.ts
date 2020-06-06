@@ -9,6 +9,11 @@ type GenreType = {
   name: string;
 }
 
+type CertType = {
+  countryCode: string;
+  certification: string;
+}
+
 export type MovieType = {
     id: string;
     title: string;
@@ -21,6 +26,7 @@ export type MovieType = {
     genres: GenreType [];
     cast: CastMemberType [];
     recommended: MovieType [];
+    certifications: CertType [];
 }
 
 export type CastMemberType = {

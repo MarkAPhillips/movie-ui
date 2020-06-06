@@ -17,6 +17,7 @@ import { CastMemberTile } from "../CastMemberTile/CastMemberTile";
 import { MovieTile } from '../MovieTile/MovieTile';
 import { ApolloData } from '../../apollo/types';
 import { PercentageCircle } from '../PercentageCircle/PercentageCircle';
+import { isTypeNode } from 'graphql';
 
 // styles
 
@@ -77,6 +78,8 @@ export const Movie = ( { movieId, showCast = false }: MovieProps) => {
   const { movie, movie: { cast, recommended } } = data;
   const genres = movie.genres.map((item) => item.name).join(', ');
   const percent = movie.voteAverage * 10;
+  const cert = movie.certifications.filter((item) => item.countryCode === 'GB' || item.countryCode === 'US');
+  const certText = cert.length ? ` - ${cert[0].certification} (${cert[0].countryCode})` : '';
   return (
     <>
     <MoviePanel imageUrl={movie.imageUrl}>
@@ -96,7 +99,7 @@ export const Movie = ( { movieId, showCast = false }: MovieProps) => {
           </HeaderContent>
           <HeaderContent>
             <MovieTitle>{movie.title} ({formatDate(movie.releaseDate, 'YYYY')})</MovieTitle>
-            {formatDate(movie.releaseDate)} - {genres} {formatMins(movie.runTime)}
+            {formatDate(movie.releaseDate)} - {genres} {formatMins(movie.runTime)} {certText}
         </HeaderContent>
         </MovieHeader>
         <strong>Overview</strong><br/>

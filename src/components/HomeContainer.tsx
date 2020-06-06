@@ -21,8 +21,8 @@ export const HomeContainer = () => {
 
   const [featuredMovieId, setFeaturedMovieId] = useState<number | undefined>()
   useEffect(() => {
-    if (popularData && popularData.popular) {
-      const featuredMovie: MovieType | undefined = first(popularData.popular);
+    if (trendingData && trendingData.trending) {
+      const featuredMovie: MovieType | undefined = first(trendingData.trending);
       if (featuredMovie) {
         setFeaturedMovieId(+featuredMovie.id);
       }
