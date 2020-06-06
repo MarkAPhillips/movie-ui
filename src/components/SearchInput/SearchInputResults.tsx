@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from "styled-components";
 import { MovieType } from '../../types';
 import { useKeyPress } from '../../hooks/useKeyPress';
+import { formatDate } from '../../utilities';
 
 type SearchInputResultsProps = {
   loading: boolean;
@@ -19,8 +20,6 @@ const SearchResultsList = styled.ul`
   padding: 6px;
 `;
 
-SearchResultsList.displayName = 'SearchResultsList';
-
 const SearchListItem = styled.li<SearchListItemType>`
   background: ${props => props.active ? props.theme.color3 : props.theme.color2 };
   border-radius: 5px;
@@ -28,7 +27,14 @@ const SearchListItem = styled.li<SearchListItemType>`
   cursor: ${props => props.active ? 'pointer' : 'default' };
 `;
 
-SearchListItem.displayName = 'SearchListItem';
+const MovieYear = styled.span`
+  display: inline-block;
+`;
+
+const MovieName = styled.span`
+  display: inline-block;
+  padding-right: 8px;
+`;
 
 export const SearchInputResults = ( { loading, results, handleClick, handleClose }: SearchInputResultsProps ) => {
   const down = useKeyPress('ArrowDown');
@@ -72,10 +78,15 @@ export const SearchInputResults = ( { loading, results, handleClick, handleClose
   }, [esc]);
 
   if (loading) return <>Loading...</>;
-
   return (
       <SearchResultsList>
         {results.map((item, idx) => {
+          const MovieTitle = () => (
+            <>
+              <MovieName>{item.title}</MovieName>
+              <MovieYear>({formatDate(item.releaseDate, 'YYYY')})</MovieYear>
+            </>
+          );
           return  (
             <SearchListItem
               active={idx === cursor}
@@ -85,7 +96,7 @@ export const SearchInputResults = ( { loading, results, handleClick, handleClose
               onMouseEnter={() => setHovered(idx)}
               onMouseLeave={() => setHovered(undefined)}
             >
-            {item.title}
+            <MovieTitle />
           </SearchListItem>)
         })}
       </SearchResultsList>
