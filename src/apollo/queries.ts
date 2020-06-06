@@ -49,7 +49,7 @@ export const GET_MOVIE = gql`
           imageUrl
         }
       },
-      similar {
+      recommended {
         id
         title
         overview

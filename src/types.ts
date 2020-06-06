@@ -20,7 +20,7 @@ export type MovieType = {
     homePage?: string;
     genres: GenreType [];
     cast: CastMemberType [];
-    similar: MovieType [];
+    recommended: MovieType [];
 }
 
 export type CastMemberType = {

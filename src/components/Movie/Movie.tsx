@@ -74,7 +74,7 @@ export const Movie = ( { movieId, showCast = false }: MovieProps) => {
 
   if (loading) return <>Loading...</>;
   if (error) return <>`Error! ${error.message}`</>;
-  const { movie, movie: { cast, similar } } = data;
+  const { movie, movie: { cast, recommended } } = data;
   const genres = movie.genres.map((item) => item.name).join(', ');
   const percent = movie.voteAverage * 10;
   return (
@@ -112,9 +112,9 @@ export const Movie = ( { movieId, showCast = false }: MovieProps) => {
       }
     </Carousel>}
     <br/>
-    { showCast && similar.length > 0 && <Carousel title={'Similar Movies'}>
+    { showCast && recommended.length > 0 && <Carousel title={'Recommended Movies'}>
       {
-        similar.map((movie: MovieType) => (
+        recommended.map((movie: MovieType) => (
           <MovieTile movieData={movie} key={movie.id}/>
         ))
       }
