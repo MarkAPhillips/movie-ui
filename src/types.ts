@@ -14,6 +14,17 @@ type CertType = {
   certification: string;
 }
 
+export type CrewType = {
+  id: string;
+  job? : string;
+  name: string;
+}
+
+type CreditType = {
+  cast: CastMemberType [];
+  crew: CrewType [];
+}
+
 export type MovieType = {
     id: string;
     title: string;
@@ -24,7 +35,7 @@ export type MovieType = {
     runTime?: number;
     homePage?: string;
     genres: GenreType [];
-    cast: CastMemberType [];
+    credits: CreditType;
     recommended: MovieType [];
     certifications: CertType [];
 }
