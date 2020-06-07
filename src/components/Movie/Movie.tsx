@@ -8,7 +8,7 @@ import { GET_MOVIE } from '../../apollo/queries';
 import { formatDate, formatMins } from '../../utilities';
 
 // types
-import { MovieType, CastMemberType } from '../../types';
+import { MovieType, CastMemberType, CrewType } from '../../types';
 
 // components
 import { MovieImage } from '../MovieImage/MovieImage';
@@ -17,7 +17,6 @@ import { CastMemberTile } from "../CastMemberTile/CastMemberTile";
 import { MovieTile } from '../MovieTile/MovieTile';
 import { ApolloData } from '../../apollo/types';
 import { PercentageCircle } from '../PercentageCircle/PercentageCircle';
-import { isTypeNode } from 'graphql';
 
 // styles
 
@@ -56,11 +55,37 @@ const HeaderContent = styled.div`
   margin: 0 8px;
 `;
 
+const MainCrewPanel = styled.div`
+  span {
+    &:first-child {
+      display: inline-block;
+      font-weight: 600;
+      padding-right: 8px;
+    }
+  }
+`;
+
 type MovieProps = {
   movieId?: number;
   showCast?: boolean;
-};
+}
 
+type MainCrewProps = {
+  crew: CrewType [];
+}
+
+const MainCrew = ( { crew }: MainCrewProps) => {
+  const mainCrew = crew.filter((item) => item.job === 'Director');
+  const output = mainCrew.length ? mainCrew.map((item) => {
+    return (
+      <MainCrewPanel key={item.id}>
+        <span>{item.job}</span>
+        <span>{item.name}</span>
+      </MainCrewPanel>
+    );
+  }): null;
+  return (<>{output}</>);
+};
 
 export const Movie = ( { movieId, showCast = false }: MovieProps) => {
 
@@ -75,7 +100,8 @@ export const Movie = ( { movieId, showCast = false }: MovieProps) => {
 
   if (loading) return <>Loading...</>;
   if (error) return <>`Error! ${error.message}`</>;
-  const { movie, movie: { cast, recommended } } = data;
+  const { movie, movie: { credits, recommended } } = data;
+  const { cast = [], crew } = credits;
   const genres = movie.genres.map((item) => item.name).join(', ');
   const percent = movie.voteAverage * 10;
   const cert = movie.certifications.filter((item) => item.countryCode === 'GB' || item.countryCode === 'US');
@@ -104,6 +130,7 @@ export const Movie = ( { movieId, showCast = false }: MovieProps) => {
         </MovieHeader>
         <strong>Overview</strong><br/>
         {movie.overview}<br/><br/>
+        <MainCrew crew={crew} />
       </Content>
     </MoviePanel>
     <br/>

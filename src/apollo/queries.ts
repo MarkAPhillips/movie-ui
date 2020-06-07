@@ -3,10 +3,10 @@ import gql from 'graphql-tag';
 export const GET_POPULAR = gql`
 {
   popular {
-      id,
-      title,
-      overview,
-      imageUrl,
+      id
+      title
+      overview
+      imageUrl
       voteAverage
     }
 }
@@ -15,9 +15,9 @@ export const GET_POPULAR = gql`
 export const GET_TRENDING = gql`
 {
   trending {
-      id,
-      title,
-      overview,
+      id
+      title
+      overview
       imageUrl
     }
 }
@@ -26,33 +26,40 @@ export const GET_TRENDING = gql`
 export const GET_MOVIE = gql`
   query Movie($id: Int!, $showCast: Boolean!) {
     movie(id: $id, showCast: $showCast) {
-      id,
-      title,
-      overview,
-      imageUrl,
-      voteAverage,
-      voteCount,
-      releaseDate,
-      originalLanguage,
-      popularity,
-      runTime,
-      homePage,
+      id
+      title
+      overview
+      imageUrl
+      voteAverage
+      voteCount
+      releaseDate
+      originalLanguage
+      popularity
+      runTime
+      homePage
       genres {
-        name,
+        name
       }
       certifications {
         countryCode
         certification
       }
-      cast @include(if: $showCast) {
-        id,
-        character,
-        person {
-          id,
-          name,
-          imageUrl
+      credits {
+        crew {
+          id
+          job
+          name
         }
-      },
+        cast @include(if: $showCast) {
+          id
+          character
+          person {
+            id
+            name
+            imageUrl
+          }
+        }
+      }
       recommended {
         id
         title
@@ -71,10 +78,10 @@ export const SEARCH_MOVIES = gql`
       noOfPages
       edges {
         node {
-          id,
-          title,
-          imageUrl,
-          releaseDate,
+          id
+          title
+          imageUrl
+          releaseDate
         }
       }
       pageInfo {
