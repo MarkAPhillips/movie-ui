@@ -27,7 +27,7 @@ export const HomeContainer = () => {
         setFeaturedMovieId(+featuredMovie.id);
       }
     }
-  }, [popularData]);
+  }, [trendingData]);
 
   return (
     <>
