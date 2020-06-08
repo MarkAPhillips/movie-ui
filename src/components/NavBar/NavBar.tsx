@@ -7,7 +7,7 @@ import { useMutation, useQuery } from '@apollo/react-hooks';
 import { SET_SEARCH_TEXT, GET_STATE } from '../../apollo/cache';
 
 // styles
-const Header = styled.header`
+const NavBarPanel = styled.header`
   display: flex;
   background-color: ${props => props.theme.color1};
   width: 100%;
@@ -24,8 +24,6 @@ const Header = styled.header`
     }
   }
 `;
-
-Header.displayName = 'Header';
 
 const NavContentPanel = styled.div`
   width: ${props => props.theme.contentWidth}px;
@@ -45,20 +43,20 @@ export const NavBar = () => {
   const { searchText } = state;
   const [ handleSearchText ] = useMutation(SET_SEARCH_TEXT);
   return (
-    <Header>
+    <NavBarPanel>
       <NavContentPanel>
-      <Content>
-      <Link to="/">
-        <Logo />
-      </Link>
-      </Content>
-      <Content>
-        <SearchInput
-          searchText={searchText}
-          handleSearchText={(searchText: string) => handleSearchText({ variables: { searchText }})}
-        />
-      </Content>
+        <Content>
+        <Link to="/">
+          <Logo />
+        </Link>
+        </Content>
+        <Content>
+          <SearchInput
+            searchText={searchText}
+            handleSearchText={(searchText: string) => handleSearchText({ variables: { searchText }})}
+          />
+        </Content>
       </NavContentPanel>
-    </Header>
+    </NavBarPanel>
   )
 };

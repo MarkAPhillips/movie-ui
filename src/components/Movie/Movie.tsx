@@ -8,7 +8,7 @@ import { GET_MOVIE } from '../../apollo/queries';
 import { formatDate, formatMins } from '../../utilities';
 
 // types
-import { MovieType, CastMemberType, CrewType } from '../../types';
+import { MovieType, CastMemberType }  from '../../types';
 
 // components
 import { MovieImage } from '../MovieImage/MovieImage';
@@ -17,6 +17,7 @@ import { CastMemberTile } from "../CastMemberTile/CastMemberTile";
 import { MovieTile } from '../MovieTile/MovieTile';
 import { ApolloData } from '../../apollo/types';
 import { PercentageCircle } from '../PercentageCircle/PercentageCircle';
+import { MainCrew } from './MainCrew';
 
 // styles
 
@@ -55,37 +56,10 @@ const HeaderContent = styled.div`
   margin: 0 8px;
 `;
 
-const MainCrewPanel = styled.div`
-  span {
-    &:first-child {
-      display: inline-block;
-      font-weight: 600;
-      padding-right: 8px;
-    }
-  }
-`;
-
 type MovieProps = {
   movieId?: number;
   showCast?: boolean;
 }
-
-type MainCrewProps = {
-  crew: CrewType [];
-}
-
-const MainCrew = ( { crew }: MainCrewProps) => {
-  const mainCrew = crew.filter((item) => item.job === 'Director');
-  const output = mainCrew.length ? mainCrew.map((item) => {
-    return (
-      <MainCrewPanel key={item.id}>
-        <span>{item.job}</span>
-        <span>{item.name}</span>
-      </MainCrewPanel>
-    );
-  }): null;
-  return (<>{output}</>);
-};
 
 export const Movie = ( { movieId, showCast = false }: MovieProps) => {
 

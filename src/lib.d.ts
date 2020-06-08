@@ -1,5 +1,6 @@
 type EnvironmentVariables = {
-    API_URL: string | undefined;   
+    API_URL: string | undefined;
+    VERSION: string | undefined;
 }
 
 export {}

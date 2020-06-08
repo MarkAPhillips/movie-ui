@@ -20,4 +20,6 @@ do
   echo -e "\t$varname: \"$value\"," >> ./dist/env.js
 done < ./.env
 
+PACKAGE_VERSION=$(npm run --loglevel silent version)
+echo -e "\tVERSION: \"${PACKAGE_VERSION}\"," >> ./dist/env.js
 echo -e "};\n" >> ./dist/env.js
