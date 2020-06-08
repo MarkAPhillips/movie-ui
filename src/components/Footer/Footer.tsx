@@ -1,15 +1,27 @@
 import React from 'react';
-import styled from "styled-components";
+import styled from 'styled-components';
 
 // styles
-const Container = styled.footer`
+const FooterPanel = styled.footer`
   width: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
   height: 50px;
-  padding: 0 20px 0 36px;
+  padding: 8px 16px;
   background: ${props => props.theme.color1};
+`;
+
+const FooterContentPanel = styled.div`
+  width: ${props => props.theme.contentWidth}px;
+  margin: 10px auto 10px auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  div {
+    &: last-child {
+      text-align: right;
+    }
+  }
 `;
 
 const Content = styled.div`
@@ -18,13 +30,15 @@ const Content = styled.div`
   font-size: ${props => props.theme.size11};
 `;
 
-export const Footer = () => {
-
-  return (
-    <Container>
+export const Footer = () => (
+  <FooterPanel>
+    <FooterContentPanel>
       <Content>
         &copy;2020 A Team Production
       </Content>
-    </Container>
-  )
-};
+      <Content>
+        v.{window._env_.VERSION}
+      </Content>
+    </FooterContentPanel>
+  </FooterPanel>
+);
