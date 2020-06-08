@@ -1,6 +1,6 @@
 {
   "name": "movie-ui",
-  "version": "1.0.26",
+  "version": "1.0.27",
   "description": "Movie UI built in React",
   "main": "index.js",
   "scripts": {
