@@ -2,67 +2,35 @@ import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-
-// queries
 import { GET_MOVIE } from '../../apollo/queries';
 import { formatDate, formatMins } from '../../utilities';
-
-// types
 import { MovieType, CastMemberType }  from '../../types';
-
-// components
-import { MovieImage } from '../MovieImage/MovieImage';
 import { Carousel } from "../Carousel/Carousel";
 import { CastMemberTile } from "../CastMemberTile/CastMemberTile";
 import { MovieTile } from '../MovieTile/MovieTile';
 import { ApolloData } from '../../apollo/types';
 import { PercentageCircle } from '../PercentageCircle/PercentageCircle';
 import { MainCrew } from './MainCrew';
-
-// styles
-
-const MoviePanel = styled.div<Pick<MovieType, 'imageUrl'>>`
-  position: relative;
-  padding: 16px;
-  display: flex;
-  &:before {
-    content: "";
-    background-image: url(${props => props.imageUrl});
-    background-size: cover;
-    background-position: center;
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
-    opacity: 0.1;
-    border-radius: 5px;
-  }
-`;
-
-const MovieTitle = styled.h2``;
-const ImagePanel = styled.div``;
-const MovieHeader = styled.div`
-  display: flex;
-  margin-bottom: 16px;
-  align-items: center;
-`;
-
-const Content = styled.div`
-  margin-left: 16px;
-`;
-
-const HeaderContent = styled.div`
-  margin: 0 8px;
-`;
+import { SummaryCard } from '../SummaryCard/SummaryCard';
 
 type MovieProps = {
   movieId?: number;
   showCast?: boolean;
 }
 
-export const Movie = ( { movieId, showCast = false }: MovieProps) => {
+const MovieTitle = styled.h2``;
 
+const MovieHeader = styled.div`
+  display: flex;
+  margin-bottom: 16px;
+  align-items: center;
+`;
+
+const HeaderContent = styled.div`
+  margin: 0 8px;
+`;
+
+export const Movie = ( { movieId, showCast = false }: MovieProps) => {
   if (!movieId ) {
     const { id } = useParams();
     movieId = +id;
@@ -82,17 +50,7 @@ export const Movie = ( { movieId, showCast = false }: MovieProps) => {
   const certText = cert.length ? ` - ${cert[0].certification} (${cert[0].countryCode})` : '';
   return (
     <>
-    <MoviePanel imageUrl={movie.imageUrl}>
-      <ImagePanel>
-        <MovieImage
-          imageUrl={movie.imageUrl}
-          type="movie"
-          fontSize={100}
-          height={360}
-          width={254}
-        />
-      </ImagePanel>
-      <Content>
+      <SummaryCard imageUrl={movie.imageUrl} imageType="movie">
         <MovieHeader>
           <HeaderContent>
             <PercentageCircle percent={percent} />
@@ -105,9 +63,8 @@ export const Movie = ( { movieId, showCast = false }: MovieProps) => {
         <strong>Overview</strong><br/>
         {movie.overview}<br/><br/>
         <MainCrew crew={crew} />
-      </Content>
-    </MoviePanel>
-    <br/>
+      </SummaryCard>
+      <br/>
     { showCast && <Carousel title={'Cast'}>
       {
         cast && cast.map((castMember: CastMemberType) => (

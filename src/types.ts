@@ -16,28 +16,38 @@ type CertType = {
 
 export type CrewType = {
   id: string;
-  job? : string;
+  job?: string;
   name: string;
 }
 
 type CreditType = {
-  cast: CastMemberType [];
-  crew: CrewType [];
+  cast: CastMemberType[];
+  crew: CrewType[];
+}
+
+export type PersonType = {
+  id: number;
+  name: string;
+  biography: string;
+  birthDate?: string;
+  deathDate?: string;
+  imageUrl: string;
+  placeOfBirth?: string;
 }
 
 export type MovieType = {
-    id: string;
-    title: string;
-    overview: string;
-    imageUrl: string;
-    releaseDate: string;
-    voteAverage: number;
-    runTime?: number;
-    homePage?: string;
-    genres: GenreType [];
-    credits: CreditType;
-    recommended: MovieType [];
-    certifications: CertType [];
+  id: string;
+  title: string;
+  overview: string;
+  imageUrl: string;
+  releaseDate: string;
+  voteAverage: number;
+  runTime?: number;
+  homePage?: string;
+  genres: GenreType[];
+  credits: CreditType;
+  recommended: MovieType[];
+  certifications: CertType[];
 }
 
 export type CastMemberType = {
@@ -58,12 +68,12 @@ export type PagedType<T> = {
   totalCount: number;
   page: number;
   noOfPages: number;
-  edges: EdgesType<T> [];
+  edges: EdgesType<T>[];
 }
 
 export type TruncateTextType = {
-    text: string;
-    length: number;
+  text: string;
+  length: number;
 };
 
 export type CarouselType = {

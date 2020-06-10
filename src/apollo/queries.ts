@@ -23,6 +23,20 @@ export const GET_TRENDING = gql`
 }
 `;
 
+export const GET_BIO = gql`
+  query Person($id: Int!) {
+    person(id: $id) {
+      id,
+      name,
+      biography,
+      birthDate,
+      deathDate,
+      imageUrl,
+      placeOfBirth,
+    }
+}
+`;
+
 export const GET_MOVIE = gql`
   query Movie($id: Int!, $showCast: Boolean!) {
     movie(id: $id, showCast: $showCast) {
