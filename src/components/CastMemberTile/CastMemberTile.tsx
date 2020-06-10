@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
+
 import { MovieImage } from '../MovieImage/MovieImage';
 
 // types
-import {CastMemberType} from '../../types';
+import { CastMemberType } from '../../types';
 
-export type CastType = {castMemberData: CastMemberType};
+export type CastType = { castMemberData: CastMemberType };
 
-//<editor-fold desc='Styles'>
 const Tile = styled.div`
   flex: none;
   position: relative;
@@ -40,19 +41,21 @@ const Title = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
 `;
-//</editor-fold>
 
-export const CastMemberTile = ({castMemberData}: CastType) => {
+export const CastMemberTile = ({ castMemberData }: CastType) => {
+  const history = useHistory();
+  const { id, person, character } = castMemberData;
+  const handleClick = () => history.push(`/bio/${person.id}`);
   return (
-    <Tile data-testid={`cast-${castMemberData.id}`}>
+    <Tile data-testid={`cast-${id}`} onClick={handleClick} title="View biography">
       <ImagePanel>
-        <MovieImage imageUrl={castMemberData.person.imageUrl} type="person" />
+        <MovieImage imageUrl={person.imageUrl} type="person" />
       </ImagePanel>
       <Panel>
         <Title>
-          <strong>{castMemberData.person.name}</strong>
-          <br/>
-          { castMemberData.character}
+          <strong>{person.name}</strong>
+          <br />
+          {character}
         </Title>
       </Panel>
     </Tile>
