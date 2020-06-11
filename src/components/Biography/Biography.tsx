@@ -15,6 +15,24 @@ const PersonHeader = styled.div`
   align-items: center;
 `;
 
+type PersonStraplineProps = {
+  person: PersonType;
+
+}
+const PersonStrapline = ( { person }: PersonStraplineProps) => {
+  const { age, birthDate, deathDate } = person;
+  if (birthDate && deathDate) {
+    return <><strong>{formatDate(birthDate)} - {formatDate(deathDate)}</strong> ({age} yrs)</>;
+  }
+  if (birthDate) {
+    return  <><strong>DOB: </strong>{formatDate(birthDate)} ({age} yrs)</>;
+  }
+  if(!birthDate && deathDate) {
+    return <><strong>Death: </strong>{formatDate(deathDate)}`</>;
+  }
+  return null;
+}
+
 const getBio = (bio?: string) => {
   if (!bio) return 'Awaiting content.';
   return (~bio.indexOf('\n')) ?
@@ -34,7 +52,8 @@ export const Biography = () => {
     <SummaryCard imageUrl={person.imageUrl} imageType="person">
       <PersonHeader>
           <PersonTitle>{person.name}</PersonTitle>
-          <strong>DOB:</strong> {formatDate(person.birthDate || '')} - {person.placeOfBirth}
+          <PersonStrapline person={person} /><br />
+          { person.placeOfBirth ? <><strong>Place of Birth: </strong> {person.placeOfBirth}</>: null}
         </PersonHeader>
         <strong>Biography</strong><br/>
         {getBio(person.biography)}<br/><br/>

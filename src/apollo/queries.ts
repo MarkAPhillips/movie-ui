@@ -26,13 +26,14 @@ export const GET_TRENDING = gql`
 export const GET_BIO = gql`
   query Person($id: Int!) {
     person(id: $id) {
-      id,
-      name,
-      biography,
-      birthDate,
-      deathDate,
-      imageUrl,
-      placeOfBirth,
+      id
+      name
+      biography
+      birthDate
+      deathDate
+      imageUrl
+      placeOfBirth
+      age
     }
 }
 `;
