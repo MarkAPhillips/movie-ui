@@ -33,6 +33,7 @@ export type PersonType = {
   deathDate?: string;
   imageUrl: string;
   placeOfBirth?: string;
+  age?: number;
 }
 
 export type MovieType = {
