@@ -6,7 +6,9 @@ import { GET_BIO } from '../../apollo/queries';
 import { ApolloData } from '../../apollo/types';
 import { PersonType } from '../../types';
 import { SummaryCard } from '../SummaryCard/SummaryCard';
-import { formatDate } from '../../utilities';
+import { PersonStrapline } from './PersonStrapline';
+import { Overview } from './Overview';
+import { MovieCreditsTimeline } from '../MovieCreditsTimeline/MovieCreditsTimeline';
 
 const PersonTitle = styled.h2``;
 
@@ -14,31 +16,6 @@ const PersonHeader = styled.div`
   margin-bottom: 16px;
   align-items: center;
 `;
-
-type PersonStraplineProps = {
-  person: PersonType;
-
-}
-const PersonStrapline = ( { person }: PersonStraplineProps) => {
-  const { age, birthDate, deathDate } = person;
-  if (birthDate && deathDate) {
-    return <><strong>{formatDate(birthDate)} - {formatDate(deathDate)}</strong> ({age} yrs)</>;
-  }
-  if (birthDate) {
-    return  <><strong>DOB: </strong>{formatDate(birthDate)} ({age} yrs)</>;
-  }
-  if(!birthDate && deathDate) {
-    return <><strong>Death: </strong>{formatDate(deathDate)}`</>;
-  }
-  return null;
-}
-
-const getBio = (bio?: string) => {
-  if (!bio) return 'Awaiting content.';
-  return (~bio.indexOf('\n')) ?
-    bio.replace('\n\n', '\n')
-      .split('\n').map((text, idx) => <p key={idx}>{text}</p>) : bio;
-};
 
 export const Biography = () => {
   const { id } = useParams();
@@ -49,14 +26,17 @@ export const Biography = () => {
   if (error) return <>`Error! ${error.message}`</>;
   const { person } = data;
   return (
-    <SummaryCard imageUrl={person.imageUrl} imageType="person">
-      <PersonHeader>
-          <PersonTitle>{person.name}</PersonTitle>
-          <PersonStrapline person={person} /><br />
-          { person.placeOfBirth ? <><strong>Place of Birth: </strong> {person.placeOfBirth}</>: null}
-        </PersonHeader>
-        <strong>Biography</strong><br/>
-        {getBio(person.biography)}<br/><br/>
-    </SummaryCard>
+    <>
+      <SummaryCard imageUrl={person.imageUrl} imageType="person">
+        <PersonHeader>
+            <PersonTitle>{person.name}</PersonTitle>
+            <PersonStrapline person={person} /><br />
+            { person.placeOfBirth ? <><strong>Place of Birth: </strong> {person.placeOfBirth}</>: null}
+          </PersonHeader>
+          <strong>Biography</strong><br/>
+          <Overview bio={person.biography} name={person.name} /><br/><br/>
+      </SummaryCard>
+      <MovieCreditsTimeline credits={person.credits} />
+    </>
   )
 };

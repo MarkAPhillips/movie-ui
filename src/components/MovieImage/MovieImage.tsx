@@ -18,15 +18,13 @@ const Image = styled.img`
   }
 `;
 
-Image.displayName = 'Image';
-
 export const MovieImage = ({ imageUrl, type, fontSize, height = 231, width = 154 }: MovieImageProps) => {
   const pixelWidth = `${width}px`;
   const pixelHeight = `${height}px`;
   return (
     <>
       {imageUrl ? <Image src={imageUrl} width={pixelWidth} height={pixelHeight} /> :
-      <FillerImage imageType={type} fontSize={fontSize} />
+      <FillerImage imageType={type} fontSize={fontSize} height={height} width={width} />
     }
     </>
   )
