@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 
 // types
-import { CarouselType } from "../../types";
+import { CarouselType } from '../../types';
 
 // styles
 import { Title } from '../../styles/layout';
@@ -17,9 +17,9 @@ const Container = styled.div`
       height:7px;
     }
 
-    &::-webkit-scrollbar-thumb {
-      background: ${props => props.theme.color1};
-    }
+  &::-webkit-scrollbar-thumb {
+    background: ${props => props.theme.color1};
+  }
 `;
 
 const Content = styled.div`
@@ -32,7 +32,6 @@ const Content = styled.div`
 
 
 export const Carousel = ({children, title}: CarouselType) => {
-
   return (
     <>
       {title &&

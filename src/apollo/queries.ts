@@ -34,6 +34,17 @@ export const GET_BIO = gql`
       imageUrl
       placeOfBirth
       age
+      credits {
+        id
+        character
+        movie {
+          id
+          title
+          overview
+          imageUrl
+          releaseDate
+        }
+      }
     }
 }
 `;

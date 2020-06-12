@@ -25,6 +25,12 @@ type CreditType = {
   crew: CrewType[];
 }
 
+export type MovieCreditType = {
+  id: number;
+  character?: string;
+  movie: Pick<MovieType, 'id' | 'imageUrl' | 'title' | 'releaseDate'>;
+}
+
 export type PersonType = {
   id: number;
   name: string;
@@ -34,6 +40,7 @@ export type PersonType = {
   imageUrl: string;
   placeOfBirth?: string;
   age?: number;
+  credits: MovieCreditType[];
 }
 
 export type MovieType = {
