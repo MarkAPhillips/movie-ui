@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { SearchInput } from "../SearchInput/SearchInput";
 import { Logo } from '../Logo/Logo';
 import { useMutation, useQuery } from '@apollo/react-hooks';
@@ -15,14 +14,6 @@ const NavBarPanel = styled.header`
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.63);
   align-items: center;
   padding: 8px 16px;
-  a {
-    padding: 0 4px;
-    color:  ${props => props.theme.color2};
-    text-decoration: none;
-    &: hover {
-      opacity: 0.7;
-    }
-  }
 `;
 
 const NavContentPanel = styled.div`
@@ -46,9 +37,7 @@ export const NavBar = () => {
     <NavBarPanel>
       <NavContentPanel>
         <Content>
-        <Link to="/">
-          <Logo />
-        </Link>
+          <Logo/>
         </Content>
         <Content>
           <SearchInput

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 import orderBy from 'lodash/orderBy';
 import { MovieCreditType } from '../../types';
 import { formatDate } from '../../utilities';
@@ -83,13 +84,15 @@ const MovieImagePanel = styled.div`
     cursor: pointer;
   }
 `;
+
 const MovieTextPanel = styled.div`
   padding: 16px;
 `;
 
 export const MovieCreditsTimeline = ({ credits }: MovieCreditsTimelineProps) => {
-  const sortedCredits = orderBy(credits, ['movie.releaseDate'], ['desc'])
-    .filter((item) => item.movie && item.movie.releaseDate);
+  const history = useHistory();
+  const sortedCredits = orderBy(credits, ['movie.releaseDate'], ['desc']);
+  const handleClick = (id: string) => history.push(`/movie/${id}`);
   return (
     <MovieCreditsTimelinePanel>
       <MovieCreditsTimelineList>
@@ -99,8 +102,16 @@ export const MovieCreditsTimeline = ({ credits }: MovieCreditsTimelineProps) => 
           return (
             <MovieCredit key={id} releaseDate={releaseDate}>
               <MovieCreditPanel>
-                <MovieImagePanel><MovieImage imageUrl={movie.imageUrl} type="movie" height={200} width={140} fontSize={90} /></MovieImagePanel>
-                <MovieTextPanel><strong>{movie.title}</strong><br/>Cast as: {character}</MovieTextPanel>
+                <MovieImagePanel onClick={() => handleClick(movie.id)}>
+                  <MovieImage
+                    imageUrl={movie.imageUrl}
+                    type="movie"
+                    height={200}
+                    width={140}
+                    fontSize={90}
+                  />
+                </MovieImagePanel>
+                <MovieTextPanel><strong>{movie.title}</strong><br />{character}</MovieTextPanel>
               </MovieCreditPanel>
             </MovieCredit>
           );

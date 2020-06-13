@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
+import { useHistory } from 'react-router-dom';
 import { faVideo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -9,6 +10,10 @@ const LogoContainer = styled.div`
   align-items: center;
   width: 160px;
   justify-content: space-around;
+  &:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
 `;
 
 const IconContainer = styled.div`
@@ -26,8 +31,9 @@ const TextContainer = styled.div`
 LogoContainer.displayName = 'LogoContainer';
 
 export const Logo = () => {
+  const history = useHistory();
   return (
-    <LogoContainer>
+    <LogoContainer onClick={() => history.push('/')}>
       <IconContainer>
       <FontAwesomeIcon icon={faVideo} />
       </IconContainer>
