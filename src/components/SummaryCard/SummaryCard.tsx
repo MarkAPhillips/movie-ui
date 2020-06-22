@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { MovieImage } from '../MovieImage/MovieImage';
 
 type SummaryCardProps = {
-  posterImage: string;
-  backDropImage: string;
+  posterImage?: string;
+  backDropImage?: string;
   imageType: 'movie' | 'person';
   children: ReactNode;
 }
