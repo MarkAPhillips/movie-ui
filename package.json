@@ -4,7 +4,7 @@
   "description": "Movie UI built in React",
   "main": "index.js",
   "scripts": {
-    "pretest": "npm run lint",
+    "pretest": "npm run lint && tsc --skipLibCheck",
     "version": "echo $npm_package_version",
     "test": "jest --config ./jest.config.json",
     "test:watch": "npm test -- --watch",

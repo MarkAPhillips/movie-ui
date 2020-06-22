@@ -5,6 +5,7 @@
       "strict": true,
       "noImplicitReturns": true,
       "noImplicitAny": true,
+      "noEmit": true,
       "module": "es6",
       "moduleResolution": "node",
       "target": "es5",
@@ -13,4 +14,7 @@
       "allowSyntheticDefaultImports":true,
       "esModuleInterop": true
     },
+    "include": [
+      "src/**/*.ts"
+    ],
   }
