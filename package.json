@@ -4,7 +4,7 @@
   "description": "Movie UI built in React",
   "main": "index.js",
   "scripts": {
-    "pretest": "npm run lint && tsc --skipLibCheck",
+    "pretest": "npm run lint && npm run check:types",
     "version": "echo $npm_package_version",
     "test": "jest --config ./jest.config.json",
     "test:watch": "npm test -- --watch",
@@ -14,6 +14,7 @@
     "start": "npm run build:env && webpack-dashboard -- webpack-dev-server --open",
     "start:docker": "npm run docker:build && npm run docker:run",
     "lint": "eslint --quiet \"src/**\"",
+    "check:types": "tsc --skipLibCheck --noEmit",
     "docker:build": "docker build -f ./build/local/Dockerfile -t movie-ui .",
     "docker:run": "docker rm -f movie-ui &> /dev/null || true && docker run --name movie-ui -e PORT=8080 -p 8080:8080 -it movie-ui"
   },
