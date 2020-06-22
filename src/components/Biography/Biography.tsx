@@ -27,7 +27,7 @@ export const Biography = () => {
   const { person } = data;
   return (
     <>
-      <SummaryCard imageUrl={person.imageUrl} imageType="person">
+      <SummaryCard backDropImage={person.imageUrl} posterImage={person.imageUrl} imageType="person">
         <PersonHeader>
             <PersonTitle>{person.name}</PersonTitle>
             <PersonStrapline person={person} /><br />

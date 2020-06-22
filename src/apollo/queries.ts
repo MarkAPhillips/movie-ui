@@ -1,26 +1,35 @@
 import gql from 'graphql-tag';
 
-export const GET_POPULAR = gql`
-{
-  popular {
+const FRAGMENT_MOVIE_DETAILS = gql`
+    fragment MovieDetails on Movie {
       id
       title
       overview
-      imageUrl
+      images {
+        poster
+        backDrop
+      }
+    }
+`;
+
+export const GET_POPULAR = gql`
+{
+  popular {
       voteAverage
+      ...MovieDetails
     }
 }
+${FRAGMENT_MOVIE_DETAILS}
 `;
 
 export const GET_TRENDING = gql`
 {
   trending {
-      id
-      title
-      overview
-      imageUrl
+    voteAverage
+    ...MovieDetails
     }
 }
+${FRAGMENT_MOVIE_DETAILS}
 `;
 
 export const GET_BIO = gql`
@@ -38,24 +47,19 @@ export const GET_BIO = gql`
         id
         character
         movie {
-          id
-          title
-          overview
-          imageUrl
+          ...MovieDetails
           releaseDate
         }
       }
     }
 }
+${FRAGMENT_MOVIE_DETAILS}
 `;
 
 export const GET_MOVIE = gql`
   query Movie($id: Int!, $showCast: Boolean!) {
     movie(id: $id, showCast: $showCast) {
-      id
-      title
-      overview
-      imageUrl
+      ...MovieDetails
       voteAverage
       voteCount
       releaseDate
@@ -87,13 +91,11 @@ export const GET_MOVIE = gql`
         }
       }
       recommended {
-        id
-        title
-        overview
-        imageUrl
+        ...MovieDetails
       }
     }
   }
+  ${FRAGMENT_MOVIE_DETAILS}
 `;
 
 export const SEARCH_MOVIES = gql`
@@ -104,9 +106,7 @@ export const SEARCH_MOVIES = gql`
       noOfPages
       edges {
         node {
-          id
-          title
-          imageUrl
+          ...MovieDetails
           releaseDate
         }
       }
@@ -116,4 +116,5 @@ export const SEARCH_MOVIES = gql`
       }
     }
   }
+  ${FRAGMENT_MOVIE_DETAILS}
 `;

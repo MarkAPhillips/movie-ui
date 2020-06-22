@@ -104,7 +104,7 @@ export const MovieCreditsTimeline = ({ credits }: MovieCreditsTimelineProps) => 
               <MovieCreditPanel>
                 <MovieImagePanel onClick={() => handleClick(movie.id)}>
                   <MovieImage
-                    imageUrl={movie.imageUrl}
+                    imageUrl={movie.images.poster}
                     type="movie"
                     height={200}
                     width={140}
