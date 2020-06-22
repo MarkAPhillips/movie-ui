@@ -3,13 +3,18 @@ import styled from 'styled-components';
 import { MovieImage } from '../MovieImage/MovieImage';
 
 type SummaryCardProps = {
-  imageUrl: string;
+  posterImage: string;
+  backDropImage: string;
   imageType: 'movie' | 'person';
   children: ReactNode;
 }
 
+type SummaryCardPanelProps = {
+  imageUrl: string;
+}
+
 // styles
-const SummaryCardPanel = styled.div<Pick<SummaryCardProps, 'imageUrl'>>`
+const SummaryCardPanel = styled.div<SummaryCardPanelProps>`
   position: relative;
   padding: 16px;
   display: flex;
@@ -34,12 +39,12 @@ const SummaryCardContent = styled.div`
   margin-left: 16px;
 `;
 
-export const SummaryCard = ( { imageUrl, imageType, children }: SummaryCardProps) => {
+export const SummaryCard = ( { posterImage, backDropImage, imageType, children }: SummaryCardProps) => {
   return (
-    <SummaryCardPanel imageUrl={imageUrl}>
+    <SummaryCardPanel imageUrl={backDropImage}>
       <ImagePanel>
         <MovieImage
-          imageUrl={imageUrl}
+          imageUrl={posterImage}
           type={imageType}
           fontSize={100}
           height={360}

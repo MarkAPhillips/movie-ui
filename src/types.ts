@@ -4,6 +4,11 @@ type EdgesType<T> = {
   node: T;
 }
 
+type ImageType = {
+  poster?: string;
+  backDrop?: string;
+}
+
 type GenreType = {
   id: number;
   name: string;
@@ -28,7 +33,7 @@ type CreditType = {
 export type MovieCreditType = {
   id: number;
   character?: string;
-  movie: Pick<MovieType, 'id' | 'imageUrl' | 'title' | 'releaseDate'>;
+  movie: Pick<MovieType, 'id' | 'images' | 'title' | 'releaseDate'>;
 }
 
 export type PersonType = {
@@ -47,7 +52,7 @@ export type MovieType = {
   id: string;
   title: string;
   overview: string;
-  imageUrl: string;
+  images: ImageType;
   releaseDate: string;
   voteAverage: number;
   runTime?: number;

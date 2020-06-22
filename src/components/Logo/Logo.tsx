@@ -28,8 +28,6 @@ const TextContainer = styled.div`
   letter-spacing: 2px;
 `;
 
-LogoContainer.displayName = 'LogoContainer';
-
 export const Logo = () => {
   const history = useHistory();
   return (

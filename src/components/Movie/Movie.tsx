@@ -50,7 +50,7 @@ export const Movie = ( { movieId, showCast = false }: MovieProps) => {
   const certText = cert.length ? ` - ${cert[0].certification} (${cert[0].countryCode})` : '';
   return (
     <>
-      <SummaryCard imageUrl={movie.imageUrl} imageType="movie">
+      <SummaryCard backDropImage={movie.images.backDrop} posterImage={movie.images.poster} imageType="movie">
         <MovieHeader>
           <HeaderContent>
             <PercentageCircle percent={percent} />
