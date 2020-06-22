@@ -10,7 +10,7 @@ type SummaryCardProps = {
 }
 
 type SummaryCardPanelProps = {
-  imageUrl: string;
+  imageUrl?: string;
 }
 
 // styles
