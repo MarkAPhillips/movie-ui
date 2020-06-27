@@ -1,43 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import first from 'lodash/first';
+import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 
 // queries
 import { GET_TRENDING, GET_POPULAR } from '../apollo/queries';
 
-// types
-import { MovieType } from '../types';
-
 // components
-import { MovieList, Movie } from '../components';
-
-// styles
-import { Title } from '../styles/layout';
+import { MovieList, FeaturedMovie } from '../components'
 
 export const HomeContainer = () => {
 
   const { loading: trendingLoading, error: trendingError, data: trendingData } = useQuery(GET_TRENDING);
   const { loading: popularLoading, error: popularError, data: popularData } = useQuery(GET_POPULAR);
 
-  const [featuredMovieId, setFeaturedMovieId] = useState<number | undefined>()
-  useEffect(() => {
-    if (trendingData && trendingData.trending) {
-      const featuredMovie: MovieType | undefined = first(trendingData.trending);
-      if (featuredMovie) {
-        setFeaturedMovieId(+featuredMovie.id);
-      }
-    }
-  }, [trendingData]);
-
   return (
     <>
-      {featuredMovieId && (
-        <>
-        <Title>Featured</Title>
-        <br />
-        <Movie movieId={featuredMovieId} />
-        </>
-      )}
+      <FeaturedMovie />
       {popularData && popularData.popular && (
         <MovieList
           title="Popular Movies"

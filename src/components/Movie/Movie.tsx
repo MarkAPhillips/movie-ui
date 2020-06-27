@@ -1,20 +1,16 @@
 import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
-import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { GET_MOVIE } from '../../apollo/queries';
 import { formatDate, formatMins } from '../../utilities';
 import { MovieType, CastMemberType }  from '../../types';
 import { Carousel } from "../Carousel/Carousel";
 import { CastMemberTile } from "../CastMemberTile/CastMemberTile";
 import { MovieTile } from '../MovieTile/MovieTile';
-import { ApolloData } from '../../apollo/types';
 import { PercentageCircle } from '../PercentageCircle/PercentageCircle';
 import { MainCrew } from './MainCrew';
 import { SummaryCard } from '../SummaryCard/SummaryCard';
 
 type MovieProps = {
-  movieId?: number;
+  movie: MovieType;
   showCast?: boolean;
 }
 
@@ -30,19 +26,8 @@ const HeaderContent = styled.div`
   margin: 0 8px;
 `;
 
-export const Movie = ( { movieId, showCast = false }: MovieProps) => {
-  if (!movieId ) {
-    const { id } = useParams();
-    movieId = +id;
-  }
-
-  const { loading, error, data } = useQuery(GET_MOVIE, {
-    variables: { id: movieId, showCast },
-  }) as ApolloData<MovieType>;
-
-  if (loading) return <>Loading...</>;
-  if (error) return <>`Error! ${error.message}`</>;
-  const { movie, movie: { credits, recommended } } = data;
+export const Movie = ( { movie, showCast = false }: MovieProps) => {
+  const { credits, recommended  } = movie;
   const { cast = [], crew } = credits;
   const genres = movie.genres.map((item) => item.name).join(', ');
   const percent = movie.voteAverage * 10;
