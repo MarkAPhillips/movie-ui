@@ -118,3 +118,32 @@ export const SEARCH_MOVIES = gql`
   }
   ${FRAGMENT_MOVIE_DETAILS}
 `;
+
+export const GET_FEATURED = gql`
+  {
+    featured {
+      ...MovieDetails
+      voteAverage
+      voteCount
+      releaseDate
+      originalLanguage
+      popularity
+      runTime
+      genres {
+        name
+      }
+      certifications {
+        countryCode
+        certification
+      }
+      credits {
+        crew {
+          id
+          job
+          name
+        }
+      }
+    }
+  }
+  ${FRAGMENT_MOVIE_DETAILS}
+`;

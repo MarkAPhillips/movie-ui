@@ -12,7 +12,6 @@ export const client = new ApolloClient({
         ...stateMutations,
       },
     },
-    assumeImmutableResults: true,
 });
 
 export const resetState = () => cache.writeData({ data: initState });
