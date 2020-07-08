@@ -13,12 +13,12 @@ const Container = styled.div`
   overflow-x: auto;
 
   &::-webkit-scrollbar {
-      background: ${props => props.theme.color3};
+      background: ${props => props.theme.colorNeptune};
       height:7px;
     }
 
   &::-webkit-scrollbar-thumb {
-    background: ${props => props.theme.color1};
+    background: ${props => props.theme.colorCello};
   }
 `;
 

@@ -44,14 +44,14 @@ const Panel = styled.div<PanelTypes>`
 `;
 
 const Title = styled.div`
-  color: ${props => props.theme.color1};
+  color: ${props => props.theme.colorCello};
   font-weight: 700;
   font-size: ${props => props.theme.size12};
 `;
 
 const Blurb = styled.div`
   font-size: ${props => props.theme.size12};
-  color: ${props => props.theme.color1};
+  color: ${props => props.theme.colorCello};
 `;
 
 export const MovieTile = ({ movieData }: MovieData) => {

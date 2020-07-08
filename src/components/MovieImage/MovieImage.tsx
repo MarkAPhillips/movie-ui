@@ -12,7 +12,7 @@ type MovieImageProps = {
 
 const Image = styled.img`
   border-radius: 10px;
-  border: 1px solid ${props => props.theme.color4};
+  border: 1px solid ${props => props.theme.colorAquaSpring};
   &:hover {
     opacity: 0.7;
   }

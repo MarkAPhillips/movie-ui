@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+import { rounded } from './mixins';
 
 export const Title = styled.div`
   display: flex;
@@ -7,7 +8,7 @@ export const Title = styled.div`
   height: 36px;
   margin-bottom: 1px;
   padding-left: 10px;
-  border-radius: 5px;
-  background: ${props => props.theme.color3};
-  color: ${props => props.theme.color2};
+  ${rounded}
+  background: ${props => props.theme.colorNeptune};
+  color: ${props => props.theme.colorWhite};
 `;

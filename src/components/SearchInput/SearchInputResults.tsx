@@ -21,7 +21,7 @@ const SearchResultsList = styled.ul`
 `;
 
 const SearchListItem = styled.li<SearchListItemType>`
-  background: ${props => props.active ? props.theme.color3 : props.theme.color2 };
+  background: ${props => props.active ? props.theme.colorNeptune : props.theme.colorWhite };
   border-radius: 5px;
   padding: 6px;
   cursor: ${props => props.active ? 'pointer' : 'default' };

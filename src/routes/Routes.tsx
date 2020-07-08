@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Switch, Route, Redirect, useLocation } from "react-router-dom";
 
 // components
-import { HomeContainer, LinkedMovie, Biography } from "../components";
+import { HomeContainer, LinkedMovie, Biography, SignIn } from "../components";
 import { resetState } from "../apollo/client";
 
 export const Routes = () => {
@@ -15,6 +15,9 @@ export const Routes = () => {
     <Switch>
       <Route exact path="/">
         <HomeContainer />
+      </Route>
+      <Route exact strict path="/auth/login" >
+        <SignIn />
       </Route>
       <Route exact strict path="/movie" >
         <Redirect to='/' />

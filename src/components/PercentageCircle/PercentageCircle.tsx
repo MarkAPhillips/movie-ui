@@ -16,18 +16,18 @@ const PercentageCircleSvg = styled.svg`
   max-width: 80%;
   max-height: 60px;
   & .percentage {
-    fill: ${props => props.theme.color1};
+    fill: ${props => props.theme.colorCello};
     font-size: 0.6em;
     text-anchor: middle;
   }
   & .circle-bg {
     fill: none;
-    stroke:  ${props => props.theme.color3};
+    stroke:  ${props => props.theme.colorNeptune};
     stroke-width: 3.5;
   }
   & .circle {
     fill: none;
-    stroke: ${props => props.theme.color1};
+    stroke: ${props => props.theme.colorCello};
     stroke-width: 3.4;
     stroke-linecap: round;
     animation: ${progress} 1s ease-out forwards;

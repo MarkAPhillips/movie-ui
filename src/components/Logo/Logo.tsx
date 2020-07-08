@@ -18,8 +18,8 @@ const LogoContainer = styled.div`
 
 const IconContainer = styled.div`
   padding: 4px;
-  background: ${props => props.theme.color3};
-  color: ${props => props.theme.color1};
+  background: ${props => props.theme.colorNeptune};
+  color: ${props => props.theme.colorCello};
   border-radius: 5px;
 `;
 

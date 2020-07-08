@@ -18,7 +18,7 @@ import { GlobalStyle } from './styles';
 
 const ContentContainer = styled.main`
   width: ${props => props.theme.contentWidth}px;
-  margin: 10px auto 10px auto;
+  margin: 16px auto 10px auto;
   flex: 1;
 `;
 
