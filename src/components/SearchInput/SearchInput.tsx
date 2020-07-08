@@ -18,9 +18,9 @@ const SearchInputPanel = styled.div`
 `;
 
 const SearchResultsPanel = styled.div`
-  border: 1px solid ${props => props.theme.color3};
-  background: ${props => props.theme.color2};
-  color: ${props => props.theme.color1};
+  border: 1px solid ${props => props.theme.colorNeptune};
+  background: ${props => props.theme.colorWhite};
+  color: ${props => props.theme.colorCello};
   border-top: 0;
   min-height: 100px;
   width: 100%;
@@ -32,13 +32,13 @@ const SearchResultsPanel = styled.div`
 
 const Input = styled.input`
   width: 100%;
-  border: 1px solid ${props => props.theme.color3};
+  border: 1px solid ${props => props.theme.colorNeptune};
   border-right: none;
   padding: 0 12px;
   height: 32px;
   border-radius: 5px 0 0 5px;
   outline: none;
-  color: ${props => props.theme.color1};
+  color: ${props => props.theme.colorCello};
 `;
 
 const InputPanel = styled.div`
@@ -50,9 +50,9 @@ const InputPanel = styled.div`
 const Button = styled.button`
   width: 40px;
   height: 32px;
-  border: 1px solid ${props => props.theme.color3};
-  background:  ${props => props.theme.color3};
-  color: ${props => props.theme.color2};
+  border: 1px solid ${props => props.theme.colorNeptune};
+  background:  ${props => props.theme.colorNeptune};
+  color: ${props => props.theme.colorWhite};
   border-radius: 0 5px 5px 0;
   cursor: pointer;
   font-size: 18px;

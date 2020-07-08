@@ -8,7 +8,7 @@ const FooterPanel = styled.footer`
   align-items: center;
   height: 50px;
   padding: 8px 16px;
-  background: ${props => props.theme.color1};
+  background: ${props => props.theme.colorCello};
 `;
 
 const FooterContentPanel = styled.div`
@@ -26,7 +26,7 @@ const FooterContentPanel = styled.div`
 
 const Content = styled.div`
   width: ${props => props.theme.contentWidth}px;
-  color: ${props => props.theme.color2};
+  color: ${props => props.theme.colorWhite};
   font-size: ${props => props.theme.size11};
 `;
 

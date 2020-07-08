@@ -20,7 +20,7 @@ const MovieCreditsTimelinePanel = styled.div`
 `;
 
 const MovieCreditsTimelineList = styled.ul`
-  border-left: 4px solid ${props => props.theme.color3};
+  border-left: 4px solid ${props => props.theme.colorNeptune};
   border-bottom-right-radius: 4px;
   border-top-right-radius: 4px;
   margin: 50px auto;
@@ -36,7 +36,7 @@ const MovieCreditsTimelineList = styled.ul`
 `;
 
 const MovieCredit = styled.li<MovieCreditProps>`
-  border-bottom: 1px dashed ${props => props.theme.color3};
+  border-bottom: 1px dashed ${props => props.theme.colorNeptune};
   padding-bottom: 25px;
   margin-bottom: 20px;
   position: relative;
@@ -60,9 +60,9 @@ const MovieCredit = styled.li<MovieCreditProps>`
     position: absolute;
     display: block;
     top: 0;
-    box-shadow: 0 0 0 4px ${props => props.theme.color3};
+    box-shadow: 0 0 0 4px ${props => props.theme.colorNeptune};
     left: -56.85px;
-    background: ${props => props.theme.color1};
+    background: ${props => props.theme.colorCello};
     border-radius: 50%;
     height: 11px;
     width: 11px;
@@ -75,7 +75,7 @@ const MovieCreditPanel = styled.div`
   display: flex;
   flex-direction: row;
   padding: 16px;
-  background: ${props => props.theme.color5};
+  background: ${props => props.theme.colorAquaSpring};
   border-radius: 4px;
 `;
 

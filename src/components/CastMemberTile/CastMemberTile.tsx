@@ -35,7 +35,7 @@ const Panel = styled.div`
 `;
 
 const Title = styled.div`
-  color: ${props => props.theme.color1};
+  color: ${props => props.theme.colorCello};
   font-size: ${props => props.theme.size12};
   white-space: nowrap;
   overflow: hidden;
