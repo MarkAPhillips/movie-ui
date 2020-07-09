@@ -64,7 +64,7 @@ export const NavBar = () => {
           />
           </SearchPanel>
           <LoginPanel onClick={() => history.push('/auth/login')}>Sign in</LoginPanel>
-          <LoginPanel onClick={() => false}>Register</LoginPanel>
+          <LoginPanel onClick={() => history.push('/auth/register')}>Register</LoginPanel>
         </FlexContent>
       </NavContentPanel>
     </NavBarPanel>

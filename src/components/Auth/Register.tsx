@@ -5,7 +5,7 @@ import { Input, SubmitButton } from '../../styles/components';
 import { rounded } from '../../styles/mixins';
 import { Title } from '../../styles/layout';
 
-const SignInFormPanel = styled.div`
+const RegisterFormPanel = styled.div`
   border: 1px solid ${props => props.theme.colorNeptune};
   ${rounded}
   margin-top: 16px;
@@ -18,22 +18,35 @@ const SignInFormPanel = styled.div`
 type FormInput = {
     email: string;
     password: string;
+    lastName: string;
+    firstName: string;
+    confirmPassword: string;
   };
 
-export const SignIn = () => {
+export const Register = () => {
   const { register, handleSubmit, formState } = useForm<FormInput>( { mode: 'onChange' });
   const onSubmit = (data: FormInput) => console.log(data);
   const isDisabled = !formState.isValid;
   return (
     <>
-    <Title data-testid="signin-title">Sign in</Title>
-    <SignInFormPanel>
-      <form onSubmit={handleSubmit(onSubmit)} autoComplete="off" name="auth_signin">
+    <Title data-testid="register-title">Register</Title>
+    <RegisterFormPanel>
+      <form onSubmit={handleSubmit(onSubmit)} autoComplete="off" name="auth_register">
       <Input
         name="email"
         placeholder="Email Address"
         ref={register({ required: true })}
         autoComplete="email"
+      />
+      <Input
+        name="firstName"
+        placeholder="First Name"
+        ref={register({ required: true })}
+      />
+      <Input
+        name="lastName"
+        placeholder="Last Name"
+        ref={register({ required: true })}
       />
       <Input
         name="password"
@@ -42,10 +55,17 @@ export const SignIn = () => {
         ref={register({ required: true })}
         autoComplete="new-password"
       />
+      <Input
+        name="confirmpassword"
+        type="password"
+        placeholder="Confirm Password"
+        ref={register({ required: true })}
+        autoComplete="new-password"
+      />
 
-      <SubmitButton value="Sign in" disabled={isDisabled}/>
+      <SubmitButton value="Reigster" disabled={isDisabled}/>
     </form>
-    </SignInFormPanel>
+    </RegisterFormPanel>
     </>
   )
 };
