@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import { Input, SubmitButton } from '../../styles/components';
 import { rounded } from '../../styles/mixins';
 import { Title } from '../../styles/layout';
+import { SignInFormInput } from '../../auth/authTypes';
+import { signIn } from '../../auth/authService';
 
 const SignInFormPanel = styled.div`
   border: 1px solid ${props => props.theme.colorNeptune};
@@ -15,14 +17,11 @@ const SignInFormPanel = styled.div`
   }
 `;
 
-type FormInput = {
-    email: string;
-    password: string;
-  };
-
 export const SignIn = () => {
-  const { register, handleSubmit, formState } = useForm<FormInput>( { mode: 'onChange' });
-  const onSubmit = (data: FormInput) => console.log(data);
+  const { register, handleSubmit, formState } = useForm<SignInFormInput>( { mode: 'onChange' });
+  const onSubmit = (data: SignInFormInput) => {
+      signIn(data).then(response => console.log(response));
+  };
   const isDisabled = !formState.isValid;
   return (
     <>

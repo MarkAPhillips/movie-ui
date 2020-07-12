@@ -12,9 +12,18 @@ Deployed to Heroku at [https://eu-movie-ui.herokuapp.com/](https://eu-movie-ui.h
 
 In project root run the following:
 
-`echo API_URL=http://localhost:4000 > .env`
+```
+echo MOVIE_API_URL=http://localhost:4000 > .env
+echo AUTH_API_URL=http://localhost:8000 >> .env
+```
 
-This is the location of the API url that all requests are made. Please ensure this is running before running the application.
+The application requires connection to two APIs
+
+- movie-api - a JS GraphQL wrapper around the Movie database REST API with additional storage provided by mongoDb
+
+- auth-api - a Python authentication REST API which handles login and registration
+
+The process of containerising both the applications is WIP and will be updated in due course.
 
 Run `npm i`
 
