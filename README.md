@@ -33,8 +33,7 @@ Run `npm start`
 
 Browse to [Localhost](http://localhost:8080/) to view the application running locally.
 
-A `env.js` is built locally that references any environment variables and well as the latest version of the UI taken from the package.json file.
-
+An `env.js` file is built locally that references any environment variables as well as the latest version of the UI taken from the package.json file.
 
 ## Run & Build with Docker
 
