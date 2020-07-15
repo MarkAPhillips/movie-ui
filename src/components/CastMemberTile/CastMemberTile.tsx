@@ -1,10 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
-
 import { MovieImage } from '../MovieImage/MovieImage';
-
-// types
 import { CastMemberType } from '../../types';
 
 export type CastType = { castMemberData: CastMemberType };

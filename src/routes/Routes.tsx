@@ -1,16 +1,10 @@
-import React, { useEffect } from "react";
-import { Switch, Route, Redirect, useLocation } from "react-router-dom";
+import React from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 // components
 import { HomeContainer, LinkedMovie, Biography, SignIn, Register } from "../components";
-import { resetState } from "../apollo/client";
 
 export const Routes = () => {
-  const location = useLocation()
-  useEffect(() => {
-    resetState();
-  }, [location]
-  )
   return (
     <Switch>
       <Route exact path="/">

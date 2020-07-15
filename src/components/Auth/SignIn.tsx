@@ -1,11 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import { camelCase, reduce, isPlainObject, isArray } from 'lodash';
 import { useForm } from "react-hook-form";
+import { useMutation } from '@apollo/react-hooks';
+import { useHistory } from 'react-router-dom';
 import { Input, SubmitButton } from '../../styles/components';
 import { rounded } from '../../styles/mixins';
 import { Title } from '../../styles/layout';
 import { SignInFormInput } from '../../auth/authTypes';
-import { signIn } from '../../auth/authService';
+import { login } from '../../auth/authService';
+import { SET_AUTH } from '../../apollo/cache';
 
 const SignInFormPanel = styled.div`
   border: 1px solid ${props => props.theme.colorNeptune};
@@ -17,10 +21,28 @@ const SignInFormPanel = styled.div`
   }
 `;
 
+export const toCamelCase = (obj: object): object => {
+  return reduce(obj, (result, value, key) => {
+    const finalValue = isPlainObject(value) || isArray(value) ? toCamelCase(value) : value;
+    return { ...result, [camelCase(key)]: finalValue };
+  }, {});
+};
+
 export const SignIn = () => {
   const { register, handleSubmit, formState } = useForm<SignInFormInput>( { mode: 'onChange' });
-  const onSubmit = (data: SignInFormInput) => {
-      signIn(data).then(response => console.log(response));
+  const history = useHistory();
+  const [ setIsAuthorised ] = useMutation(SET_AUTH, {
+    onCompleted() {
+      history.push('/');
+    }
+  });
+
+  const onSubmit = (formInput: SignInFormInput) => {
+      login(formInput).then(( { data }) => {
+        const transData = toCamelCase(data);
+        localStorage.setItem('auth', JSON.stringify(transData));
+        setIsAuthorised({ variables: { isAuthorised: true }})
+      });
   };
   const isDisabled = !formState.isValid;
   return (

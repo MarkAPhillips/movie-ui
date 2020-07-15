@@ -5,6 +5,7 @@ export const GET_STATE = gql`
   {
     state @client {
       searchText
+      isAuthorised,
       __typename
     }
   }
@@ -14,5 +15,6 @@ export const initState: AppState = {
   state : {
     __typename: TYPE_NAME,
     searchText: '',
+    isAuthorised: false,
   },
 };
