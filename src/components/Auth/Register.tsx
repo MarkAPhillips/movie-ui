@@ -1,19 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
 import { useForm } from "react-hook-form";
 import { Input, SubmitButton } from '../../styles/components';
-import { rounded } from '../../styles/mixins';
-import { Title } from '../../styles/layout';
-
-const RegisterFormPanel = styled.div`
-  border: 1px solid ${props => props.theme.colorNeptune};
-  ${rounded}
-  margin-top: 16px;
-  > form {
-    padding: 16px;
-    width: 60%
-  }
-`;
+import { Title } from '../../styles/layout'
+import { FormPanel } from './styles';
 
 type FormInput = {
     email: string;
@@ -30,7 +19,7 @@ export const Register = () => {
   return (
     <>
     <Title data-testid="register-title">Register</Title>
-    <RegisterFormPanel>
+    <FormPanel>
       <form onSubmit={handleSubmit(onSubmit)} autoComplete="off" name="auth_register">
       <Input
         name="email"
@@ -65,7 +54,7 @@ export const Register = () => {
 
       <SubmitButton value="Reigster" disabled={isDisabled}/>
     </form>
-    </RegisterFormPanel>
+    </FormPanel>
     </>
   )
 };

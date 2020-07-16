@@ -36,7 +36,13 @@ const FlexContent = styled(Content)`
 `;
 
 const SearchPanel = styled.div`
-  width: 50%;
+  width: 60%
+`;
+
+const LoginPanel = styled.div`
+  width: 40%;
+  display: flex;
+  justify-content: flex-end;
 `;
 
 export const NavBar = () => {
@@ -52,13 +58,15 @@ export const NavBar = () => {
         </Content>
         <FlexContent>
           <SearchPanel>
-          <SearchInput
-            searchText={searchText}
-            handleSearchText={(searchText: string) => handleSearchText({ variables: { searchText }})}
-          />
+            <SearchInput
+              searchText={searchText}
+              handleSearchText={(searchText: string) => handleSearchText({ variables: { searchText }})}
+            />
           </SearchPanel>
-          {!isAuthorised && <LoginMenu />}
-          {isAuthorised && <LogoutMenu />}
+          <LoginPanel>
+            {!isAuthorised && <LoginMenu />}
+            {isAuthorised && <LogoutMenu />}
+          </LoginPanel>
         </FlexContent>
       </NavContentPanel>
     </NavBarPanel>
