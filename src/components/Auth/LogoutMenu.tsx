@@ -10,7 +10,6 @@ import { AuthMenuItemLink, AuthMenuUserProfile } from './styles';
 export const LogoutMenu = () => {
   const [name, setName] = useState<string | null>(null);
   const [setIsAuthorised] = useMutation(SET_AUTH);
-  console.log('rendered');
   const getName = async () => {
     const auth = await localStorage.getItem('auth');
     if (auth) {
