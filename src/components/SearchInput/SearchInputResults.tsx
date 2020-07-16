@@ -7,7 +7,7 @@ import { formatDate } from '../../utilities';
 type SearchInputResultsProps = {
   loading: boolean;
   results: MovieType [];
-  handleClick: (id: string, title: string) => void;
+  handleClick: (id: string) => void;
   handleClose: () => void;
 }
 
@@ -60,8 +60,8 @@ export const SearchInputResults = ( { loading, results, handleClick, handleClose
 
   useEffect(() => {
     if (results && enter) {
-      const { id, title } = results[cursor];
-      handleClick(id, title);
+      const { id } = results[cursor];
+      handleClick(id);
     }
   }, [cursor, enter]);
 
@@ -91,7 +91,7 @@ export const SearchInputResults = ( { loading, results, handleClick, handleClose
             <SearchListItem
               active={idx === cursor}
               role="link"
-              onClick={() => handleClick(item.id, item.title)}
+              onClick={() => handleClick(item.id)}
               key={item.id}
               onMouseEnter={() => setHovered(idx)}
               onMouseLeave={() => setHovered(undefined)}

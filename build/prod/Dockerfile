@@ -7,8 +7,8 @@ WORKDIR /app
 COPY package*.json ./
 
 RUN npm i --quiet && \
-    touch .env && \
-    echo "API_URL=$API_URL" >> .env
+    echo "MOVIE_API_URL=$MOVIE_API_URL" > .env && \
+    echo "AUTH_API_URL=$AUTH_API_URL" >> .env
 
 COPY . .
 

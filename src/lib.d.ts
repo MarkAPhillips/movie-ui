@@ -1,5 +1,6 @@
 type EnvironmentVariables = {
-    API_URL: string | undefined;
+    MOVIE_API_URL: string | undefined;
+    AUTH_API_URL: string | undefined;
     VERSION: string | undefined;
 }
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useHistory } from 'react-router-dom';
 import { SearchInput } from '../SearchInput/SearchInput';
 import { Logo } from '../Logo/Logo';
+import { LoginMenu, LogoutMenu } from '../';
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import { SET_SEARCH_TEXT, GET_STATE } from '../../apollo/cache';
 
@@ -26,7 +26,7 @@ const NavContentPanel = styled.div`
 
 const Content = styled.div`
   color: ${props => props.theme.colorWhite};
-  width:50%;
+  width: 50%;
 `;
 
 const FlexContent = styled(Content)`
@@ -36,20 +36,20 @@ const FlexContent = styled(Content)`
 `;
 
 const SearchPanel = styled.div`
-  width: 70%;
+  width: 60%
 `;
+
 const LoginPanel = styled.div`
-  &:hover {
-    cursor: pointer;
-    opacity: 0.7;
-  }
+  width: 40%;
+  display: flex;
+  justify-content: flex-end;
 `;
 
 export const NavBar = () => {
-  const history = useHistory();
   const { data: { state } } = useQuery<any>(GET_STATE);
-  const { searchText } = state;
+  const { searchText, isAuthorised } = state;
   const [ handleSearchText ] = useMutation(SET_SEARCH_TEXT);
+
   return (
     <NavBarPanel>
       <NavContentPanel>
@@ -58,13 +58,15 @@ export const NavBar = () => {
         </Content>
         <FlexContent>
           <SearchPanel>
-          <SearchInput
-            searchText={searchText}
-            handleSearchText={(searchText: string) => handleSearchText({ variables: { searchText }})}
-          />
+            <SearchInput
+              searchText={searchText}
+              handleSearchText={(searchText: string) => handleSearchText({ variables: { searchText }})}
+            />
           </SearchPanel>
-          <LoginPanel onClick={() => history.push('/auth/login')}>Sign in</LoginPanel>
-          <LoginPanel onClick={() => history.push('/auth/register')}>Register</LoginPanel>
+          <LoginPanel>
+            {!isAuthorised && <LoginMenu />}
+            {isAuthorised && <LogoutMenu />}
+          </LoginPanel>
         </FlexContent>
       </NavContentPanel>
     </NavBarPanel>

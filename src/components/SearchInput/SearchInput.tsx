@@ -101,20 +101,22 @@ export const SearchInput = ( { searchText, handleSearchText }: SearchInputProps 
 
   useClickOutside(searchRef, () => {
     setResults([]);
+    handleSearchText('');
   });
 
   const handleChange = ({ target }: InputChangeEvent) => {
     handleSearchText(target.value);
   };
 
-  const handleClick = (id: string, title: string) => {
+  const handleClick = (id: string) => {
     history.push(`/movie/${id}`);
-    handleSearchText(title);
+    handleSearchText('');
     setResults([]);
   };
 
   const handleClose= () => {
     setResults([]);
+    handleSearchText('');
   };
 
   return (

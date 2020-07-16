@@ -5,7 +5,7 @@ import { initState, stateMutations } from './cache';
 const cache = new InMemoryCache()
 
 export const client = new ApolloClient({
-    uri: window._env_.API_URL,
+    uri: window._env_.MOVIE_API_URL,
     cache,
     resolvers: {
       Mutation: {

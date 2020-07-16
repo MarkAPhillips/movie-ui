@@ -6,3 +6,5 @@ export * from './Movie/FeaturedMovie';
 export * from './Movie/LinkedMovie';
 export * from './Auth/SignIn';
 export * from './Auth/Register';
+export * from './Auth/LoginMenu';
+export * from './Auth/LogoutMenu';

@@ -12,9 +12,18 @@ Deployed to Heroku at [https://eu-movie-ui.herokuapp.com/](https://eu-movie-ui.h
 
 In project root run the following:
 
-`echo API_URL=http://localhost:4000 > .env`
+```
+echo MOVIE_API_URL=http://localhost:4000 > .env
+echo AUTH_API_URL=http://localhost:8000 >> .env
+```
 
-This is the location of the API url that all requests are made. Please ensure this is running before running the application.
+The application requires connection to two APIs
+
+- movie-api - a JS GraphQL wrapper around the Movie database REST API with additional storage provided by mongoDb
+
+- auth-api - a Python authentication REST API which handles login and registration
+
+The process of containerising both the applications is WIP and will be updated in due course.
 
 Run `npm i`
 
@@ -24,8 +33,7 @@ Run `npm start`
 
 Browse to [Localhost](http://localhost:8080/) to view the application running locally.
 
-A `env.js` is built locally that references any environment variables and well as the latest version of the UI taken from the package.json file.
-
+An `env.js` file is built locally that references any environment variables as well as the latest version of the UI taken from the package.json file.
 
 ## Run & Build with Docker
 
