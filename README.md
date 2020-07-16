@@ -17,7 +17,7 @@ echo MOVIE_API_URL=http://localhost:4000 > .env
 echo AUTH_API_URL=http://localhost:8000 >> .env
 ```
 
-The application requires connection to two APIs
+The application requires connection to two APIs:
 
 - movie-api - a JS GraphQL wrapper around the Movie database REST API with additional storage provided by mongoDb
 
