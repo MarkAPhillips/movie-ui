@@ -10,7 +10,6 @@ describe('objectFormatter tests', () => {
             id: 1,
             first_name: 'Test',
             last_name: 'User',
-            password1: 'abc',
           },
         };
 
@@ -20,7 +19,6 @@ describe('objectFormatter tests', () => {
             id: 1,
             firstName: 'Test',
             lastName: 'User',
-            password1: 'abc',
           },
         };
 
@@ -34,6 +32,7 @@ describe('objectFormatter tests', () => {
           id: 1,
           firstName: 'Test',
           lastName: 'User',
+          password1: 'abc',
         },
       };
 
@@ -43,6 +42,7 @@ describe('objectFormatter tests', () => {
           id: 1,
           first_name: 'Test',
           last_name: 'User',
+          password1: 'abc',
         },
       };
 
