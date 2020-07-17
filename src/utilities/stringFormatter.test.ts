@@ -1,10 +1,9 @@
-// Function
-import { truncateText } from "./stringFormatter";
+import { truncateText } from './stringFormatter';
 const testFunc = truncateText;
 
-describe("stringFormatter", () => {
+describe('stringFormatter tests', () => {
 
-    it("should return truncated text", () => {
+    it('should return truncated text', () => {
         //input
         const text = 'the lazy brown fox jumped over the moon';
         const length = 20;
@@ -14,7 +13,7 @@ describe("stringFormatter", () => {
         expect(testFunc({text, length})).toEqual(result);
     });
 
-    it("should return original text", () => {
+    it('should return original text', () => {
         //input
         const text = 'the lazy brown fox jumped over the moon';
         const length = 60;
@@ -24,7 +23,7 @@ describe("stringFormatter", () => {
         expect(testFunc({text, length})).toEqual(result);
     });
 
-    it("should return empty string", () => {
+    it('should return empty string', () => {
         //input
         const text = '';
         const length = 60;

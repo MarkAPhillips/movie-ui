@@ -1,5 +1,4 @@
 import React from 'react';
-import { camelCase, reduce, isPlainObject, isArray } from 'lodash';
 import { useForm } from "react-hook-form";
 import { useMutation } from '@apollo/react-hooks';
 import { useHistory } from 'react-router-dom';
@@ -9,13 +8,7 @@ import { SignInFormInput } from '../../auth/authTypes';
 import { login } from '../../auth/authService';
 import { SET_AUTH } from '../../apollo/cache';
 import { FormPanel } from './styles';
-
-export const toCamelCase = (obj: object): object => {
-  return reduce(obj, (result, value, key) => {
-    const finalValue = isPlainObject(value) || isArray(value) ? toCamelCase(value) : value;
-    return { ...result, [camelCase(key)]: finalValue };
-  }, {});
-};
+import { transformObjectKeys } from '../../utilities/objectFormatter';
 
 export const SignIn = () => {
   const { register, handleSubmit, formState } = useForm<SignInFormInput>( { mode: 'onChange' });
@@ -28,7 +21,7 @@ export const SignIn = () => {
 
   const onSubmit = (formInput: SignInFormInput) => {
       login(formInput).then(( { data }) => {
-        const transData = toCamelCase(data);
+        const transData = transformObjectKeys(data);
         localStorage.setItem('auth', JSON.stringify(transData));
         setIsAuthorised({ variables: { isAuthorised: true }})
       });
