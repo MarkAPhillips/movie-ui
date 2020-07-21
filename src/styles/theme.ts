@@ -4,6 +4,10 @@ export const theme = {
     colorNeptune: 'rgb(119,171,183)', // light blue
     colorAquaSpring: 'rgb(232,244,248)', // light grey
     colorBlack: 'rgb(0,0,0)',
+    warning: 'rgb(240, 173, 78)', // warning toast
+    success: 'rgb(92, 184, 92)', // success toast
+    info: 'rgb(91, 192, 222)', // info toast
+    danger: 'rgb(217, 83, 79)', // danger toast
     size8: '8px',
     size9: '9px',
     size10: '10px',

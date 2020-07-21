@@ -28,6 +28,11 @@ export type AppState = {
     searchText: string;
     isAuthorised: boolean;
     __typename: typeof TYPE_NAME;
-
   };
+}
+
+export type ToastNotification = {
+  toastType: 'warning' | 'danger' | 'info' | 'success';
+  title: string;
+  message: string;
 }

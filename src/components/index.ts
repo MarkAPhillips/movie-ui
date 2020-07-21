@@ -8,3 +8,4 @@ export * from './Auth/SignIn';
 export * from './Auth/Register';
 export * from './Auth/LoginMenu';
 export * from './Auth/LogoutMenu';
+export * from './Toast/Toast';

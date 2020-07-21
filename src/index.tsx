@@ -9,6 +9,8 @@ import { theme} from "./styles/theme";
 // components
 import { NavBar } from "./components/NavBar/NavBar";
 import { Footer } from "./components/Footer/Footer";
+import { Toast } from './components/Toast/Toast';
+import { ToastPortal } from './components/Toast/ToastPortal';
 
 // routes
 import { Routes } from "./routes/Routes";
@@ -32,6 +34,13 @@ const App = () => (
               <Routes />
             </ContentContainer>
             <Footer />
+            <ToastPortal>
+              <Toast
+                toastType="danger"
+                title="Error"
+                message="Very long message This is a message that is very long"
+              />
+            </ToastPortal>
         </ThemeProvider>
     </ApolloProvider>
   </Router>
