@@ -27,6 +27,7 @@ export type AppState = {
   state: {
     searchText: string;
     isAuthorised: boolean;
+    notification: ToastNotification | null;
     __typename: typeof TYPE_NAME;
   };
 }
@@ -35,4 +36,5 @@ export type ToastNotification = {
   toastType: 'warning' | 'danger' | 'info' | 'success';
   title: string;
   message: string;
+  __typeName?: string;
 }

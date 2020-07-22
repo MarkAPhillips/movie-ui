@@ -5,7 +5,12 @@ export const GET_STATE = gql`
   {
     state @client {
       searchText
-      isAuthorised,
+      isAuthorised
+      notification {
+        toastType
+        title
+        message
+      }
       __typename
     }
   }
@@ -16,5 +21,6 @@ export const initState: AppState = {
     __typename: TYPE_NAME,
     searchText: '',
     isAuthorised: false,
+    notification: null,
   },
 };

@@ -9,8 +9,9 @@ import { rounded } from '../../styles/mixins';
 import { ToastNotification } from '../../apollo/types';
 
 type ToastProps = {
+  notification: ToastNotification;
   dismissTime?: number;
-} & ToastNotification
+}
 
 export type ToastType = {
   title: string;
@@ -47,10 +48,10 @@ const NotificationPanel = styled.div`
     background: ${props => props.theme.colorWhite};
 `;
 
-export const Toast = ({ toastType, title, message, dismissTime = 5000 }: ToastProps) => {
+export const Toast = ({ notification, dismissTime = 5000 }: ToastProps) => {
 
   const [list, setList] = useState<ToastType[]>([]);
-
+  const { toastType, title, message } = notification;
   useEffect(() => {
     const toast = {
       id: uuid(),

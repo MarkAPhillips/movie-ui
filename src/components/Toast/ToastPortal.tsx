@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 
 type ToastPortalProps = {
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 export const ToastPortal = ({ children }: ToastPortalProps) => {
