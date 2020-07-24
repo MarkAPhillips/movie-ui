@@ -8,3 +8,9 @@ export * from './Auth/SignIn';
 export * from './Auth/Register';
 export * from './Auth/LoginMenu';
 export * from './Auth/LogoutMenu';
+export * from './Toast/Toast';
+export * from './Toast/ToastPortal';
+export * from './Toast/Notification';
+
+export * from './NavBar/NavBar';
+export * from './Footer/Footer';

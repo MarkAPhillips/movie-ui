@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import styled from 'styled-components';
 import { GET_BIO } from '../../apollo/queries';
 import { ApolloData } from '../../apollo/types';

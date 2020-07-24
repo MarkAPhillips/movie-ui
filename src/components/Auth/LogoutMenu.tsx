@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useMutation } from '@apollo/react-hooks';
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { logout } from '../../auth/authService';
-import { SET_AUTH } from '../../apollo/cache';
 import { AuthType } from '../../apollo/types';
 import { AuthMenuItemLink, AuthMenuUserProfile } from './styles';
+import { isAuthorisedVar } from '../../apollo/appState';
 
 export const LogoutMenu = () => {
   const [name, setName] = useState<string | null>(null);
-  const [setIsAuthorised] = useMutation(SET_AUTH);
   const getName = async () => {
     const auth = await localStorage.getItem('auth');
     if (auth) {
@@ -26,7 +24,7 @@ export const LogoutMenu = () => {
   const handleLogout = () => {
     logout().then(() => {
       localStorage.removeItem('auth');
-      setIsAuthorised({ variables: { isAuthorised: false } })
+      isAuthorisedVar(false);
     });
   };
 

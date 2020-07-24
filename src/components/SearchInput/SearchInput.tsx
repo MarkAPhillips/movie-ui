@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useRef, useState, useEffect, MutableRefObject } from 'react';
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import { useLazyQuery } from '@apollo/react-hooks';
+import { useLazyQuery } from '@apollo/client';
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SearchInputResults } from './SearchInputResults';

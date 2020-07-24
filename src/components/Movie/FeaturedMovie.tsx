@@ -1,5 +1,5 @@
 import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { GET_FEATURED } from '../../apollo/queries';
 import { Title } from '../../styles/layout';
 import { Movie } from '..';
