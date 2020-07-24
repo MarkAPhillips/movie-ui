@@ -1,16 +1,15 @@
 import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
-import { GET_STATE } from '../../apollo/cache';
 import { ToastPortal, Toast } from '..';
+import { useQuery } from '@apollo/client';
+import { GET_APP_STATE } from '../../apollo/appState';
 
 export const Notification = () => {
-  const { data: { state } } = useQuery<any>(GET_STATE);
-  const { notification } = state;
-  console.log('notification', notification);
+  const { data } = useQuery(GET_APP_STATE);
+  const { state } = data;
   return (
     <ToastPortal>
-      {notification && (
-        <Toast notification={notification}/>
+      {state.toastNotification && (
+        <Toast notification={state.toastNotification}/>
       )}
     </ToastPortal>
   )

@@ -1,4 +1,4 @@
-import { ApolloError } from 'apollo-boost';
+import { ApolloError } from '@apollo/client';
 
 export const TYPE_NAME = 'AppState';
 
@@ -32,9 +32,10 @@ export type AppState = {
   };
 }
 
+export type ToastTypes = 'warning' | 'danger' | 'info' | 'success';
+
 export type ToastNotification = {
-  toastType: 'warning' | 'danger' | 'info' | 'success';
+  toastType: ToastTypes;
   title: string;
   message: string;
-  __typeName?: string;
 }

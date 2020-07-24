@@ -1,5 +1,5 @@
 import React from 'react';
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import { Input, SubmitButton } from '../../styles/components';
 import { registration } from '../../auth/authService';

@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
 
 const FRAGMENT_MOVIE_DETAILS = gql`
     fragment MovieDetails on Movie {

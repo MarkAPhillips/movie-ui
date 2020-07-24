@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { ApolloProvider } from '@apollo/react-hooks';
+import { ApolloProvider } from '@apollo/client';
 import { BrowserRouter as Router } from "react-router-dom";
 import styled, { ThemeProvider } from "styled-components";
 import { client } from './apollo/client';
@@ -24,8 +24,8 @@ const App = () => (<Router>
         <Routes />
       </ContentContainer>
       <Footer />
+      <Notification />
     </ThemeProvider>
-    <Notification />
   </ApolloProvider>
 </Router>
 );

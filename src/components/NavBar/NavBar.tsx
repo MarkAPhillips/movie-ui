@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useQuery } from '@apollo/client';
 import { SearchInput } from '../SearchInput/SearchInput';
 import { Logo } from '../Logo/Logo';
 import { LoginMenu, LogoutMenu } from '../';
-import { useMutation, useQuery } from '@apollo/react-hooks';
-import { SET_SEARCH_TEXT, GET_STATE } from '../../apollo/cache';
+import { searchTextVar, GET_APP_STATE } from '../../apollo/appState';
 
 const NavBarPanel = styled.header`
   display: flex;
@@ -46,10 +46,9 @@ const LoginPanel = styled.div`
 `;
 
 export const NavBar = () => {
-  const { data: { state } } = useQuery<any>(GET_STATE);
-  const { searchText, isAuthorised } = state;
-  const [ handleSearchText ] = useMutation(SET_SEARCH_TEXT);
-
+  const { data } = useQuery(GET_APP_STATE);
+  console.log('>>>>>>', data);
+  const { state } = data;
   return (
     <NavBarPanel>
       <NavContentPanel>
@@ -59,13 +58,13 @@ export const NavBar = () => {
         <FlexContent>
           <SearchPanel>
             <SearchInput
-              searchText={searchText}
-              handleSearchText={(searchText: string) => handleSearchText({ variables: { searchText }})}
+              searchText={state.searchText}
+              handleSearchText={(text: string) => searchTextVar(text)}
             />
           </SearchPanel>
           <LoginPanel>
-            {!isAuthorised && <LoginMenu />}
-            {isAuthorised && <LogoutMenu />}
+            {!state.isAuthorised && <LoginMenu />}
+            {state.isAuthorised && <LogoutMenu />}
           </LoginPanel>
         </FlexContent>
       </NavContentPanel>

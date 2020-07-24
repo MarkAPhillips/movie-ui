@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ToastType } from './Toast';
 import { rounded } from '../../styles/mixins';
+import { toastNotificationVar } from '../../apollo/appState';
 
 type ToastListProps = {
   toastList: ToastType[];
@@ -14,38 +15,38 @@ type NotificationToastProps  = {
 }
 
 const NotificiationToast = styled.div<NotificationToastProps>`
-    ${rounded}
-    background: ${props => props.backgroundColor};
-    opacity: 0.9;
-    display:flex;
-    justify-content: space-between;
-    position: relative;
-    pointer-events: auto;
-    overflow: hidden;
-    box-shadow: 0 0 10px #999;
-    color: ${props => props.theme.colorWhite};
-    max-height: 100px;
-    width: 365px;
-    height: 70px;
-	  color: ${props => props.theme.colorWhite};
-	  padding: 8px;
-  button {
-    position: absolute;
-    color: inherit;
-	  right: 0.6em;
-	  top: 0.6em;
-	  font-weight: 700;
-	  outline: none;
-	  border: none;
-	  text-shadow: 0 1px 0 ${props => props.theme.colorWhite};
-	  opacity: .8;
-	  line-height: 1;
-	  font-size: 14px;
-	  padding: 0;
-	  cursor: pointer;
-	  background: 0 0;
-	  border: 0;
-  }
+  ${rounded}
+  background: ${props => props.backgroundColor};
+  opacity: 0.9;
+  display:flex;
+  justify-content: space-between;
+  position: relative;
+  pointer-events: auto;
+  overflow: hidden;
+  box-shadow: 0 0 10px #999;
+  max-height: 100px;
+  width: 365px;
+  height: 70px;
+  color: ${props => props.theme.colorWhite};
+  padding: 8px;
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  color: inherit;
+  right: 0.6em;
+  top: 0.6em;
+  font-weight: 700;
+  outline: none;
+  border: none;
+  text-shadow: 0 1px 0 ${props => props.theme.colorWhite};
+  opacity: .8;
+  line-height: 1;
+  font-size: 14px;
+  padding: 0;
+  cursor: pointer;
+  background: 0 0;
+  border: 0;
 `;
 
 const NotificationImage = styled.div`
@@ -79,6 +80,7 @@ export const ToastList = ( { toastList, dismissTime = 5000 }: ToastListProps) =>
       const list = toastList.filter(item => item.id != id);
       toastList = [...list];
       setList(list);
+      toastNotificationVar(null);
   };
 
   useEffect(() => {
@@ -96,7 +98,7 @@ export const ToastList = ( { toastList, dismissTime = 5000 }: ToastListProps) =>
     <>
       {list.map((toast) => (
         <NotificiationToast key={toast.id} backgroundColor={toast.backgroundColor}>
-          <button onClick={() => removeToast(toast.id)}>X</button>
+          <CloseButton onClick={() => removeToast(toast.id)}>X</CloseButton>
           <NotificationImage>
             <FontAwesomeIcon icon={toast.icon} />
           </NotificationImage>

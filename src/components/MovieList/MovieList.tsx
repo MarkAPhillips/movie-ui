@@ -1,5 +1,5 @@
 import React from 'react';
-import { ApolloError } from 'apollo-boost';
+import { ApolloError } from '@apollo/client';
 
 // types
 import { MovieType } from '../../types';
