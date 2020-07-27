@@ -1,47 +1,37 @@
 import React from 'react';
-import styled from "styled-components";
+import Slider from 'react-slick';
+import styled from 'styled-components';
 
 // types
 import { CarouselType } from '../../types';
 
 // styles
 import { Title } from '../../styles/layout';
+import { NextArrow } from './NextArrow';
+import { PrevArrow } from './PrevArrow';
 
-const Container = styled.div`
-  width: 100%;
-  padding-bottom: 3px;
-  overflow-x: auto;
-
-  &::-webkit-scrollbar {
-      background: ${props => props.theme.colorNeptune};
-      height:7px;
-    }
-
-  &::-webkit-scrollbar-thumb {
-    background: ${props => props.theme.colorCello};
-  }
+const CarouselContainer = styled.div`
+  height: 320px;
 `;
 
-const Content = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 280px;
-  align-items: center;
-`;
-
-
-export const Carousel = ({children, title}: CarouselType) => {
+export const Carousel = ({ children, title }: CarouselType) => {
+  const settings = {
+    dots: true,
+    arrows: true,
+    speed: 500,
+    slidesToShow: 7,
+    slidesToScroll: 1,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+  };
   return (
-    <>
+    <CarouselContainer>
       {title &&
         <Title data-testid="carousel-title">{title}</Title>
       }
-      <Container>
-        <Content>
-          {children}
-        </Content>
-      </Container>
-    </>
+      <Slider {...settings}>
+        {children}
+      </Slider>
+    </CarouselContainer>
   )
 };

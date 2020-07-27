@@ -1,2 +1,2 @@
-export * from './stringFormatter';
 export * from './dateTimeFormatter';
+export * from './objectFormatter';

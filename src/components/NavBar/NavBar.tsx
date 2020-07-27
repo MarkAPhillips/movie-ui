@@ -47,7 +47,6 @@ const LoginPanel = styled.div`
 
 export const NavBar = () => {
   const { data } = useQuery(GET_APP_STATE);
-  console.log('>>>>>>', data);
   const { state } = data;
   return (
     <NavBarPanel>

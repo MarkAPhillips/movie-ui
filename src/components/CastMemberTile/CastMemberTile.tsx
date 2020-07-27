@@ -25,10 +25,11 @@ const ImagePanel = styled.div`
 const Panel = styled.div`
   position: absolute;
   background-color: ${props => props.theme.movieOverlay};
-  padding: 4px;
   bottom: 4px;
   left: 0;
-  width: 140px;
+  width: 100%;
+  padding: 4px 0 8px 4px;
+  height: 48px;
 `;
 
 const Title = styled.div`
