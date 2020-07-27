@@ -20,7 +20,7 @@ export const theme = {
     size17: '17px',
     size18: '18px',
     movieWidth: '154',
-    movieHeight: '231',
+    movieHeight: '238',
     movieOverlay: 'rgba(255,255,255,.6)',
     contentWidth: '1280'
 };

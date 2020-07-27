@@ -2,7 +2,6 @@ import React, { useRef, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { truncateText } from '../../utilities';
 import { MovieImage } from '../MovieImage/MovieImage';
 
 // types
@@ -16,7 +15,6 @@ type PanelTypes = {
 export type MovieData = { movieData: MovieType };
 
 const Tile = styled.div`
-  flex: none;
   position: relative;
   width: ${props => props.theme.movieWidth}px;
   height: ${props => props.theme.movieHeight}px;
@@ -31,27 +29,33 @@ const ImagePanel = styled.div`
   left: 0;
 `;
 
-// TODO: adding 50 is incorrect on bottom attribute
-// need to work out why panelHeight is coming up short initially.
 const Panel = styled.div<PanelTypes>`
   position: absolute;
   background-color: ${props => props.theme.movieOverlay};
-  padding: 5px;
-  bottom: ${props => props.isOver ? 0 : -(props.panelHeight + 50)}px;
+  bottom: ${props => props.isOver ? 0 : -64}px;
   left: 0;
   transition: all .2s ease-in-out;
-  --webkit-transition: all .2s ease-in-out;
+  padding: 4px 2px 8px 4px;
+  height: 64px;
+  width: 100%;
 `;
 
 const Title = styled.div`
   color: ${props => props.theme.colorCello};
   font-weight: 700;
   font-size: ${props => props.theme.size12};
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const Blurb = styled.div`
   font-size: ${props => props.theme.size12};
   color: ${props => props.theme.colorCello};
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 `;
 
 export const MovieTile = ({ movieData }: MovieData) => {
@@ -86,7 +90,7 @@ export const MovieTile = ({ movieData }: MovieData) => {
           {movieData.title}
         </Title>
         <Blurb>
-          {truncateText({ text: movieData.overview, length: 50 })}
+          {movieData.overview}
         </Blurb>
       </Panel>
     </Tile>

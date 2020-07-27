@@ -49,7 +49,6 @@ export const Movie = ( { movie, showCast = false }: MovieProps) => {
         {movie.overview}<br/><br/>
         <MainCrew crew={crew} />
       </SummaryCard>
-      <br/>
     { showCast && <Carousel title={'Cast'}>
       {
         cast && cast.map((castMember: CastMemberType) => (
