@@ -9,7 +9,7 @@ export const LinkedMovie = () => {
   const movieId = +id;
 
   const { loading, error, data } = useQuery(GET_MOVIE, {
-    variables: { id: movieId, showCast:true },
+    variables: { id: movieId, showCast:true, creditsLimit: 14 },
   });
 
   if (loading) return <>Loading...</>;
