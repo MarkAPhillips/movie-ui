@@ -97,7 +97,7 @@ export const MovieCreditsTimeline = ({ credits }: MovieCreditsTimelineProps) => 
         {sortedCredits.map((credit) => {
           const { id, character, movie } = credit;
           const releaseDate = formatDate(movie.releaseDate);
-          const link = `/movie/${id}`;
+          const link = `/movie/${movie.id}`;
           return (
             <MovieCredit key={id} releaseDate={releaseDate}>
               <MovieCreditPanel>
