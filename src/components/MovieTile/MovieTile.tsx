@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { MovieImage } from '../MovieImage/MovieImage';
@@ -59,11 +59,10 @@ const Blurb = styled.div`
 `;
 
 export const MovieTile = ({ movieData }: MovieData) => {
-  const history = useHistory();
   const panelRef = useRef<HTMLInputElement>(null);
   const [panelHeight, setPanelHeight] = useState<number>(0);
   const [isOver, setIsOver] = useState<boolean>(false);
-
+  const link = `/movie/${movieData.id}`;
   useEffect(() => {
     if (panelRef && panelRef.current) {
       setPanelHeight(panelRef.current.offsetHeight);
@@ -78,10 +77,9 @@ export const MovieTile = ({ movieData }: MovieData) => {
     setIsOver(false);
   }
 
-  const handleClick = () => history.push(`/movie/${movieData.id}`);
-
   return (
-    <Tile data-testid={`trending-${movieData.id}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={() => handleClick()}>
+    <Link to={link}>
+    <Tile data-testid={`trending-${movieData.id}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <ImagePanel>
         <MovieImage imageUrl={movieData.images.poster} type="movie" fontSize={100} />
       </ImagePanel>
@@ -94,5 +92,6 @@ export const MovieTile = ({ movieData }: MovieData) => {
         </Blurb>
       </Panel>
     </Tile>
+    </Link>
   )
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { MovieImage } from '../MovieImage/MovieImage';
 import { CastMemberType } from '../../types';
 
@@ -41,21 +41,22 @@ const Title = styled.div`
 `;
 
 export const CastMemberTile = ({ castMemberData }: CastType) => {
-  const history = useHistory();
   const { id, person, character } = castMemberData;
-  const handleClick = () => history.push(`/bio/${person.id}`);
+  const link = `/bio/${person.id}`;
   return (
-    <Tile data-testid={`cast-${id}`} onClick={handleClick} title="View biography">
-      <ImagePanel>
-        <MovieImage imageUrl={person.imageUrl} type="person" />
-      </ImagePanel>
-      <Panel>
-        <Title>
-          <strong>{person.name}</strong>
-          <br />
-          {character}
-        </Title>
-      </Panel>
-    </Tile>
-  )
+    <Link to={link}>
+      <Tile data-testid={`cast-${id}`} title="View biography">
+        <ImagePanel>
+          <MovieImage imageUrl={person.imageUrl} type="person" />
+        </ImagePanel>
+        <Panel>
+          <Title>
+            <strong>{person.name}</strong>
+            <br />
+            {character}
+          </Title>
+        </Panel>
+      </Tile>
+    </Link>
+  );
 };
