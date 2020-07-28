@@ -57,8 +57,8 @@ ${FRAGMENT_MOVIE_DETAILS}
 `;
 
 export const GET_MOVIE = gql`
-  query Movie($id: Int!, $showCast: Boolean!) {
-    movie(id: $id, showCast: $showCast) {
+  query Movie($id: Int!, $showCast: Boolean!, $creditsLimit: Int!) {
+    movie(id: $id, showCast: $showCast, creditsLimit: $creditsLimit) {
       ...MovieDetails
       voteAverage
       voteCount

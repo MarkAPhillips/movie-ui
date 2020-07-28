@@ -49,7 +49,7 @@ export const Movie = ( { movie, showCast = false }: MovieProps) => {
         {movie.overview}<br/><br/>
         <MainCrew crew={crew} />
       </SummaryCard>
-    { showCast && <Carousel title={'Cast'}>
+    { showCast && <Carousel title={'Main Cast'}>
       {
         cast && cast.map((castMember: CastMemberType) => (
           <CastMemberTile castMemberData={castMember} key={castMember.id}/>

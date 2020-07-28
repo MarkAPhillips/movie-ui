@@ -71,5 +71,9 @@ export const GlobalStyle = createGlobalStyle`
 
   .slick-dots li.slick-active button:before {
     color:${theme.colorNeptune} !important;
-}
+  }
+
+  .slick-track {
+    margin-left:0 !important;
+  }
 `
