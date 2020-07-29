@@ -34,7 +34,7 @@ export const Biography = () => {
             { person.placeOfBirth ? <><strong>Place of Birth: </strong> {person.placeOfBirth}</>: null}
           </PersonHeader>
           <strong>Biography</strong><br/>
-          <Overview bio={person.biography} name={person.name} /><br/><br/>
+          <Overview bio={person.biography} name={person.name} />
       </SummaryCard>
       <MovieCreditsTimeline credits={person.credits} />
     </>
