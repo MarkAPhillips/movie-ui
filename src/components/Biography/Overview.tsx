@@ -4,7 +4,7 @@ import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useToggle } from '../../hooks/useToggle';
 
-const BIO_HEIGHT = 256;
+const BIO_HEIGHT = 226;
 
 type OverviewProps = {
   bio?: string;
@@ -22,24 +22,33 @@ const OverviewContainer = styled.div<ToggleProps>`
   padding-bottom: 8px;
 `;
 
-const ReadMoreLink = styled.p<ToggleProps>`
+const ReadMoreText = styled.div`
+  padding-right: 8px;
+  font-size: 12px;
+`;
+
+const ReadMoreLink = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  background:transparent;
+  color: ${props => props.theme.colorBlack};
+  padding: 8px;
+  border-radius: 0 0 5px 5px;
+  cursor: pointer;
+`;
+
+const OverviewFade = styled.div<ToggleProps>`
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  text-align: center;
   margin: 0;
   padding: 20px 0 2px 0;
+  height: 110px;
   background-image: ${props => props.isToggled ? 'none' : `-webkit-gradient(
     linear, left top, left bottom, to(rgba(255, 255, 255, 1)), from(rgba(0, 0, 0, 0)))`};
-  font-size: 20px;
-  color: ${props => props.theme.colorNeptune};
-  svg {
-    &:hover {
-      cursor: pointer;
-      opacity: 0.7;
-    }
-  }
 `;
 
 export const Overview = ({ bio, name }: OverviewProps) => {
@@ -47,6 +56,7 @@ export const Overview = ({ bio, name }: OverviewProps) => {
   const [showReadMore, setShowReadMore] = useState(false);
   const [isToggled, toggle] = useToggle(false);
   const icon = isToggled ? faAngleUp : faAngleDown;
+  const text = isToggled ? 'show less' : 'show more';
   useLayoutEffect(() => {
     if (overViewRef && overViewRef.current) {
       const height = overViewRef.current.clientHeight;
@@ -57,15 +67,18 @@ export const Overview = ({ bio, name }: OverviewProps) => {
   }, []);
 
   if (!bio) return <>No Biography has been created yet for {name}</>;
+
   return (
-    <OverviewContainer ref={overViewRef} isToggled={isToggled}>
-      {~bio.indexOf('\n') ?
-        bio.replace('\n\n', '\n')
-          .split('\n').map((text, idx) => <p key={idx}>{text}</p>) : bio}
-      {showReadMore && (
-        <ReadMoreLink isToggled={isToggled}>
-          <FontAwesomeIcon icon={icon} onClick={toggle} />
-        </ReadMoreLink>
-      )}
-    </OverviewContainer>);
+    <>
+      <OverviewContainer ref={overViewRef} isToggled={isToggled}>
+        {~bio.indexOf('\n') ?
+          bio.replace('\n\n', '\n')
+            .split('\n').map((text, idx) => <p key={idx}>{text}</p>) : bio}
+        {showReadMore && (<OverviewFade isToggled={isToggled} />)}
+      </OverviewContainer>
+      {showReadMore && (<ReadMoreLink role="link" onClick={toggle}>
+        <ReadMoreText>{text}</ReadMoreText><FontAwesomeIcon icon={icon} />
+      </ReadMoreLink>)}
+    </>
+    );
 };
