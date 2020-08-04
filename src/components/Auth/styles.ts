@@ -28,6 +28,7 @@ const menuItemLink = css`
 
 export const AuthMenuItemLink = styled.div`
   ${menuItemLink}
+  cursor: pointer;
 `;
 
 export const AuthMenuItemRouterLink = styled(Link)`
@@ -36,8 +37,9 @@ export const AuthMenuItemRouterLink = styled(Link)`
 
 export const AuthMenuUserProfile = styled.div`
   ${menuItem}
-  span {
-    display: inline-block;
-    padding-left: 6px;
-  }
+`;
+
+export const ProfileNameText = styled.span`
+  display: inline-block;
+  padding-left: 6px;
 `;

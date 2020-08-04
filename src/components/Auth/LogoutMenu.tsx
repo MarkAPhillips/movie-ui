@@ -1,38 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { logout } from '../../auth/authService';
-import { AuthType } from '../../apollo/types';
 import { AuthMenuItemLink, AuthMenuUserProfile } from './styles';
 import { isAuthorisedVar } from '../../apollo/appState';
+import { ProfileName } from './ProfileName';
 
 export const LogoutMenu = () => {
-  const [name, setName] = useState<string | null>(null);
-  const getName = async () => {
-    const auth = await localStorage.getItem('auth');
-    if (auth) {
-      const deserializeAuth: AuthType = JSON.parse(auth);
-      const { user } = deserializeAuth;
-      setName(`${user.firstName} ${user.lastName}`);
-    }
+  const handleLogout = async () => {
+    await logout();
+    localStorage.removeItem('auth');
+    isAuthorisedVar(false);
   };
-
-  useEffect(() => {
-    if (!name) getName();
-  }, []);
-
-  const handleLogout = () => {
-    logout().then(() => {
-      localStorage.removeItem('auth');
-      isAuthorisedVar(false);
-    });
-  };
-
   return (
     <>
       <AuthMenuUserProfile>
         <FontAwesomeIcon icon={faUser} />
-        <span>{name}</span>
+        <ProfileName />
       </AuthMenuUserProfile>
       <AuthMenuItemLink onClick={handleLogout}>Logout</AuthMenuItemLink>
     </>
