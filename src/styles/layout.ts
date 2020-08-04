@@ -9,6 +9,6 @@ export const Title = styled.div`
   margin-bottom: 1px;
   padding-left: 10px;
   ${rounded}
-  background: ${props => props.theme.colorNeptune};
-  color: ${props => props.theme.colorWhite};
+  background: ${(props) => props.theme.colorNeptune};
+  color: ${(props) => props.theme.colorWhite};
 `;

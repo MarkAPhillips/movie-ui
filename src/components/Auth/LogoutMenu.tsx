@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { logout } from '../../auth/authService';
 import { AuthType } from '../../apollo/types';
 import { AuthMenuItemLink, AuthMenuUserProfile } from './styles';
@@ -15,7 +15,7 @@ export const LogoutMenu = () => {
       const { user } = deserializeAuth;
       setName(`${user.firstName} ${user.lastName}`);
     }
-  }
+  };
 
   useEffect(() => {
     if (!name) getName();
@@ -30,8 +30,11 @@ export const LogoutMenu = () => {
 
   return (
     <>
-      <AuthMenuUserProfile><FontAwesomeIcon icon={faUser} /><span>{name}</span></AuthMenuUserProfile>
+      <AuthMenuUserProfile>
+        <FontAwesomeIcon icon={faUser} />
+        <span>{name}</span>
+      </AuthMenuUserProfile>
       <AuthMenuItemLink onClick={handleLogout}>Logout</AuthMenuItemLink>
     </>
-  )
-}
+  );
+};

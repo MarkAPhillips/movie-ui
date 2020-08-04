@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { Children } from 'react';
 import Slider from 'react-slick';
 import styled from 'styled-components';
@@ -24,16 +25,15 @@ export const Carousel = ({ children, title }: CarouselType) => {
     slidesToShow: 7,
     slidesToScroll: 7,
     nextArrow: <Arrow direction="next" />,
-    prevArrow: <Arrow direction="prev"/>,
+    prevArrow: <Arrow direction="prev" />,
   };
   return (
     <CarouselContainer>
-      {title &&
-        <Title data-testid="carousel-title">{title}</Title>
-      }
+      {title
+        && <Title data-testid="carousel-title">{title}</Title>}
       <Slider {...settings}>
         {children}
       </Slider>
     </CarouselContainer>
-  )
+  );
 };

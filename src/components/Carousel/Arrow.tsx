@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import { CustomArrowProps } from 'react-slick';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronCircleRight, faChevronCircleLeft } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronCircleRight, faChevronCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import { theme } from '../../styles/theme';
 
-interface ArrowProps extends CustomArrowProps {
+type ArrowProps = {
   direction: 'next' | 'prev';
-}
+} & Pick<CustomArrowProps, 'onClick'>
 
 type ArrowContainerProps = {
   positionStyle: string;
@@ -27,7 +27,7 @@ const ArrowContainer = styled.div<ArrowContainerProps>`
   background: 0 0;
   opacity: .9;
   position: absolute;
-  ${props => props.positionStyle}
+  ${(props) => props.positionStyle}
   &:hover {
     opacity: .7;
   }
@@ -38,7 +38,7 @@ export const Arrow = ({ onClick, direction }: ArrowProps) => {
   const positionStyle = direction === 'next' ? 'right: -15px;' : 'left: -10px;';
   return (
     <ArrowContainer positionStyle={positionStyle} onClick={onClick}>
-      <FontAwesomeIcon icon={icon} color={theme.colorNeptune}/>
+      <FontAwesomeIcon icon={icon} color={theme.colorNeptune} />
     </ArrowContainer>
   );
 };

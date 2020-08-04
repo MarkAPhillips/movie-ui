@@ -1,7 +1,9 @@
+/* eslint-disable no-bitwise */
+/* eslint-disable react/no-array-index-key */
 import React, { useLayoutEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useToggle } from '../../hooks/useToggle';
 
 const BIO_HEIGHT = 226;
@@ -16,7 +18,7 @@ type ToggleProps = {
 }
 
 const OverviewContainer = styled.div<ToggleProps>`
-  max-height: ${props => props.isToggled ? '100%' : `${BIO_HEIGHT}px`};
+  max-height: ${(props) => (props.isToggled ? '100%' : `${BIO_HEIGHT}px`)};
   position: relative;
   overflow: hidden;
   padding-bottom: 8px;
@@ -33,7 +35,7 @@ const ReadMoreLink = styled.div`
   justify-content: center;
   align-items: flex-end;
   background:transparent;
-  color: ${props => props.theme.colorBlack};
+  color: ${(props) => props.theme.colorBlack};
   padding: 8px;
   border-radius: 0 0 5px 5px;
   cursor: pointer;
@@ -47,8 +49,8 @@ const OverviewFade = styled.div<ToggleProps>`
   margin: 0;
   padding: 20px 0 2px 0;
   height: 110px;
-  background-image: ${props => props.isToggled ? 'none' : `-webkit-gradient(
-    linear, left top, left bottom, to(rgba(255, 255, 255, 1)), from(rgba(0, 0, 0, 0)))`};
+  background-image: ${(props) => (props.isToggled ? 'none' : `-webkit-gradient(
+    linear, left top, left bottom, to(rgba(255, 255, 255, 1)), from(rgba(0, 0, 0, 0)))`)};
 `;
 
 export const Overview = ({ bio, name }: OverviewProps) => {
@@ -66,19 +68,29 @@ export const Overview = ({ bio, name }: OverviewProps) => {
     }
   }, []);
 
-  if (!bio) return <>No Biography has been created yet for {name}</>;
+  if (!bio) {
+    return (
+      <>
+        No Biography has been created yet for
+        {name}
+      </>
+    );
+  }
 
   return (
     <>
       <OverviewContainer ref={overViewRef} isToggled={isToggled}>
-        {~bio.indexOf('\n') ?
-          bio.replace('\n\n', '\n')
-            .split('\n').map((text, idx) => <p key={idx}>{text}</p>) : bio}
+        {~bio.indexOf('\n')
+          ? bio.replace('\n\n', '\n')
+            .split('\n').map((item, idx) => <p key={idx}>{item}</p>) : bio}
         {showReadMore && (<OverviewFade isToggled={isToggled} />)}
       </OverviewContainer>
-      {showReadMore && (<ReadMoreLink role="link" onClick={toggle}>
-        <ReadMoreText>{text}</ReadMoreText><FontAwesomeIcon icon={icon} />
-      </ReadMoreLink>)}
+      {showReadMore && (
+      <ReadMoreLink role="link" onClick={toggle}>
+        <ReadMoreText>{text}</ReadMoreText>
+        <FontAwesomeIcon icon={icon} />
+      </ReadMoreLink>
+      )}
     </>
-    );
+  );
 };

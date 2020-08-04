@@ -1,6 +1,6 @@
 import React from 'react';
-import { ToastPortal, Toast } from '..';
 import { useQuery } from '@apollo/client';
+import { ToastPortal, Toast } from '..';
 import { GET_APP_STATE } from '../../apollo/appState';
 
 export const Notification = () => {
@@ -9,8 +9,8 @@ export const Notification = () => {
   return (
     <ToastPortal>
       {state.toastNotification && (
-        <Toast notification={state.toastNotification}/>
+        <Toast notification={state.toastNotification} />
       )}
     </ToastPortal>
-  )
+  );
 };

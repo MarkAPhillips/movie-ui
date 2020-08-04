@@ -1,9 +1,11 @@
-import React, { ChangeEvent, useRef, useState, useEffect, MutableRefObject } from 'react';
-import styled from "styled-components";
-import { useHistory } from "react-router-dom";
+import React, {
+  ChangeEvent, useRef, useState, useEffect, MutableRefObject,
+} from 'react';
+import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 import { useLazyQuery } from '@apollo/client';
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { SearchInputResults } from './SearchInputResults';
 import { SEARCH_MOVIES } from '../../apollo/queries';
 import { useDebounce } from '../../hooks/useDebounce';
@@ -18,9 +20,9 @@ const SearchInputPanel = styled.div`
 `;
 
 const SearchResultsPanel = styled.div`
-  border: 1px solid ${props => props.theme.colorNeptune};
-  background: ${props => props.theme.colorWhite};
-  color: ${props => props.theme.colorCello};
+  border: 1px solid ${(props) => props.theme.colorNeptune};
+  background: ${(props) => props.theme.colorWhite};
+  color: ${(props) => props.theme.colorCello};
   border-top: 0;
   min-height: 100px;
   width: 100%;
@@ -32,13 +34,13 @@ const SearchResultsPanel = styled.div`
 
 const Input = styled.input`
   width: 100%;
-  border: 1px solid ${props => props.theme.colorNeptune};
+  border: 1px solid ${(props) => props.theme.colorNeptune};
   border-right: none;
   padding: 0 12px;
   height: 32px;
   border-radius: 5px 0 0 5px;
   outline: none;
-  color: ${props => props.theme.colorCello};
+  color: ${(props) => props.theme.colorCello};
 `;
 
 const InputPanel = styled.div`
@@ -50,9 +52,9 @@ const InputPanel = styled.div`
 const Button = styled.button`
   width: 40px;
   height: 32px;
-  border: 1px solid ${props => props.theme.colorNeptune};
-  background:  ${props => props.theme.colorNeptune};
-  color: ${props => props.theme.colorWhite};
+  border: 1px solid ${(props) => props.theme.colorNeptune};
+  background:  ${(props) => props.theme.colorNeptune};
+  color: ${(props) => props.theme.colorWhite};
   border-radius: 0 5px 5px 0;
   cursor: pointer;
   font-size: 18px;
@@ -68,7 +70,7 @@ type SearchInputProps = {
   handleSearchText: any;
 }
 
-export const SearchInput = ( { searchText, handleSearchText }: SearchInputProps ) => {
+export const SearchInput = ({ searchText, handleSearchText }: SearchInputProps) => {
   const searchRef = useRef() as MutableRefObject<HTMLDivElement>;
   const [results, setResults] = useState<MovieType[]>([]);
   const history = useHistory();
@@ -88,7 +90,7 @@ export const SearchInput = ( { searchText, handleSearchText }: SearchInputProps 
     if (debouncedSearchText) {
       searchMovies();
     }
-  }, [debouncedSearchText])
+  }, [debouncedSearchText]);
 
   useEffect(() => {
     if (data) {
@@ -97,7 +99,7 @@ export const SearchInput = ( { searchText, handleSearchText }: SearchInputProps 
       const mappedResults = edges.map((item) => (item.node));
       setResults(mappedResults);
     }
-  }, [data])
+  }, [data]);
 
   useClickOutside(searchRef, () => {
     setResults([]);
@@ -114,7 +116,7 @@ export const SearchInput = ( { searchText, handleSearchText }: SearchInputProps 
     setResults([]);
   };
 
-  const handleClose= () => {
+  const handleClose = () => {
     setResults([]);
     handleSearchText('');
   };
@@ -130,14 +132,16 @@ export const SearchInput = ( { searchText, handleSearchText }: SearchInputProps 
         />
         <Button><FontAwesomeIcon icon={faSearch} /></Button>
       </InputPanel>
-      {results.length > 0 && <SearchResultsPanel>
+      {results.length > 0 && (
+      <SearchResultsPanel>
         <SearchInputResults
           loading={loading}
           results={results}
           handleClick={handleClick}
           handleClose={handleClose}
         />
-      </SearchResultsPanel>}
+      </SearchResultsPanel>
+      )}
     </SearchInputPanel>
   );
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import { Input, SubmitButton } from '../../styles/components';
 import { Title } from '../../styles/layout';
@@ -19,10 +19,9 @@ export const SignIn = () => {
       const transData = transformObjectKeys(data);
       localStorage.setItem('auth', JSON.stringify(transData));
       isAuthorisedVar(true);
-      const notification = { toastType: 'success' as ToastTypes, title: 'Success', message: 'Logged into account'};
+      const notification = { toastType: 'success' as ToastTypes, title: 'Success', message: 'Logged into account' };
       toastNotificationVar(notification);
       history.push('/');
-
     });
   };
   const isDisabled = !formState.isValid;
@@ -49,5 +48,5 @@ export const SignIn = () => {
         </form>
       </FormPanel>
     </>
-  )
+  );
 };

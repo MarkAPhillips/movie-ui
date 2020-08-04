@@ -26,13 +26,13 @@ export const cache = new InMemoryCache({
         state: {
           read() {
             return {
-                searchText: searchTextVar(),
-                isAuthorised: isAuthorisedVar(),
-                toastNotification: toastNotificationVar(),
-            }
-          }
+              searchText: searchTextVar(),
+              isAuthorised: isAuthorisedVar(),
+              toastNotification: toastNotificationVar(),
+            };
+          },
         },
-      }
-    }
-  }
+      },
+    },
+  },
 });

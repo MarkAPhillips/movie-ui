@@ -20,7 +20,7 @@ const MovieCreditsTimelinePanel = styled.div`
 `;
 
 const MovieCreditsTimelineList = styled.ul`
-  border-left: 4px solid ${props => props.theme.colorNeptune};
+  border-left: 4px solid ${(props) => props.theme.colorNeptune};
   border-bottom-right-radius: 4px;
   border-top-right-radius: 4px;
   margin: 50px auto;
@@ -36,7 +36,7 @@ const MovieCreditsTimelineList = styled.ul`
 `;
 
 const MovieCredit = styled.li<MovieCreditProps>`
-  border-bottom: 1px dashed ${props => props.theme.colorNeptune};
+  border-bottom: 1px dashed ${(props) => props.theme.colorNeptune};
   padding-bottom: 25px;
   margin-bottom: 20px;
   position: relative;
@@ -50,7 +50,7 @@ const MovieCredit = styled.li<MovieCreditProps>`
     display: block;
     top: 0;
     left: -217.5px;
-    content: "${props => props.releaseDate}";
+    content: "${(props) => props.releaseDate}";
     text-align: right;
     font-weight: 100;
     font-size: 0.9em;
@@ -60,9 +60,9 @@ const MovieCredit = styled.li<MovieCreditProps>`
     position: absolute;
     display: block;
     top: 0;
-    box-shadow: 0 0 0 4px ${props => props.theme.colorNeptune};
+    box-shadow: 0 0 0 4px ${(props) => props.theme.colorNeptune};
     left: -56.85px;
-    background: ${props => props.theme.colorCello};
+    background: ${(props) => props.theme.colorCello};
     border-radius: 50%;
     height: 11px;
     width: 11px;
@@ -75,7 +75,7 @@ const MovieCreditPanel = styled.div`
   display: flex;
   flex-direction: row;
   padding: 16px;
-  background: ${props => props.theme.colorAquaSpring};
+  background: ${(props) => props.theme.colorAquaSpring};
   border-radius: 4px;
 `;
 
@@ -112,7 +112,11 @@ export const MovieCreditsTimeline = ({ credits }: MovieCreditsTimelineProps) => 
                     />
                   </MovieImagePanel>
                 </Link>
-                <MovieTextPanel><strong>{movie.title}</strong><br />{character}</MovieTextPanel>
+                <MovieTextPanel>
+                  <strong>{movie.title}</strong>
+                  <br />
+                  {character}
+                </MovieTextPanel>
               </MovieCreditPanel>
             </MovieCredit>
           );
@@ -120,4 +124,4 @@ export const MovieCreditsTimeline = ({ credits }: MovieCreditsTimelineProps) => 
       </MovieCreditsTimelineList>
     </MovieCreditsTimelinePanel>
   );
-}
+};

@@ -1,7 +1,5 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components';
 import { theme } from './theme';
-
-const fonts = { size: '14px', family: 'Open Sans' };
 
 import OpenSansRegular from './OpenSans-Regular-webfont.woff';
 import OpenSansBold from './open-sans-v17-latin-700.woff';
@@ -9,6 +7,8 @@ import OpenSansBold from './open-sans-v17-latin-700.woff';
 /** CSS files for react-slick */
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+
+const fonts = { size: '14px', family: 'Open Sans' };
 
 export const GlobalStyle = createGlobalStyle`
     *,
@@ -76,4 +76,4 @@ export const GlobalStyle = createGlobalStyle`
   .slick-track {
     margin-left:0 !important;
   }
-`
+`;

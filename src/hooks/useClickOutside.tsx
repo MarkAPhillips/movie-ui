@@ -1,6 +1,7 @@
 import { useEffect, MutableRefObject } from 'react';
 
-export const useClickOutside = <T extends HTMLElement,>(ref: MutableRefObject<T>, callback: Function) => {
+export const useClickOutside = <T extends HTMLElement, >
+  (ref: MutableRefObject<T>, callback: Function) => {
   useEffect(
     () => {
       const mouseHandler = (event: MouseEvent) => {
@@ -16,6 +17,6 @@ export const useClickOutside = <T extends HTMLElement,>(ref: MutableRefObject<T>
         document.removeEventListener('mousedown', mouseHandler);
       };
     },
-    [ref, callback]
+    [ref, callback],
   );
-}
+};

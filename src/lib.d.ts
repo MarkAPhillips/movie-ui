@@ -4,7 +4,7 @@ type EnvironmentVariables = {
     VERSION: string | undefined;
 }
 
-export {}
+export {};
 
 declare global {
     interface Window { _env_: EnvironmentVariables }

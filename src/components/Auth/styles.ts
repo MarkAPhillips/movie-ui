@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { rounded } from '../../styles/mixins';
 
 export const FormPanel = styled.div`
-  border: 1px solid ${props => props.theme.colorNeptune};
+  border: 1px solid ${(props) => props.theme.colorNeptune};
   ${rounded}
   margin-top: 16px;
   > form {
@@ -23,7 +23,7 @@ export const AuthMenuItemLink = styled(AuthMenuItem)`
   }
 `;
 
-export const AuthMenuUserProfile  = styled(AuthMenuItem)`
+export const AuthMenuUserProfile = styled(AuthMenuItem)`
   span {
     display: inline-block;
     padding-left: 6px;

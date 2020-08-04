@@ -8,9 +8,9 @@ describe('formatMins tests', () => {
     ${310}        ${'5h 10 mins'}
     ${undefined}        ${''}
     `('should return a valid formatted time for $value mins',
-  ({
-    value, result,
-  }) => {
-    expect(formatMins(value)).toEqual(result);
-  });
+    ({
+      value, result,
+    }) => {
+      expect(formatMins(value)).toEqual(result);
+    });
 });

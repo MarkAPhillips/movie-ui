@@ -9,8 +9,8 @@ export type CastType = { castMemberData: CastMemberType };
 const Tile = styled.div`
   flex: none;
   position: relative;
-  width: ${props => props.theme.movieWidth}px;
-  height: ${props => props.theme.movieHeight}px;
+  width: ${(props) => props.theme.movieWidth}px;
+  height: ${(props) => props.theme.movieHeight}px;
   overflow: hidden;
   margin: 16px;
   cursor: pointer;
@@ -24,7 +24,7 @@ const ImagePanel = styled.div`
 
 const Panel = styled.div`
   position: absolute;
-  background-color: ${props => props.theme.movieOverlay};
+  background-color: ${(props) => props.theme.movieOverlay};
   bottom: 4px;
   left: 0;
   width: 100%;
@@ -33,8 +33,8 @@ const Panel = styled.div`
 `;
 
 const Title = styled.div`
-  color: ${props => props.theme.colorCello};
-  font-size: ${props => props.theme.size12};
+  color: ${(props) => props.theme.colorCello};
+  font-size: ${(props) => props.theme.size12};
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

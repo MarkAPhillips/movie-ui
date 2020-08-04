@@ -5,8 +5,8 @@ import { ApolloError } from '@apollo/client';
 import { MovieType } from '../../types';
 
 // components
-import { MovieTile } from "../MovieTile/MovieTile";
-import { Carousel } from "../Carousel/Carousel";
+import { MovieTile } from '../MovieTile/MovieTile';
+import { Carousel } from '../Carousel/Carousel';
 
 type MovieListProps = {
   loading: boolean;
@@ -15,16 +15,26 @@ type MovieListProps = {
   title: string;
 };
 
-export const MovieList = ( { loading, error, movies, title }: MovieListProps)=> {
-    if (loading) return <>Loading...</>;
-    if (error) return <>`Error! ${error.message}`</>;
+export const MovieList = ({
+  loading, error, movies, title,
+}: MovieListProps) => {
+  if (loading) return <>Loading...</>;
+  if (error) {
     return (
-        <Carousel title={title}>
-            {
+      <>
+        `Error! $
+        {error.message}
+        `
+      </>
+    );
+  }
+  return (
+    <Carousel title={title}>
+      {
                 movies && movies.map((movie: MovieType) => (
-                    <MovieTile movieData={movie} key={movie.id}/>
+                  <MovieTile movieData={movie} key={movie.id} />
                 ))
             }
-        </Carousel>
-    )
+    </Carousel>
+  );
 };

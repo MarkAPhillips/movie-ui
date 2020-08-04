@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styled from "styled-components";
+import styled from 'styled-components';
 import { MovieType } from '../../types';
 import { useKeyPress } from '../../hooks/useKeyPress';
 import { formatDate } from '../../utilities';
@@ -21,10 +21,10 @@ const SearchResultsList = styled.ul`
 `;
 
 const SearchListItem = styled.li<SearchListItemType>`
-  background: ${props => props.active ? props.theme.colorNeptune : props.theme.colorWhite };
+  background: ${(props) => (props.active ? props.theme.colorNeptune : props.theme.colorWhite)};
   border-radius: 5px;
   padding: 6px;
-  cursor: ${props => props.active ? 'pointer' : 'default' };
+  cursor: ${(props) => (props.active ? 'pointer' : 'default')};
 `;
 
 const MovieYear = styled.span`
@@ -36,25 +36,25 @@ const MovieName = styled.span`
   padding-right: 8px;
 `;
 
-export const SearchInputResults = ( { loading, results, handleClick, handleClose }: SearchInputResultsProps ) => {
+export const SearchInputResults = ({
+  loading, results, handleClick, handleClose,
+}: SearchInputResultsProps) => {
   const down = useKeyPress('ArrowDown');
   const up = useKeyPress('ArrowUp');
   const enter = useKeyPress('Enter');
   const esc = useKeyPress('Escape');
-  const [ cursor, setCursor] = useState(0);
+  const [cursor, setCursor] = useState(0);
   const [hovered, setHovered] = useState<number | undefined>();
 
   useEffect(() => {
-    if(results && down) {
-      setCursor(prevState =>
-        prevState < results.length - 1 ? prevState + 1 : prevState
-      );
+    if (results && down) {
+      setCursor((prevState) => (prevState < results.length - 1 ? prevState + 1 : prevState));
     }
-  }, [down])
+  }, [down]);
 
   useEffect(() => {
     if (results && up) {
-      setCursor(prevState => (prevState > 0 ? prevState - 1 : prevState));
+      setCursor((prevState) => (prevState > 0 ? prevState - 1 : prevState));
     }
   }, [up]);
 
@@ -79,27 +79,31 @@ export const SearchInputResults = ( { loading, results, handleClick, handleClose
 
   if (loading) return <>Loading...</>;
   return (
-      <SearchResultsList>
-        {results.map((item, idx) => {
-          const MovieTitle = () => (
-            <>
-              <MovieName>{item.title}</MovieName>
-              <MovieYear>({formatDate(item.releaseDate, 'YYYY')})</MovieYear>
-            </>
-          );
-          return  (
-            <SearchListItem
-              active={idx === cursor}
-              role="link"
-              onClick={() => handleClick(item.id)}
-              key={item.id}
-              onMouseEnter={() => setHovered(idx)}
-              onMouseLeave={() => setHovered(undefined)}
-            >
+    <SearchResultsList>
+      {results.map((item, idx) => {
+        const MovieTitle = () => (
+          <>
+            <MovieName>{item.title}</MovieName>
+            <MovieYear>
+              (
+              {formatDate(item.releaseDate, 'YYYY')}
+              )
+            </MovieYear>
+          </>
+        );
+        return (
+          <SearchListItem
+            active={idx === cursor}
+            role="link"
+            onClick={() => handleClick(item.id)}
+            key={item.id}
+            onMouseEnter={() => setHovered(idx)}
+            onMouseLeave={() => setHovered(undefined)}
+          >
             <MovieTitle />
-          </SearchListItem>)
-        })}
-      </SearchResultsList>
+          </SearchListItem>
+        );
+      })}
+    </SearchResultsList>
   );
 };
-

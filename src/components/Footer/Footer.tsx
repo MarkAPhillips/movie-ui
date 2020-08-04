@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import styled from 'styled-components';
 
@@ -8,11 +9,11 @@ const FooterPanel = styled.footer`
   align-items: center;
   height: 50px;
   padding: 8px 16px;
-  background: ${props => props.theme.colorCello};
+  background: ${(props) => props.theme.colorCello};
 `;
 
 const FooterContentPanel = styled.div`
-  width: ${props => props.theme.contentWidth}px;
+  width: ${(props) => props.theme.contentWidth}px;
   margin: 10px auto 10px auto;
   display: flex;
   align-items: center;
@@ -25,9 +26,9 @@ const FooterContentPanel = styled.div`
 `;
 
 const Content = styled.div`
-  width: ${props => props.theme.contentWidth}px;
-  color: ${props => props.theme.colorWhite};
-  font-size: ${props => props.theme.size11};
+  width: ${(props) => props.theme.contentWidth}px;
+  color: ${(props) => props.theme.colorWhite};
+  font-size: ${(props) => props.theme.size11};
 `;
 
 export const Footer = () => (
@@ -37,7 +38,8 @@ export const Footer = () => (
         &copy;2020 A Team Production
       </Content>
       <Content>
-        v.{window._env_.VERSION}
+        v.
+        {window._env_.VERSION}
       </Content>
     </FooterContentPanel>
   </FooterPanel>

@@ -1,8 +1,8 @@
 import React from 'react';
-import styled from "styled-components";
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { faVideo } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faVideo } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const LogoContainer = styled.div`
   display: flex;
@@ -16,13 +16,13 @@ const LogoContainer = styled.div`
 
 const MovieLink = styled(Link)`
   text-decoration: none;
-  color: ${props => props.theme.colorWhite};
+  color: ${(props) => props.theme.colorWhite};
 `;
 
 const IconContainer = styled.div`
   padding: 4px;
-  background: ${props => props.theme.colorNeptune};
-  color: ${props => props.theme.colorCello};
+  background: ${(props) => props.theme.colorNeptune};
+  color: ${(props) => props.theme.colorCello};
   border-radius: 5px;
 `;
 

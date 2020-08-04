@@ -5,11 +5,14 @@ import { useQuery } from '@apollo/client';
 import { GET_TRENDING, GET_POPULAR } from '../apollo/queries';
 
 // components
-import { MovieList, FeaturedMovie } from '../components'
+import { MovieList, FeaturedMovie } from '.';
 
 export const HomeContainer = () => {
-
-  const { loading: trendingLoading, error: trendingError, data: trendingData } = useQuery(GET_TRENDING);
+  const {
+    loading: trendingLoading,
+    error: trendingError,
+    data: trendingData,
+  } = useQuery(GET_TRENDING);
   const { loading: popularLoading, error: popularError, data: popularData } = useQuery(GET_POPULAR);
 
   return (
@@ -23,7 +26,8 @@ export const HomeContainer = () => {
           movies={popularData.popular}
         />
       )}
-      <br /><br />
+      <br />
+      <br />
       {trendingData && trendingData.trending && (
         <MovieList
           title="Trending Movies"

@@ -7,9 +7,17 @@ import { Movie } from '..';
 export const FeaturedMovie = () => {
   const { loading, error, data } = useQuery(GET_FEATURED);
   if (loading) return <>Loading...</>;
-  if (error) return <>`Error! ${error.message}`</>;
+  if (error) {
+    return (
+      <>
+        `Error! $
+        {error.message}
+        `
+      </>
+    );
+  }
 
-  const { featured }= data;
+  const { featured } = data;
   return (
     <>
       <Title>Featured</Title>
@@ -17,5 +25,4 @@ export const FeaturedMovie = () => {
       <Movie movie={featured} />
     </>
   );
-
 };

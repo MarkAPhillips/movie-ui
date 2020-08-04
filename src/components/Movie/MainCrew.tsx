@@ -20,15 +20,13 @@ type MainCrewProps = {
 }
 
 /** Main crew currently only consists of crew with job Director */
-export const MainCrew = ( { crew }: MainCrewProps) => {
+export const MainCrew = ({ crew }: MainCrewProps) => {
   const mainCrew = crew.filter((item) => item.job === 'Director');
-  const output = mainCrew.length ? mainCrew.map((item) => {
-    return (
-      <MainCrewPanel key={item.id}>
-        <span>{item.job}</span>
-        <span>{item.name}</span>
-      </MainCrewPanel>
-    );
-  }): null;
+  const output = mainCrew.length ? mainCrew.map((item) => (
+    <MainCrewPanel key={item.id}>
+      <span>{item.job}</span>
+      <span>{item.name}</span>
+    </MainCrewPanel>
+  )) : null;
   return (<>{output}</>);
 };

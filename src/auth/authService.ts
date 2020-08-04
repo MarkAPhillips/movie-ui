@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import axios, { AxiosResponse } from 'axios';
 import { snakeCase } from 'lodash';
 import { SignInFormInput, RegisterFormInput } from './authTypes';
@@ -25,4 +26,4 @@ export const logout = async (): Promise<AxiosResponse<any>> => {
     `${window._env_.AUTH_API_URL}/auth/logout/`,
   );
   return response;
-}
+};

@@ -10,7 +10,8 @@ const typeDefs = gql`
 `;
 
 export const client = new ApolloClient({
-    uri: window._env_.MOVIE_API_URL,
-    cache,
-    typeDefs,
+  // eslint-disable-next-line no-underscore-dangle
+  uri: window._env_.MOVIE_API_URL,
+  cache,
+  typeDefs,
 });

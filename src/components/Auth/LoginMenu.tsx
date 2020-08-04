@@ -9,5 +9,5 @@ export const LoginMenu = () => {
       <AuthMenuItemLink onClick={() => history.push('/auth/login')}>Sign in</AuthMenuItemLink>
       <AuthMenuItemLink onClick={() => history.push('/auth/register')}>Register</AuthMenuItemLink>
     </>
-  )
-}
+  );
+};

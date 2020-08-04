@@ -19,8 +19,8 @@ const SummaryCardPanel = styled.div<SummaryCardPanelProps>`
   position: relative;
   padding: 16px;
   display: flex;
-  ${props => props.imageType === 'movie' ?
-    `&:before {
+  ${(props) => (props.imageType === 'movie'
+    ? `&:before {
       content: "";
       background-image: url(${props.imageUrl});
       background-size: cover;
@@ -32,7 +32,7 @@ const SummaryCardPanel = styled.div<SummaryCardPanelProps>`
       left: 0px;
       opacity: 0.1;
       border-radius: 5px;
-  }` : null}
+  }` : null)}
 `;
 
 const ImagePanel = styled.div``;
@@ -41,21 +41,21 @@ const SummaryCardContent = styled.div`
   margin-left: 16px;
 `;
 
-export const SummaryCard = ({ posterImage, backDropImage, imageType, children }: SummaryCardProps) => {
-  return (
-    <SummaryCardPanel imageUrl={backDropImage} imageType={imageType}>
-      <ImagePanel>
-        <MovieImage
-          imageUrl={posterImage}
-          type={imageType}
-          fontSize={100}
-          height={360}
-          width={254}
-        />
-      </ImagePanel>
-      <SummaryCardContent>
-        {children}
-      </SummaryCardContent>
-    </SummaryCardPanel>
-  )
-};
+export const SummaryCard = ({
+  posterImage, backDropImage, imageType, children,
+}: SummaryCardProps) => (
+  <SummaryCardPanel imageUrl={backDropImage} imageType={imageType}>
+    <ImagePanel>
+      <MovieImage
+        imageUrl={posterImage}
+        type={imageType}
+        fontSize={100}
+        height={360}
+        width={254}
+      />
+    </ImagePanel>
+    <SummaryCardContent>
+      {children}
+    </SummaryCardContent>
+  </SummaryCardPanel>
+);

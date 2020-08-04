@@ -9,14 +9,14 @@ export const SubmitButton = styled.input.attrs({
   type: 'submit',
 })`
   ${button}
-  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
-  opacity: ${props => (props.disabled ? '0.7' : '')};
+  cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
+  opacity: ${(props) => (props.disabled ? '0.7' : '')};
 `;
 
 export const Input = styled.input`
   margin: 0.5em;
   padding: 0.7em;
   ${rounded}
-  border: 1px solid ${props => props.theme.colorAquaSpring};
+  border: 1px solid ${(props) => props.theme.colorAquaSpring};
   width: 100%;
 `;

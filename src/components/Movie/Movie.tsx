@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { formatDate, formatMins } from '../../utilities';
-import { MovieType, CastMemberType }  from '../../types';
-import { Carousel } from "../Carousel/Carousel";
-import { CastMemberTile } from "../CastMemberTile/CastMemberTile";
+import { MovieType, CastMemberType } from '../../types';
+import { Carousel } from '../Carousel/Carousel';
+import { CastMemberTile } from '../CastMemberTile/CastMemberTile';
 import { MovieTile } from '../MovieTile/MovieTile';
 import { PercentageCircle } from '../PercentageCircle/PercentageCircle';
 import { MainCrew } from './MainCrew';
@@ -26,8 +26,8 @@ const HeaderContent = styled.div`
   margin: 0 8px;
 `;
 
-export const Movie = ( { movie, showCast = false }: MovieProps) => {
-  const { credits, recommended  } = movie;
+export const Movie = ({ movie, showCast = false }: MovieProps) => {
+  const { credits, recommended } = movie;
   const { cast = [], crew } = credits;
   const genres = movie.genres.map((item) => item.name).join(', ');
   const percent = movie.voteAverage * 10;
@@ -41,29 +41,49 @@ export const Movie = ( { movie, showCast = false }: MovieProps) => {
             <PercentageCircle percent={percent} />
           </HeaderContent>
           <HeaderContent>
-            <MovieTitle>{movie.title} ({formatDate(movie.releaseDate, 'YYYY')})</MovieTitle>
-            {formatDate(movie.releaseDate)} - {genres} {formatMins(movie.runTime)} {certText}
-        </HeaderContent>
+            <MovieTitle>
+              {movie.title}
+              {' '}
+              (
+              {formatDate(movie.releaseDate, 'YYYY')}
+              )
+            </MovieTitle>
+            {formatDate(movie.releaseDate)}
+            {' '}
+            -
+            {genres}
+            {' '}
+            {formatMins(movie.runTime)}
+            {' '}
+            {certText}
+          </HeaderContent>
         </MovieHeader>
-        <strong>Overview</strong><br/>
-        {movie.overview}<br/><br/>
+        <strong>Overview</strong>
+        <br />
+        {movie.overview}
+        <br />
+        <br />
         <MainCrew crew={crew} />
       </SummaryCard>
-    { showCast && <Carousel title={'Main Cast'}>
-      {
+      { showCast && (
+      <Carousel title="Main Cast">
+        {
         cast && cast.map((castMember: CastMemberType) => (
-          <CastMemberTile castMemberData={castMember} key={castMember.id}/>
+          <CastMemberTile castMemberData={castMember} key={castMember.id} />
         ))
       }
-    </Carousel>}
-    <br/>
-    { showCast && recommended.length > 0 && <Carousel title={'Recommended Movies'}>
-      {
-        recommended.map((movie: MovieType) => (
-          <MovieTile movieData={movie} key={movie.id}/>
+      </Carousel>
+      )}
+      <br />
+      { showCast && recommended.length > 0 && (
+      <Carousel title="Recommended Movies">
+        {
+        recommended.map((item: MovieType) => (
+          <MovieTile movieData={item} key={item.id} />
         ))
       }
-    </Carousel>}
+      </Carousel>
+      )}
     </>
-  )
+  );
 };

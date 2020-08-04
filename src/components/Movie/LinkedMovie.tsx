@@ -9,13 +9,20 @@ export const LinkedMovie = () => {
   const movieId = +id;
 
   const { loading, error, data } = useQuery(GET_MOVIE, {
-    variables: { id: movieId, showCast:true, creditsLimit: 14 },
+    variables: { id: movieId, showCast: true, creditsLimit: 14 },
   });
 
   if (loading) return <>Loading...</>;
-  if (error) return <>`Error! ${error.message}`</>;
+  if (error) {
+    return (
+      <>
+        `Error! $
+        {error.message}
+        `
+      </>
+    );
+  }
 
   const { movie } = data;
-  return <Movie movie={movie} showCast />
-
+  return <Movie movie={movie} showCast />;
 };

@@ -20,23 +20,39 @@ const PersonHeader = styled.div`
 export const Biography = () => {
   const { id } = useParams();
   const { loading, error, data } = useQuery(GET_BIO, {
-    variables: { id: +id},
+    variables: { id: +id },
   }) as ApolloData<PersonType>;
   if (loading) return <>Loading...</>;
-  if (error) return <>`Error! ${error.message}`</>;
+  if (error) {
+    return (
+      <>
+        `Error! $
+        {error.message}
+        `
+      </>
+    );
+  }
   const { person } = data;
   return (
     <>
       <SummaryCard backDropImage={person.imageUrl} posterImage={person.imageUrl} imageType="person">
         <PersonHeader>
-            <PersonTitle>{person.name}</PersonTitle>
-            <PersonStrapline person={person} /><br />
-            { person.placeOfBirth ? <><strong>Place of Birth: </strong> {person.placeOfBirth}</>: null}
-          </PersonHeader>
-          <strong>Biography</strong><br/>
-          <Overview bio={person.biography} name={person.name} />
+          <PersonTitle>{person.name}</PersonTitle>
+          <PersonStrapline person={person} />
+          <br />
+          { person.placeOfBirth ? (
+            <>
+              <strong>Place of Birth: </strong>
+              {' '}
+              {person.placeOfBirth}
+            </>
+          ) : null}
+        </PersonHeader>
+        <strong>Biography</strong>
+        <br />
+        <Overview bio={person.biography} name={person.name} />
       </SummaryCard>
       <MovieCreditsTimeline credits={person.credits} />
     </>
-  )
+  );
 };

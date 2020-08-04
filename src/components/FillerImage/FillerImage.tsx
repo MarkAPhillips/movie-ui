@@ -1,7 +1,7 @@
 import React from 'react';
-import styled from "styled-components";
-import { faUser, faFilm } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import styled from 'styled-components';
+import { faUser, faFilm } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type FillerImageProps = {
   imageType: 'movie' | 'person';
@@ -11,9 +11,9 @@ type FillerImageProps = {
 }
 
 const FillerImagePanel = styled.div<Pick<FillerImageProps, 'width' | 'height' | 'fontSize' >>`
-  width: ${props => props.width}px;
-  height: ${props => props.height}px;
-  font-size: ${props => props.fontSize}px;
+  width: ${(props) => props.width}px;
+  height: ${(props) => props.height}px;
+  font-size: ${(props) => props.fontSize}px;
   opacity: 0.1;
   border: 1px solid;
   border-radius: 8px;
@@ -23,8 +23,9 @@ const FillerImagePanel = styled.div<Pick<FillerImageProps, 'width' | 'height' | 
   padding: 4px;
 `;
 
-export const FillerImage= ( { imageType, width = 154, height = 231, fontSize = 148 }: FillerImageProps ) => {
-
+export const FillerImage = ({
+  imageType, width = 154, height = 231, fontSize = 148,
+}: FillerImageProps) => {
   const icon = imageType === 'movie' ? faFilm : faUser;
 
   return (
