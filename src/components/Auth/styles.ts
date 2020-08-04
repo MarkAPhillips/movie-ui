@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { Link } from 'react-router-dom';
 import { rounded } from '../../styles/mixins';
 
 export const FormPanel = styled.div`
@@ -11,19 +12,30 @@ export const FormPanel = styled.div`
   }
 `;
 
-const AuthMenuItem = styled.div`
+const menuItem = css`
   width: 105px;
   text-align: right;
 `;
 
-export const AuthMenuItemLink = styled(AuthMenuItem)`
+const menuItemLink = css`
+  ${menuItem}
+  text-decoration: none;
+  color: ${(props) => props.theme.colorWhite};
   &:hover {
-    cursor: pointer;
     opacity: 0.7;
   }
 `;
 
-export const AuthMenuUserProfile = styled(AuthMenuItem)`
+export const AuthMenuItemLink = styled.div`
+  ${menuItemLink}
+`;
+
+export const AuthMenuItemRouterLink = styled(Link)`
+  ${menuItemLink}
+`;
+
+export const AuthMenuUserProfile = styled.div`
+  ${menuItem}
   span {
     display: inline-block;
     padding-left: 6px;
