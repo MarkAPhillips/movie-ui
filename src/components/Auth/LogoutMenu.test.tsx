@@ -3,22 +3,17 @@ import {
   render, screen, RenderResult, fireEvent,
 } from '@testing-library/react';
 import { LogoutMenu } from './LogoutMenu';
-import { ProfileName } from './ProfileName';
 import { logout } from '../../auth/authService';
 import * as appState from '../../apollo/appState';
 
 // Mocks
-jest.mock('./ProfileName');
-const mockedProfileName = ProfileName as jest.Mock;
-
 jest.mock('../../auth/authService');
 const mockLogout = logout as jest.Mock;
 
 describe('LogoutMenu Tests', () => {
   let view: RenderResult;
   beforeEach(() => {
-    mockedProfileName.mockImplementationOnce(() => <span>Test User</span>);
-    view = render(<LogoutMenu />);
+    view = render(<LogoutMenu name="Test User" />);
   });
 
   it('should verify the LogoutMenu is created', () => {
