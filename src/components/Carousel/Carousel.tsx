@@ -15,15 +15,17 @@ const CarouselContainer = styled.div`
   padding: 8px 0;
 `;
 
+const NO_OF_SLIDES = 7;
+
 export const Carousel = ({ children, title }: CarouselType) => {
-  const infinite = children ? Children.count(children) > 7 : false;
+  const infinite = children ? Children.count(children) > NO_OF_SLIDES : false;
   const settings = {
     dots: true,
     arrows: true,
     infinite,
     speed: 500,
-    slidesToShow: 7,
-    slidesToScroll: 7,
+    slidesToShow: NO_OF_SLIDES,
+    slidesToScroll: NO_OF_SLIDES,
     nextArrow: <Arrow direction="next" />,
     prevArrow: <Arrow direction="prev" />,
   };

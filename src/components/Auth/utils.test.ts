@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import { getName } from './utils';
 
 describe('Auth utils tests', () => {
@@ -9,7 +10,7 @@ describe('Auth utils tests', () => {
       expect(name).toEqual('Test User');
     });
 
-    it('should return a empty string when local storage not set', () => {
+    it('should return an empty string when local storage not set', () => {
       Storage.prototype.getItem = jest.fn(() => null);
       const name = getName();
       expect(name).toEqual('');

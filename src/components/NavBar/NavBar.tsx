@@ -49,11 +49,11 @@ const LoginPanel = styled.div`
 export const NavBar = () => {
   const { data } = useQuery(GET_APP_STATE);
   const [name, setName] = useState('');
-  const { state: { isAuthorised, searchText } } = data;
+  const { state } = data;
 
   useEffect(() => {
-    if (isAuthorised) setName(getName());
-  }, [isAuthorised]);
+    if (state.isAuthorised) setName(getName());
+  }, [state.isAuthorised]);
 
   return (
     <NavBarPanel>
@@ -64,12 +64,12 @@ export const NavBar = () => {
         <FlexContent>
           <SearchPanel>
             <SearchInput
-              searchText={searchText}
+              searchText={state.searchText}
               handleSearchText={(text: string) => searchTextVar(text)}
             />
           </SearchPanel>
           <LoginPanel>
-            {isAuthorised ? <LogoutMenu name={name} /> : <LoginMenu />}
+            {state.isAuthorised ? <LogoutMenu name={name} /> : <LoginMenu />}
           </LoginPanel>
         </FlexContent>
       </NavContentPanel>

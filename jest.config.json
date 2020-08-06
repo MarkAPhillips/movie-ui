@@ -4,6 +4,7 @@
       "^.+\\.tsx?$": "ts-jest"
     },
     "verbose": true,
+    "setupFiles": ["<rootDir>jest.setup.js"],
     "setupFilesAfterEnv": [
       "@testing-library/jest-dom/extend-expect"
     ],
