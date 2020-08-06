@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useQuery } from '@apollo/client';
 import { SearchInput } from '../SearchInput/SearchInput';
 import { Logo } from '../Logo/Logo';
 import { LoginMenu, LogoutMenu } from '..';
 import { searchTextVar, GET_APP_STATE } from '../../apollo/appState';
+import { getName } from '../Auth/utils';
 
 const NavBarPanel = styled.header`
   display: flex;
@@ -47,7 +48,13 @@ const LoginPanel = styled.div`
 
 export const NavBar = () => {
   const { data } = useQuery(GET_APP_STATE);
+  const [name, setName] = useState('');
   const { state } = data;
+
+  useEffect(() => {
+    if (state.isAuthorised) setName(getName());
+  }, [state.isAuthorised]);
+
   return (
     <NavBarPanel>
       <NavContentPanel>
@@ -62,8 +69,7 @@ export const NavBar = () => {
             />
           </SearchPanel>
           <LoginPanel>
-            {!state.isAuthorised && <LoginMenu />}
-            {state.isAuthorised && <LogoutMenu />}
+            {state.isAuthorised ? <LogoutMenu name={name} /> : <LoginMenu />}
           </LoginPanel>
         </FlexContent>
       </NavContentPanel>

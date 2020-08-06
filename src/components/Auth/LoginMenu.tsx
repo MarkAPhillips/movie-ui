@@ -1,13 +1,9 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
-import { AuthMenuItemLink } from './styles';
+import { AuthMenuItemRouterLink } from './styles';
 
-export const LoginMenu = () => {
-  const history = useHistory();
-  return (
-    <>
-      <AuthMenuItemLink onClick={() => history.push('/auth/login')}>Sign in</AuthMenuItemLink>
-      <AuthMenuItemLink onClick={() => history.push('/auth/register')}>Register</AuthMenuItemLink>
-    </>
-  );
-};
+export const LoginMenu = () => (
+  <>
+    <AuthMenuItemRouterLink to="/auth/login">Sign in</AuthMenuItemRouterLink>
+    <AuthMenuItemRouterLink to="/auth/register">Register</AuthMenuItemRouterLink>
+  </>
+);

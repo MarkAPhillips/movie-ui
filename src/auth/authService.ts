@@ -1,29 +1,21 @@
 /* eslint-disable no-underscore-dangle */
-import axios, { AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 import { snakeCase } from 'lodash';
 import { SignInFormInput, RegisterFormInput } from './authTypes';
 import { transformObjectKeys } from '../utilities/objectFormatter';
+import { authApi } from './authApi';
 
-export const login = async (data: SignInFormInput): Promise<AxiosResponse<any>> => {
-  const response = await axios.post(
-    `${window._env_.AUTH_API_URL}/auth/login/`,
-    data,
-  );
-  return response;
-};
+export const login = async (data: SignInFormInput): Promise<AxiosResponse<any>> => authApi.post(
+  'login/',
+  data,
+);
 
 export const registration = async (formData: RegisterFormInput): Promise<AxiosResponse<any>> => {
   const data = transformObjectKeys(formData, snakeCase, ['password1', 'password2']);
-  const response = await axios.post(
-    `${window._env_.AUTH_API_URL}/auth/registration`,
+  return authApi.post(
+    'registration/',
     data,
   );
-  return response;
 };
 
-export const logout = async (): Promise<AxiosResponse<any>> => {
-  const response = await axios.post(
-    `${window._env_.AUTH_API_URL}/auth/logout/`,
-  );
-  return response;
-};
+export const logout = async (): Promise<AxiosResponse<any>> => authApi.post('logout/');

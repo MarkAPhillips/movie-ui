@@ -4,25 +4,26 @@ import { useHistory } from 'react-router-dom';
 import { Input, SubmitButton } from '../../styles/components';
 import { Title } from '../../styles/layout';
 import { SignInFormInput } from '../../auth/authTypes';
-import { login } from '../../auth/authService';
 import { FormPanel } from './styles';
-import { transformObjectKeys } from '../../utilities/objectFormatter';
-import { isAuthorisedVar, toastNotificationVar } from '../../apollo/appState';
+import { loginUser } from './utils';
+import { toastNotificationVar } from '../../apollo/appState';
 import { ToastTypes } from '../../apollo/types';
 
 export const SignIn = () => {
   const { register, handleSubmit, formState } = useForm<SignInFormInput>({ mode: 'onChange' });
   const history = useHistory();
 
-  const onSubmit = (formInput: SignInFormInput) => {
-    login(formInput).then(({ data }) => {
-      const transData = transformObjectKeys(data);
-      localStorage.setItem('auth', JSON.stringify(transData));
-      isAuthorisedVar(true);
-      const notification = { toastType: 'success' as ToastTypes, title: 'Success', message: 'Logged into account' };
+  const onSubmit = async (formInput: SignInFormInput) => {
+    let notification;
+    let redirect = false;
+    try {
+      ({ notification, redirect } = await loginUser(formInput));
+    } catch (err) {
+      notification = { toastType: 'danger' as ToastTypes, title: 'Error', message: 'Login failed' };
+    } finally {
       toastNotificationVar(notification);
-      history.push('/');
-    });
+      if (redirect) history.push('/');
+    }
   };
   const isDisabled = !formState.isValid;
   return (

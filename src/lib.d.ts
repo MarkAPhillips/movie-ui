@@ -7,5 +7,5 @@ type EnvironmentVariables = {
 export {};
 
 declare global {
-    interface Window { _env_: EnvironmentVariables }
+  interface Window { _env_: EnvironmentVariables }
 }
